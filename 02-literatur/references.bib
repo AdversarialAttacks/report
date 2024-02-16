@@ -1,0 +1,182 @@
+
+@misc{perruchoud_24fs_i4ds27_2023,
+	title = {24FS\_I4DS27: Adversarial Attacks - Wie kann {KI} überlistet wer- den?},
+	abstract = {Was lernen neuronale Netze genau?
+Wie sicher sind sie sich ihrer Vorher-
+sage und wie einfach lassen sie sich
+austricksen? Es stellt sich heraus,
+dass es ein Leichtes ist ein neurona-
+les Netz ({NN}) zu korrumpieren: ein
+Bild einer vorgegebenen Klasse lässt
+sich mit kleinsten Anpassungen so
+verändern, dass {KI} die richtige Klasse
+nicht mehr erkennt und eine komplett
+falsche Klassifikation vornimmt (s. Bild).
+In einer Welt, wo {ML}/{AI} mehr und mehr Einfluss auf unser Leben insbesondere in sensitiven Bereichen wie Gesundheitswesen und Finanzen nimmt, sind die Implikationen von Adversarial Attacks von enormer Trag- weite. Dieses Projekt widmet sich der Thematik Adversarial Attack und zielt darauf ab Modelle robuster zu machen.},
+	publisher = {{FHNW}},
+	author = {Perruchoud, Daniel and Heule, Stephan},
+	date = {2023-11-12},
+}
+
+@online{madry_brief_nodate,
+	title = {A Brief Introduction to Adversarial Examples},
+	url = {https://gradientscience.org/intro_adversarial/},
+	abstract = {Research highlights and perspectives on machine learning and optimization from {MadryLab}.},
+	titleaddon = {gradient science},
+	author = {Madry, Aleksander and Schmidt, Ludwig},
+	urldate = {2024-02-09},
+}
+
+@misc{ilyas_adversarial_2019,
+	title = {Adversarial Examples Are Not Bugs, They Are Features},
+	url = {http://arxiv.org/abs/1905.02175},
+	doi = {10.48550/arXiv.1905.02175},
+	abstract = {Adversarial examples have attracted significant attention in machine learning, but the reasons for their existence and pervasiveness remain unclear. We demonstrate that adversarial examples can be directly attributed to the presence of non-robust features: features derived from patterns in the data distribution that are highly predictive, yet brittle and incomprehensible to humans. After capturing these features within a theoretical framework, we establish their widespread existence in standard datasets. Finally, we present a simple setting where we can rigorously tie the phenomena we observe in practice to a misalignment between the (human-specified) notion of robustness and the inherent geometry of the data.},
+	number = {{arXiv}:1905.02175},
+	publisher = {{arXiv}},
+	author = {Ilyas, Andrew and Shibani, Santurkar and Tsipras, Dimitris and Engstrom, Logan and Tran, Brandon and Madry, Aleksander},
+	urldate = {2024-02-09},
+	date = {2019-08-12},
+	eprinttype = {arxiv},
+	eprint = {1905.02175 [cs, stat]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Cryptography and Security, Computer Science - Machine Learning, Statistics - Machine Learning},
+}
+
+@online{ilyas_adversarial_nodate,
+	title = {Adversarial Examples Are Not Bugs, They Are Features},
+	url = {https://gradientscience.org/adv/},
+	abstract = {Research highlights and perspectives on machine learning and optimization from {MadryLab}.},
+	titleaddon = {gradient science},
+	author = {Ilyas, Andrew and Shibani, Santurkar and Tsipras, Dimitris and Engstrom, Logan and Tran, Brandon and Madry, Aleksander},
+	urldate = {2024-02-09},
+}
+
+@article{engstrom_discussion_2019,
+	title = {A Discussion of 'Adversarial Examples Are Not Bugs, They Are Features'},
+	volume = {4},
+	issn = {2476-0757},
+	url = {https://distill.pub/2019/advex-bugs-discussion},
+	doi = {10.23915/distill.00019},
+	abstract = {Six comments from the community and responses from the original authors},
+	pages = {e19},
+	number = {8},
+	journaltitle = {Distill},
+	shortjournal = {Distill},
+	author = {Engstrom, Logan and Gilmer, Justin and Goh, Gabriel and Hendrycks, Dan and Ilyas, Andrew and Madry, Aleksander and Nakano, Reiichiro and Nakkiran, Preetum and Santurkar, Shibani and Tran, Brandon and Tsipras, Dimitris and Wallace, Eric},
+	urldate = {2024-02-09},
+	date = {2019-08-06},
+	langid = {english},
+}
+
+@misc{pintor_fast_2021,
+	title = {Fast Minimum-norm Adversarial Attacks through Adaptive Norm Constraints},
+	url = {http://arxiv.org/abs/2102.12827},
+	abstract = {Evaluating adversarial robustness amounts to finding the minimum perturbation needed to have an input sample misclassified. The inherent complexity of the underlying optimization requires current gradient-based attacks to be carefully tuned, initialized, and possibly executed for many computationally-demanding iterations, even if specialized to a given perturbation model. In this work, we overcome these limitations by proposing a fast minimum-norm ({FMN}) attack that works with different \${\textbackslash}ell\_p\$-norm perturbation models (\$p=0, 1, 2, {\textbackslash}infty\$), is robust to hyperparameter choices, does not require adversarial starting points, and converges within few lightweight steps. It works by iteratively finding the sample misclassified with maximum confidence within an \${\textbackslash}ell\_p\$-norm constraint of size \${\textbackslash}epsilon\$, while adapting \${\textbackslash}epsilon\$ to minimize the distance of the current sample to the decision boundary. Extensive experiments show that {FMN} significantly outperforms existing attacks in terms of convergence speed and computation time, while reporting comparable or even smaller perturbation sizes.},
+	number = {{arXiv}:2102.12827},
+	publisher = {{arXiv}},
+	author = {Pintor, Maura and Roli, Fabio and Brendel, Wieland and Biggio, Battista},
+	urldate = {2024-01-25},
+	date = {2021-11-19},
+	eprinttype = {arxiv},
+	eprint = {2102.12827 [cs]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+}
+
+@article{selvaraju_grad-cam_2020,
+	title = {Grad-{CAM}: Visual Explanations from Deep Networks via Gradient-based Localization},
+	volume = {128},
+	issn = {0920-5691, 1573-1405},
+	url = {http://arxiv.org/abs/1610.02391},
+	doi = {10.1007/s11263-019-01228-7},
+	shorttitle = {Grad-{CAM}},
+	abstract = {We propose a technique for producing "visual explanations" for decisions from a large class of {CNN}-based models, making them more transparent. Our approach - Gradient-weighted Class Activation Mapping (Grad-{CAM}), uses the gradients of any target concept, flowing into the final convolutional layer to produce a coarse localization map highlighting important regions in the image for predicting the concept. Grad-{CAM} is applicable to a wide variety of {CNN} model-families: (1) {CNNs} with fully-connected layers, (2) {CNNs} used for structured outputs, (3) {CNNs} used in tasks with multimodal inputs or reinforcement learning, without any architectural changes or re-training. We combine Grad-{CAM} with fine-grained visualizations to create a high-resolution class-discriminative visualization and apply it to off-the-shelf image classification, captioning, and visual question answering ({VQA}) models, including {ResNet}-based architectures. In the context of image classification models, our visualizations (a) lend insights into their failure modes, (b) are robust to adversarial images, (c) outperform previous methods on localization, (d) are more faithful to the underlying model and (e) help achieve generalization by identifying dataset bias. For captioning and {VQA}, we show that even non-attention based models can localize inputs. We devise a way to identify important neurons through Grad-{CAM} and combine it with neuron names to provide textual explanations for model decisions. Finally, we design and conduct human studies to measure if Grad-{CAM} helps users establish appropriate trust in predictions from models and show that Grad-{CAM} helps untrained users successfully discern a 'stronger' nodel from a 'weaker' one even when both make identical predictions. Our code is available at https://github.com/ramprs/grad-cam/, along with a demo at http://gradcam.cloudcv.org, and a video at youtu.be/{COjUB}9Izk6E.},
+	pages = {336--359},
+	number = {2},
+	journaltitle = {International Journal of Computer Vision},
+	shortjournal = {Int J Comput Vis},
+	author = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
+	urldate = {2024-01-25},
+	date = {2020-02},
+	eprinttype = {arxiv},
+	eprint = {1610.02391 [cs]},
+	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+}
+
+@misc{rony_augmented_2021,
+	title = {Augmented Lagrangian Adversarial Attacks},
+	url = {http://arxiv.org/abs/2011.11857},
+	abstract = {Adversarial attack algorithms are dominated by penalty methods, which are slow in practice, or more efficient distance-customized methods, which are heavily tailored to the properties of the distance considered. We propose a white-box attack algorithm to generate minimally perturbed adversarial examples based on Augmented Lagrangian principles. We bring several algorithmic modifications, which have a crucial effect on performance. Our attack enjoys the generality of penalty methods and the computational efficiency of distance-customized algorithms, and can be readily used for a wide set of distances. We compare our attack to state-of-the-art methods on three datasets and several models, and consistently obtain competitive performances with similar or lower computational complexity.},
+	number = {{arXiv}:2011.11857},
+	publisher = {{arXiv}},
+	author = {Rony, Jérôme and Granger, Eric and Pedersoli, Marco and Ayed, Ismail Ben},
+	urldate = {2024-01-25},
+	date = {2021-08-19},
+	eprinttype = {arxiv},
+	eprint = {2011.11857 [cs]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+}
+
+@misc{madry_towards_2019,
+	title = {Towards Deep Learning Models Resistant to Adversarial Attacks},
+	url = {http://arxiv.org/abs/1706.06083},
+	abstract = {Recent work has demonstrated that deep neural networks are vulnerable to adversarial examples---inputs that are almost indistinguishable from natural data and yet classified incorrectly by the network. In fact, some of the latest findings suggest that the existence of adversarial attacks may be an inherent weakness of deep learning models. To address this problem, we study the adversarial robustness of neural networks through the lens of robust optimization. This approach provides us with a broad and unifying view on much of the prior work on this topic. Its principled nature also enables us to identify methods for both training and attacking neural networks that are reliable and, in a certain sense, universal. In particular, they specify a concrete security guarantee that would protect against any adversary. These methods let us train networks with significantly improved resistance to a wide range of adversarial attacks. They also suggest the notion of security against a first-order adversary as a natural and broad security guarantee. We believe that robustness against such well-defined classes of adversaries is an important stepping stone towards fully resistant deep learning models. Code and pre-trained models are available at https://github.com/{MadryLab}/mnist\_challenge and https://github.com/{MadryLab}/cifar10\_challenge.},
+	number = {{arXiv}:1706.06083},
+	publisher = {{arXiv}},
+	author = {Madry, Aleksander and Makelov, Aleksandar and Schmidt, Ludwig and Tsipras, Dimitris and Vladu, Adrian},
+	urldate = {2024-01-25},
+	date = {2019-09-04},
+	eprinttype = {arxiv},
+	eprint = {1706.06083 [cs, stat]},
+	keywords = {Computer Science - Machine Learning, Computer Science - Neural and Evolutionary Computing, Statistics - Machine Learning},
+}
+
+@misc{samangouei_defense-gan_2018,
+	title = {Defense-{GAN}: Protecting Classifiers Against Adversarial Attacks Using Generative Models},
+	url = {http://arxiv.org/abs/1805.06605},
+	shorttitle = {Defense-{GAN}},
+	abstract = {In recent years, deep neural network approaches have been widely adopted for machine learning tasks, including classification. However, they were shown to be vulnerable to adversarial perturbations: carefully crafted small perturbations can cause misclassification of legitimate images. We propose Defense-{GAN}, a new framework leveraging the expressive capability of generative models to defend deep neural networks against such attacks. Defense-{GAN} is trained to model the distribution of unperturbed images. At inference time, it finds a close output to a given image which does not contain the adversarial changes. This output is then fed to the classifier. Our proposed method can be used with any classification model and does not modify the classifier structure or training procedure. It can also be used as a defense against any attack as it does not assume knowledge of the process for generating the adversarial examples. We empirically show that Defense-{GAN} is consistently effective against different attack methods and improves on existing defense strategies. Our code has been made publicly available at https://github.com/kabkabm/defensegan},
+	number = {{arXiv}:1805.06605},
+	publisher = {{arXiv}},
+	author = {Samangouei, Pouya and Kabkab, Maya and Chellappa, Rama},
+	urldate = {2024-01-23},
+	date = {2018-05-17},
+	eprinttype = {arxiv},
+	eprint = {1805.06605 [cs, stat]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Statistics - Machine Learning},
+}
+
+@online{noauthor_links_nodate,
+	title = {Links und Mustervorlagen (Templates, inkl. Layout-Vorgaben)},
+	url = {https://www.fhnw.ch/plattformen/academicguide/de/links-und-mustervorlagen-templates-2/},
+	shorttitle = {{NICHT} {ZITTIEREN}},
+	urldate = {2024-01-23},
+}
+
+@misc{goodfellow_explaining_2015,
+	title = {Explaining and Harnessing Adversarial Examples},
+	url = {http://arxiv.org/abs/1412.6572},
+	doi = {10.48550/arXiv.1412.6572},
+	abstract = {Several machine learning models, including neural networks, consistently misclassify adversarial examples---inputs formed by applying small but intentionally worst-case perturbations to examples from the dataset, such that the perturbed input results in the model outputting an incorrect answer with high confidence. Early attempts at explaining this phenomenon focused on nonlinearity and overfitting. We argue instead that the primary cause of neural networks' vulnerability to adversarial perturbation is their linear nature. This explanation is supported by new quantitative results while giving the first explanation of the most intriguing fact about them: their generalization across architectures and training sets. Moreover, this view yields a simple and fast method of generating adversarial examples. Using this approach to provide examples for adversarial training, we reduce the test set error of a maxout network on the {MNIST} dataset.},
+	number = {{arXiv}:1412.6572},
+	publisher = {{arXiv}},
+	author = {Goodfellow, Ian J. and Shlens, Jonathon and Szegedy, Christian},
+	urldate = {2024-01-23},
+	date = {2015-03-20},
+	eprinttype = {arxiv},
+	eprint = {1412.6572 [cs, stat]},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
+}
+
+@misc{xie_adversarial_2020,
+	title = {Adversarial Examples Improve Image Recognition},
+	url = {http://arxiv.org/abs/1911.09665},
+	abstract = {Adversarial examples are commonly viewed as a threat to {ConvNets}. Here we present an opposite perspective: adversarial examples can be used to improve image recognition models if harnessed in the right manner. We propose {AdvProp}, an enhanced adversarial training scheme which treats adversarial examples as additional examples, to prevent overfitting. Key to our method is the usage of a separate auxiliary batch norm for adversarial examples, as they have different underlying distributions to normal examples. We show that {AdvProp} improves a wide range of models on various image recognition tasks and performs better when the models are bigger. For instance, by applying {AdvProp} to the latest {EfficientNet}-B7 [28] on {ImageNet}, we achieve significant improvements on {ImageNet} (+0.7\%), {ImageNet}-C (+6.5\%), {ImageNet}-A (+7.0\%), Stylized-{ImageNet} (+4.8\%). With an enhanced {EfficientNet}-B8, our method achieves the state-of-the-art 85.5\% {ImageNet} top-1 accuracy without extra data. This result even surpasses the best model in [20] which is trained with 3.5B Instagram images ({\textasciitilde}3000X more than {ImageNet}) and {\textasciitilde}9.4X more parameters. Models are available at https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet.},
+	number = {{arXiv}:1911.09665},
+	publisher = {{arXiv}},
+	author = {Xie, Cihang and Tan, Mingxing and Gong, Boqing and Wang, Jiang and Yuille, Alan and Le, Quoc V.},
+	urldate = {2024-01-23},
+	date = {2020-04-14},
+	eprinttype = {arxiv},
+	eprint = {1911.09665 [cs]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+}
