@@ -1,0 +1,23 @@
+\subsection{Klassifkationsmodelle}
+
+In der Untersuchung der Universal Adversarial Perturbations wurden verschiedene Klassifikationsmodelle verwendet, um die Generalisierbarkeit über verschiedene Architekturen hinweg zu bewerten. Die ausgewählten Modelle umfassen eine breite Palette von Architekturen, darunter ResNet \cite{he_deep_2015}, DenseNet \cite{huang_densely_2018}, EfficientNetV2 \cite{tan_efficientnetv2_2021} und ein Transformer-basiertes Modell, der Vision Transformer (ViT) \cite{dosovitskiy_image_2021}, welches durch die PyTorch Library zur Verfügung gestellt wird.
+
+In jeder dieser Klassifikationsfamilien haben wir zwei bis drei verschiedene Modelle trainiert und evaluiert. Durch die Verwendung einer Vielzahl von Modellen stellen wir sicher, dass die Ergebnisse nicht spezifisch für eine bestimmte Architektur sind. Auf diese Weise können wir verallgemeinerbare Schlussfolgerungen über universelle adversarielle Perturbationen ziehen.
+
+In unserer Erarbeitung wurden Modelle, die zu keinem erfolgreichen Training geführt haben, aussortiert und nicht mehr in Betracht gezogen. Zwei der betroffenen Modellfamilien waren AlexNet \cite{krizhevsky_imagenet_2012} und VGG \cite{simonyan_very_2015}. Die Gründe für ein misslungenes Training wurden in dieser Arbeit nicht weiterverfolgt.
+
+
+\subsubsection{ResNet}
+Das ResNet, auch bekannt als Residual Nerual Network wurde Kaiming et al. \cite{he_deep_2015} entwickelt und erreichte einen Fehler von 3.57\% auf dem ImageNet Testdatensatz. Dieses Ergebnis führte zum Sieg der Klassifikationsaufgabe des ILSVRC 2015 . Beim ResNet werden Residual Connections verwendet werden, um sogenannte "Skip Connections" zwischen den Schichten des neuronalen Netzwerks zu etablieren. Diese Skip Connections ermöglichen es, den direkten Fluss von Informationen zwischen den Schichten zu erleichtern, was dazu beiträgt, das Problem des Verschwindens von Gradienten während des Trainings zu mildern.
+
+Durch die Verwendung von Residual Connections können tiefe neuronale Netzwerke effektiver trainiert werden, da sie es ermöglichen, dass der Gradient leichter rückwärts durch das Netzwerk fließen kann. Dies führt oft zu einer besseren Konvergenz und verhindert das Auftreten von Degradationsproblemen, die bei sehr tiefen neuronalen Netzwerken auftreten können.
+
+Die Grundidee hinter Residual Connections ist es, die ursprüngliche Eingabe eines Blocks mit der Ausgabe desselben Blocks zu addieren. Dadurch wird eine Art "shortcut" geschaffen, der es dem Netzwerk ermöglicht, die Identität zu lernen, falls dies für die beste Leistung erforderlich ist. Dieses Konzept hat sich als äußerst effektiv erwiesen und hat dazu beigetragen, die Leistung von tiefen neuronalen Netzwerken erheblich zu verbessern.
+
+
+\subsubsection{DenseNet}
+
+\subsubsection{EfficienNetV2}
+
+\subsubsection{ViT}
+

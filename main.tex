@@ -1,16 +1,42 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 
 \input{03-setup/01-packages}
+
 \begin{document}
+
 \include{03-setup/02-titlepage}
+
 \include{04-abstract/01-abstract}
-\tableofcontents
+
+\tableofcontents{}
+
+% Einleitung
 \include{05-intro/01-einleitung}
-\include{06-data/01-datensatz}
-\include{07-method/01-grundlagen}
-\include{07-method/02-this}
-\include{08-result/01-result}
-\include{09-conclusion/01-fazit}
-\include{10-ending/01-appendix}
-\include{10-ending/02-ehrlichkeit}
+
+% Grundlagen 
+\include{06-grundlagen/01-grundlagen}
+
+% Daten
+\include{07-daten/01-datensatz}
+
+% Methodik
+
+
+\include{08-methode/01-preprocessing}
+\include{08-methode/02-modelle}
+\include{08-methode/03-metriken}
+
+% Resultat
+\include{09-resultate/01-result}
+
+% Diskussion und Ausblick
+\include{10-ausblick/01-fazit}
+
+% Schluss
+\printbibliography[heading=bibnumbered]{}
+
+\include{11-ending/01-appendix}
+
+\include{11-ending/02-ehrlichkeit}
+
 \end{document}

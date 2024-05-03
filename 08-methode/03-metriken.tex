@@ -1,0 +1,119 @@
+\subsection{Metriken}
+
+\subsubsection{Confusion matrix}
+
+Die Confusion Matrix ist ein Werkzeug, das verwendet wird, um die Vorhersagen eines Klassifikationsmodells mit der tatsächlichen Wahrheit zu vergleichen. Dabei werden die Vorhersagen des Modells in vier Kategorien unterteilt:
+
+\begin{enumerate}
+    \item True Positives (TP): Elemente, die korrekterweise als zur Zielklasse gehörend erkannt wurden.
+    \item True Negatives (TN): Elemente, die korrekterweise als nicht zur Zielklasse gehörend erkannt wurden.
+    \item False Positives (FP): Elemente, die fälschlicherweise als zur Zielklasse gehörend vorhergesagt wurden, obwohl sie es in Wirklichkeit nicht sind.
+    \item False Negatives (FN): Elemente, die fälschlicherweise nicht als zur Zielklasse gehörend erkannt wurden, obwohl sie es eigentlich sind.
+\end{enumerate}
+
+Nachfolgende die Darstellung einer Confusion Matrix, mit der Anordnung von PyTorch Torchmetrics. 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{l|l|c|c|}
+        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted label}\\
+        \cline{3-4}
+        \multicolumn{2}{c|}{}&Negativ&Positiv\\
+        \cline{2-4}
+        \multirow{2}{*}{Actual label}& Negativ & $TN$ & $FP$\\
+        \cline{2-4}
+        & Positiv & $FN$ & $TP$\\
+        \cline{2-4}
+    \end{tabular}
+    \label{tab:conftable}
+    \caption{Binäre Konfusionsmatrix}
+\end{table}
+
+\subsubsection{Precision}
+Precision (Präzision) misst das Verhältnis der korrekt identifizierten positiven Instanzen zu allen Instanzen, die vom Modell als positiv klassifiziert wurden. Mit anderen Worten, Precision gibt an, wie viele der als positiv identifizierten Fälle tatsächlich positiv sind. Die Formel für Precision ist:
+
+\begin{equation}
+    \text{Precision} = \frac{TP}{TP + FP}
+\label{PrecisionFormula}
+\end{equation}
+
+
+\subsubsection{Recall}
+
+Recall hingegen misst das Verhältnis der korrekt identifizierten positiven Instanzen zu allen tatsächlich positiven Instanzen. Mit anderen Worten, Recall gibt an, wie viele der tatsächlich positiven Fälle vom Modell korrekt identifiziert wurden. Die Formel für Recall ist:
+
+\begin{equation}
+    \text{Recall} = \frac{TP}{TP + FN}
+\label{RecallFormula}
+\end{equation}
+
+\subsubsection{Specificity}
+Specificity ist eine weitere wichtige Metrik zur Bewertung der Leistung von Klassifizierungsmodellen. Im Gegensatz zu Precision und Recall, die sich auf die Leistung des Modells bei der Identifizierung von positiven Instanzen konzentrieren, misst die Spezifität die Fähigkeit des Modells, negative Instanzen korrekt zu identifizieren.
+
+Die Spezifität gibt das Verhältnis der korrekt identifizierten negativen Instanzen zur Gesamtzahl der tatsächlich negativen Instanzen an. Anders ausgedrückt, Spezifität gibt an, wie viele der tatsächlich negativen Fälle vom Modell korrekt identifiziert wurden. Die Formel für Spezifität ist:
+
+\begin{equation}
+    \text{Specificity} = \frac{TN}{TN + FP}
+\label{SpecificityFormula}
+\end{equation}
+
+\subsubsection{AUROC}
+Die AUROC (Area Under the Receiver Operating Characteristic Curve) ist eine Metrik zur quantitativen Bewertung der Leistungsfähigkeit von Klassifizierungsmodelle. Die zugrundeliegende ROC-Kurve (Receiver Operating Characteristic Curve) visualisiert das Verhältnis zwischen der True Positive Rate (TPR) und der False Positive Rate (FPR) eines Klassifizierungsmodells über verschiedene Schwellenwerte für die Klassifikation. Hierbei variiert die TPR als Prozentsatz der korrekt identifizierten positiven Fälle im Verhältnis zur Gesamtzahl der tatsächlich positiven Fälle, während die FPR den Anteil der fälschlicherweise als positiv klassifizierten Fälle im Verhältnis zur Gesamtzahl der tatsächlich negativen Fälle beschreibt.
+
+\begin{equation}
+    \text{True Positive Rate (TPR)} = \text{Recall} =\frac{\text{TP}}{\text{TP} + \text{FN}}
+\label{TPR}
+\end{equation}
+
+\begin{equation}
+    \text{False Positive Rate (FPR)} = \frac{\text{FP}}{\text{FP} + \text{TN}} 
+\label{FPR}
+\end{equation}
+
+Die AUROC quantifiziert die Gesamtleistung des Klassifizierungsmodells, indem sie die Fläche unter der ROC-Kurve berechnet. Ein Wert von 0.5 deutet auf ein schlechtes Modell hin, das äquivalent zu einer zufälligen Klassifikation ist, während ein Wert von 1 eine perfekte Klassifikation ohne Fehler bedeutet. Die AUROC ermöglicht somit eine quantiative Vergleichbarkeit verschiedener Klassifizierungsmodelle.
+
+
+\subsubsection{F1-Score}
+Der F1-Score ist eine Metrik, die Precision und Recall kombiniert, um die Gesamtleistung eines Klassifizierungsmodells zu bewerten. Er ist besonders nützlich, wenn ein ausgewogenes Verhältnis zwischen Precision und Recall angestrebt wird.
+
+Der F1-Score wird als harmonisches Mittelwert von Precision und Recall berechnet und berücksichtigt sowohl falsch positive als auch falsch negative Vorhersagen. Die Formel für den F1-Score lautet:
+
+\begin{equation}
+    \text{F1} = 2 * \frac{Precision * Recall}{Precision + Recall}
+\label{F1Score}
+\end{equation}
+
+Durch die Berücksichtigung von Precision und Recall ermöglicht der F1-Score eine umfassendere Bewertung der Leistung eines Klassifizierungsmodells. Ein hoher F1-Score zeigt an, dass das Modell sowohl eine hohe Precision als auch einen hohen Recall aufweist, was darauf hindeutet, dass es sowohl präzise als auch umfassend bei der Identifizierung von positiven Instanzen ist.
+
+Der F1-Score ist besonders nützlich in Situationen, in denen ein Ungleichgewicht zwischen den Klassen vorliegt oder wenn sowohl Precision als auch Recall von Bedeutung sind, wie zum Beispiel bei der Erkennung von Betrug oder bei medizinischen Diagnosen.
+
+
+\subsubsection{BinaryCrossEntropy}
+\todo{TODO}
+
+\subsubsection{Fooling-Rate}
+\todo{TODO}
+
+\subsubsection{Matrizennorm}
+Vektoren repräsentieren nicht nur Richtungen, sondern auch Längen. Diese Längenmessung wird durch die sogenannte Norm ermöglicht. Für einen Vektor $v$ wird die Norm wie folgt berechnet:
+
+\begin{equation}
+    \| \mathbf{v} \| = \sqrt{\sum_{i=1}^{n} v_i^2}
+\label{eq:Vektornorm}
+\end{equation}
+
+Matrizen sind eine Erweiterung dieses Konzepts. Ähnlich wie bei Vektoren können wir die "Grösse" einer Matrix mit einer entsprechenden Norm messen. Die Norm einer Matrix $A$ wird durch die Formel definiert:
+
+\begin{equation}
+    \| A \|_P = \sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} |a_{ij}|^p}
+\label{eq:Matrixnorm}
+\end{equation}
+
+Hier steht $p$ für einen Parameter, der die Art der Norm festlegt. Beispielsweise entspricht $p=2$ der Frobeniusnorm. Wenn $p$ gegen unendlich kovergiert, erhalten wir die Maximumnorm, die den höchsten Wert in der Matrix entspricht:
+
+\begin{equation}
+    \|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|
+    \label{eq:Maximumnorm}
+\end{equation}
+
+Diese Definitionen helfen uns, die "Grösse" von Matrizen in verschiedenen Kontexten zu verstehen und zu quantifizieren.
