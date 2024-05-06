@@ -8,16 +8,29 @@ In unserer Erarbeitung wurden Modelle, die zu keinem erfolgreichen Training gef�
 
 
 \subsubsection{ResNet}
-Das ResNet, auch bekannt als Residual Nerual Network wurde Kaiming et al. \cite{he_deep_2015} entwickelt und erreichte einen Fehler von 3.57\% auf dem ImageNet Testdatensatz. Dieses Ergebnis führte zum Sieg der Klassifikationsaufgabe des ILSVRC 2015 . Beim ResNet werden Residual Connections verwendet werden, um sogenannte "Skip Connections" zwischen den Schichten des neuronalen Netzwerks zu etablieren. Diese Skip Connections ermöglichen es, den direkten Fluss von Informationen zwischen den Schichten zu erleichtern, was dazu beiträgt, das Problem des Verschwindens von Gradienten während des Trainings zu mildern.
+Das ResNet, auch bekannt als Residual Nerual Network wurde Kaiming et al. \cite{he_deep_2015} entwickelt und erreichte einen Fehler von 3.57\% auf dem ImageNet Testdatensatz. Dieses Ergebnis führte zum Sieg der Klassifikationsaufgabe des ILSVRC 2015 . Beim ResNet werden Residual Connections verwendet werden, um sogenannte "`Skip Connections"' zwischen den Schichten des neuronalen Netzwerks zu etablieren. Diese Skip Connections ermöglichen es, den direkten Fluss von Informationen zwischen den Schichten zu erleichtern, was dazu beiträgt, das Problem des Verschwindens von Gradienten während des Trainings zu mildern.
 
-Durch die Verwendung von Residual Connections können tiefe neuronale Netzwerke effektiver trainiert werden, da sie es ermöglichen, dass der Gradient leichter rückwärts durch das Netzwerk fließen kann. Dies führt oft zu einer besseren Konvergenz und verhindert das Auftreten von Degradationsproblemen, die bei sehr tiefen neuronalen Netzwerken auftreten können.
+Durch die Verwendung von Residual Connections können tiefe neuronale Netzwerke effektiver trainiert werden, da sie es ermöglichen, dass der Gradient leichter rückwärts durch das Netzwerk fliessen kann. Dies führt oft zu einer besseren Konvergenz und verhindert das Auftreten von Degradationsproblemen, die bei sehr tiefen neuronalen Netzwerken auftreten können.
 
-Die Grundidee hinter Residual Connections ist es, die ursprüngliche Eingabe eines Blocks mit der Ausgabe desselben Blocks zu addieren. Dadurch wird eine Art "shortcut" geschaffen, der es dem Netzwerk ermöglicht, die Identität zu lernen, falls dies für die beste Leistung erforderlich ist. Dieses Konzept hat sich als äußerst effektiv erwiesen und hat dazu beigetragen, die Leistung von tiefen neuronalen Netzwerken erheblich zu verbessern.
-
+Die Grundidee hinter Residual Connections ist es, die ursprüngliche Eingabe eines Blocks mit der Ausgabe desselben Blocks zu addieren. Dadurch wird eine Art "`shortcut"' geschaffen, der es dem Netzwerk ermöglicht, die Identität zu lernen, falls dies für die beste Leistung erforderlich ist. Dieses Konzept hat sich als äusserst effektiv erwiesen und hat dazu beigetragen, die Leistung von tiefen neuronalen Netzwerken erheblich zu verbessern.
 
 \subsubsection{DenseNet}
+Das DenseNet, kurz für Dense Convolutional Network, wurde von Huang et al. \cite{huang_densely_2018} eingeführt und stellt eine Weiterentwicklung von Residual Neural Networks (ResNets) dar. Im Gegensatz zu ResNets, die Residual Connections verwenden, um "`Skip Connections"' zwischen Schichten herzustellen, verbindet DenseNet jede Schicht direkt mit allen nachfolgenden Schichten in einem Feedforward-Muster. Dieser dichte Verbindungsaufbau ermöglicht eine effizientere Informationsübertragung zwischen den Schichten und fördert die Wiederverwendung von Merkmalen durch das gesamte Netzwerk.
 
-\subsubsection{EfficienNetV2}
+Durch die direkten Verbindungen zwischen allen Schichten kann DenseNet das Problem des Informationsverlusts während des Trainings reduzieren und die Gradientenflussstabilität verbessern. Dies führt oft zu einer besseren Nutzung der verfügbaren Daten und kann die Genauigkeit und Effizienz des Modells erhöhen.
+
+Die grundlegende Idee hinter DenseNet besteht darin, dass jede Schicht nicht nur Ausgaben von vorherigen Schichten empfängt, sondern auch ihre eigenen Ausgaben an alle nachfolgenden Schichten weitergibt. Dieser Ansatz ermöglicht es dem Netzwerk, eine tiefe Hierarchie von Merkmalen zu lernen und dabei die Anzahl der zu optimierenden Parameter zu reduzieren, was zu kompakteren Modellen und besserer Generalisierung führt.
+
+\subsubsection{EfficientNetV2}
+EfficientNetV2 ist eine verbesserte Version des EfficientNet-Modells, das von Tan et al. \cite{tan_efficientnetv2_2021} eingeführt wurde. Es basiert auf der Idee, ein optimales Gleichgewicht zwischen Modellgrösse und Leistung zu finden, indem eine skalierbare Compound Scaling-Strategie verwendet wird.
+
+Im Gegensatz zu früheren Ansätzen zur Skalierung von CNNs, die sich hauptsächlich auf die Tiefe, Breite und Auflösung der Netzwerke konzentrierten, berücksichtigt EfficientNetV2 auch die Netzwerkstruktur und verwendet verbesserte Bausteine wie EffcientConv, eine effizientere Variante der Standard-Convolution. Diese Verbesserungen tragen dazu bei, die Leistung und Effizienz des Modells weiter zu steigern.
+
+EfficientNetV2 hat gezeigt, dass es mit weniger Parametern als andere Modelle vergleichbare oder sogar bessere Leistungen auf verschiedenen Bilderkennungsaufgaben erreichen kann. Diese Effizienz macht es zu einer attraktiven Wahl für Ressourcenbeschränkte Umgebungen oder Anwendungen, bei denen schnelle Inferenzzeiten erforderlich sind.
 
 \subsubsection{ViT}
+Das Vision Transformer (ViT) ist ein kürzlich eingeführtes Modell für die Bildklassifizierung, das von Dosovitskiy et al. \cite{dosovitskiy_image_2021} vorgestellt wurde. Im Gegensatz zu traditionellen Convolutional Neural Networks (CNNs) verwendet ViT eine transformerbasierte Architektur, die ursprünglich für die Verarbeitung von Sequenzen in natürlicher Sprache entwickelt wurde.
 
+ViT zerlegt das Eingabebild in Patches und behandelt sie als Token einer Sequenz, die dann von einem Transformer-Encoder verarbeitet wird. Diese Patch-Embedding-Technik ermöglicht es ViT, die räumlichen Beziehungen zwischen den Bildpixeln effektiv zu erfassen und sie in einen hochdimensionalen Raum zu projizieren, in dem sie von den Transformer-Blöcken verarbeitet werden.
+
+Durch die Verwendung von Transformer-Architekturen kann ViT eine hohe Skalierbarkeit und Flexibilität aufweisen und ist in der Lage, komplexe Muster in Bildern zu erfassen, die für herkömmliche CNNs möglicherweise schwierig zu modellieren sind. Dies hat zu beeindruckenden Leistungen auf verschiedenen Bildklassifizierungsaufgaben geführt und zeigt das Potenzial von Transformer-Modellen für die visuelle Verarbeitung.

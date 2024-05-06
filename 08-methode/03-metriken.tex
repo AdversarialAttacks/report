@@ -1,4 +1,5 @@
 \subsection{Metriken}
+\todo{Write small introduction text}
 
 \subsubsection{Confusion matrix}
 
@@ -34,7 +35,7 @@ Precision (Präzision) misst das Verhältnis der korrekt identifizierten positiv
 
 \begin{equation}
     \text{Precision} = \frac{TP}{TP + FP}
-\label{PrecisionFormula}
+    \label{eq:PrecisionFormula}
 \end{equation}
 
 
@@ -44,7 +45,7 @@ Recall hingegen misst das Verhältnis der korrekt identifizierten positiven Inst
 
 \begin{equation}
     \text{Recall} = \frac{TP}{TP + FN}
-\label{RecallFormula}
+    \label{eq:RecallFormula}
 \end{equation}
 
 \subsubsection{Specificity}
@@ -54,7 +55,7 @@ Die Spezifität gibt das Verhältnis der korrekt identifizierten negativen Insta
 
 \begin{equation}
     \text{Specificity} = \frac{TN}{TN + FP}
-\label{SpecificityFormula}
+    \label{eq:SpecificityFormula}
 \end{equation}
 
 \subsubsection{AUROC}
@@ -62,12 +63,12 @@ Die AUROC (Area Under the Receiver Operating Characteristic Curve) ist eine Metr
 
 \begin{equation}
     \text{True Positive Rate (TPR)} = \text{Recall} =\frac{\text{TP}}{\text{TP} + \text{FN}}
-\label{TPR}
+    \label{eq:TPR}
 \end{equation}
 
 \begin{equation}
     \text{False Positive Rate (FPR)} = \frac{\text{FP}}{\text{FP} + \text{TN}} 
-\label{FPR}
+    \label{eq:FPR}
 \end{equation}
 
 Die AUROC quantifiziert die Gesamtleistung des Klassifizierungsmodells, indem sie die Fläche unter der ROC-Kurve berechnet. Ein Wert von 0.5 deutet auf ein schlechtes Modell hin, das äquivalent zu einer zufälligen Klassifikation ist, während ein Wert von 1 eine perfekte Klassifikation ohne Fehler bedeutet. Die AUROC ermöglicht somit eine quantiative Vergleichbarkeit verschiedener Klassifizierungsmodelle.
@@ -79,8 +80,8 @@ Der F1-Score ist eine Metrik, die Precision und Recall kombiniert, um die Gesamt
 Der F1-Score wird als harmonisches Mittelwert von Precision und Recall berechnet und berücksichtigt sowohl falsch positive als auch falsch negative Vorhersagen. Die Formel für den F1-Score lautet:
 
 \begin{equation}
-    \text{F1} = 2 * \frac{Precision * Recall}{Precision + Recall}
-\label{F1Score}
+    \text{F1} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+    \label{eq:F1Score}
 \end{equation}
 
 Durch die Berücksichtigung von Precision und Recall ermöglicht der F1-Score eine umfassendere Bewertung der Leistung eines Klassifizierungsmodells. Ein hoher F1-Score zeigt an, dass das Modell sowohl eine hohe Precision als auch einen hohen Recall aufweist, was darauf hindeutet, dass es sowohl präzise als auch umfassend bei der Identifizierung von positiven Instanzen ist.
@@ -88,25 +89,38 @@ Durch die Berücksichtigung von Precision und Recall ermöglicht der F1-Score ei
 Der F1-Score ist besonders nützlich in Situationen, in denen ein Ungleichgewicht zwischen den Klassen vorliegt oder wenn sowohl Precision als auch Recall von Bedeutung sind, wie zum Beispiel bei der Erkennung von Betrug oder bei medizinischen Diagnosen.
 
 
-\subsubsection{BinaryCrossEntropy}
-\todo{TODO}
+\subsubsection{Fooling Rate}
+Die Fooling Rate beschreibt, wie erfolgreich ein Modell durch adversarial Attacks getäuscht werden kann. Sie misst den relativen Anteil der erfolgreichen Attacken, das das Modell falsch klassifiziert hat. Zum Beispiel, wenn ein Modell eine Fooling Rate von 80\% hat, bedeutet das, dass von 100 modifizierten Bildern 80 fälschlicherweise klassifiziert werden. Eine hohe Fooling Rate bedeutet, dass das Modell anfälliger für adversarielle Angriffe ist und somit weniger vertrauenswürdig in Bezug auf die Klassifizierung von Daten. Mathematisch lässt sich die Fooling Rate wie folgt definieren. 
 
-\subsubsection{Fooling-Rate}
-\todo{TODO}
+\begin{equation}
+    \text{Fooling Rate} = \frac{1}{N} \sum_{i=1}^{N} \left\{ \begin{array}{ll} 1, & \text{if } \text{round}(\hat{y}_i) \neq \text{round}(\hat{y}_{adv,i}) \\ 0, & \text{otherwise} \end{array} \right.
+    \label{eq:Fooling Rate}
+\end{equation}
+
+Wobei die Funktion Rundungsfunktion $\text{round}(\cdot)$ wie folgt definiert ist:
+
+\todo{should we define things like x is real}
+
+\begin{equation}
+    \text{round}(x) = \lfloor x + 0.5 \rfloor \quad \text{, } x \in \mathbb{R}
+    \label{eq:Rundungsfunktion}
+\end{equation}
+
 
 \subsubsection{Matrizennorm}
+\todo{Brauchen wir das so genau erklärt?}
 Vektoren repräsentieren nicht nur Richtungen, sondern auch Längen. Diese Längenmessung wird durch die sogenannte Norm ermöglicht. Für einen Vektor $v$ wird die Norm wie folgt berechnet:
 
 \begin{equation}
-    \| \mathbf{v} \| = \sqrt{\sum_{i=1}^{n} v_i^2}
-\label{eq:Vektornorm}
+    \| v \| = \sqrt{\sum_{i=1}^{n} v_i^2}
+    \label{eq:Vektornorm}
 \end{equation}
 
-Matrizen sind eine Erweiterung dieses Konzepts. Ähnlich wie bei Vektoren können wir die "Grösse" einer Matrix mit einer entsprechenden Norm messen. Die Norm einer Matrix $A$ wird durch die Formel definiert:
+Matrizen sind eine Erweiterung dieses Konzepts. Ähnlich wie bei Vektoren können wir die "`Grösse"' einer Matrix mit einer entsprechenden Norm messen. Die Norm einer Matrix $A$ wird durch die Formel definiert:
 
 \begin{equation}
     \| A \|_P = \sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} |a_{ij}|^p}
-\label{eq:Matrixnorm}
+    \label{eq:Matrixnorm}
 \end{equation}
 
 Hier steht $p$ für einen Parameter, der die Art der Norm festlegt. Beispielsweise entspricht $p=2$ der Frobeniusnorm. Wenn $p$ gegen unendlich kovergiert, erhalten wir die Maximumnorm, die den höchsten Wert in der Matrix entspricht:
@@ -116,4 +130,4 @@ Hier steht $p$ für einen Parameter, der die Art der Norm festlegt. Beispielswei
     \label{eq:Maximumnorm}
 \end{equation}
 
-Diese Definitionen helfen uns, die "Grösse" von Matrizen in verschiedenen Kontexten zu verstehen und zu quantifizieren.
+Diese Definitionen helfen uns, die "`Grösse"' von Matrizen in verschiedenen Kontexten zu verstehen und zu quantifizieren.
