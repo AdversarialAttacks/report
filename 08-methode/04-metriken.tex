@@ -1,9 +1,9 @@
 \subsection{Metriken}
-\todo{Write small introduction text}
+Metriken spielen eine zentrale Rolle bei der Bewertung und Beurteilung der Leistung von Klassifikationsmodellen. In diesem Kapitel werden verschiedene Metriken vorgestellt, die zur Evaluierung von Klassifikationsmodellen verwendet werden. Des Weiteren stellen wir auch Metriken vor, die für uns von grosser Relevanz sind in Bezug auf Adversarial Attacks, wie bspw. die Fooling Rate im Kapitel \ref{chap:fooling rate}
 
-\subsubsection{Confusion matrix}
+\subsubsection{Konfusion Matrix}
 
-Die Confusion Matrix ist ein Werkzeug, das verwendet wird, um die Vorhersagen eines Klassifikationsmodells mit der tatsächlichen Wahrheit zu vergleichen. Dabei werden die Vorhersagen des Modells in vier Kategorien unterteilt:
+Die Konfusion Matrix ist ein Werkzeug, das verwendet wird, um die Vorhersagen eines Klassifikationsmodells mit der tatsächlichen Wahrheit zu vergleichen. Dabei werden die Vorhersagen des Modells in vier Kategorien unterteilt:
 
 \begin{enumerate}
     \item True Positives (TP): Elemente, die korrekterweise als zur Zielklasse gehörend erkannt wurden.
@@ -12,7 +12,7 @@ Die Confusion Matrix ist ein Werkzeug, das verwendet wird, um die Vorhersagen ei
     \item False Negatives (FN): Elemente, die fälschlicherweise nicht als zur Zielklasse gehörend erkannt wurden, obwohl sie es eigentlich sind.
 \end{enumerate}
 
-Nachfolgende die Darstellung einer Confusion Matrix, mit der Anordnung von PyTorch Torchmetrics. 
+Nachfolgende die Darstellung einer Konfusion Matrix, mit der Anordnung von PyTorch Torchmetrics. 
 
 \begin{table}[h]
     \centering
@@ -59,7 +59,7 @@ Die Spezifität gibt das Verhältnis der korrekt identifizierten negativen Insta
 \end{equation}
 
 \subsubsection{AUROC}
-Die AUROC (Area Under the Receiver Operating Characteristic Curve) ist eine Metrik zur quantitativen Bewertung der Leistungsfähigkeit von Klassifizierungsmodelle. Die zugrundeliegende ROC-Kurve (Receiver Operating Characteristic Curve) visualisiert das Verhältnis zwischen der True Positive Rate (TPR) und der False Positive Rate (FPR) eines Klassifizierungsmodells über verschiedene Schwellenwerte für die Klassifikation. Hierbei variiert die TPR als Prozentsatz der korrekt identifizierten positiven Fälle im Verhältnis zur Gesamtzahl der tatsächlich positiven Fälle, während die FPR den Anteil der fälschlicherweise als positiv klassifizierten Fälle im Verhältnis zur Gesamtzahl der tatsächlich negativen Fälle beschreibt.
+Die AUROC (Area under the receiver operating characteristic curve) ist eine Metrik zur quantitativen Bewertung der Leistungsfähigkeit von Klassifizierungsmodelle. Die zugrundeliegende ROC Kurve (Receiver Operating Characteristic Curve) visualisiert das Verhältnis zwischen der True Positive Rate (TPR) und der False Positive Rate (FPR) eines Klassifizierungsmodells über verschiedene Schwellenwerte für die Klassifikation. Hierbei variiert die TPR als Prozentsatz der korrekt identifizierten positiven Fälle im Verhältnis zur Gesamtzahl der tatsächlich positiven Fälle, während die FPR den Anteil der fälschlicherweise als positiv klassifizierten Fälle im Verhältnis zur Gesamtzahl der tatsächlich negativen Fälle beschreibt.
 
 \begin{equation}
     \text{True Positive Rate (TPR)} = \text{Recall} =\frac{\text{TP}}{\text{TP} + \text{FN}}
@@ -71,7 +71,7 @@ Die AUROC (Area Under the Receiver Operating Characteristic Curve) ist eine Metr
     \label{eq:FPR}
 \end{equation}
 
-Die AUROC quantifiziert die Gesamtleistung des Klassifizierungsmodells, indem sie die Fläche unter der ROC-Kurve berechnet. Ein Wert von 0.5 deutet auf ein schlechtes Modell hin, das äquivalent zu einer zufälligen Klassifikation ist, während ein Wert von 1 eine perfekte Klassifikation ohne Fehler bedeutet. Die AUROC ermöglicht somit eine quantiative Vergleichbarkeit verschiedener Klassifizierungsmodelle.
+Die AUROC quantifiziert die Gesamtleistung des Klassifizierungsmodells, indem sie die Fläche unter der ROC Kurve berechnet. Ein Wert von 0.5 deutet auf ein schlechtes Modell hin, das äquivalent zu einer zufälligen Klassifikation ist, während ein Wert von 1 eine perfekte Klassifikation ohne Fehler bedeutet. Die AUROC ermöglicht somit eine quantitative Vergleichbarkeit verschiedener Klassifizierungsmodelle.
 
 
 \subsubsection{F1-Score}
@@ -89,26 +89,23 @@ Durch die Berücksichtigung von Precision und Recall ermöglicht der F1-Score ei
 Der F1-Score ist besonders nützlich in Situationen, in denen ein Ungleichgewicht zwischen den Klassen vorliegt oder wenn sowohl Precision als auch Recall von Bedeutung sind, wie zum Beispiel bei der Erkennung von Betrug oder bei medizinischen Diagnosen.
 
 
-\subsubsection{Fooling Rate}
-Die Fooling Rate beschreibt, wie erfolgreich ein Modell durch adversarial Attacks getäuscht werden kann. Sie misst den relativen Anteil der erfolgreichen Attacken, das das Modell falsch klassifiziert hat. Zum Beispiel, wenn ein Modell eine Fooling Rate von 80\% hat, bedeutet das, dass von 100 modifizierten Bildern 80 fälschlicherweise klassifiziert werden. Eine hohe Fooling Rate bedeutet, dass das Modell anfälliger für adversarielle Angriffe ist und somit weniger vertrauenswürdig in Bezug auf die Klassifizierung von Daten. Mathematisch lässt sich die Fooling Rate wie folgt definieren. 
+\subsubsection{Fooling Rate} \label{chap:fooling rate}
+Die Fooling Rate quantifiziert die Erfolgsrate von adversarial Angriffen auf ein Modell. Sie wird als Prozentsatz der Bilder definiert, die nach einer Modifikation anders klassifiziert werden als vorher. Eine Fooling Rate von 80\% bedeutet beispielsweise, dass 80 von 100 modifizierten Bildern anders als die unveränderten Bilder klassifiziert werden. Eine hohe Fooling Rate zeigt eine hohe Vulnerabilität des Modells gegenüber den generierten adversarial Attacken an. Mathematisch wird die Fooling Rate folgendermassen definiert:
 
 \begin{equation}
-    \text{Fooling Rate} = \frac{1}{N} \sum_{i=1}^{N} \left\{ \begin{array}{ll} 1, & \text{if } \text{round}(\hat{y}_i) \neq \text{round}(\hat{y}_{adv,i}) \\ 0, & \text{otherwise} \end{array} \right.
+    \text{Fooling Rate}(t) = \frac{1}{N} \sum_{i=1}^{N} \mathds{1}_{\{(\hat{y}_i \geq t) \neq (\hat{y}_{\text{adv},i} \geq t)\}}
     \label{eq:Fooling Rate}
 \end{equation}
 
-Wobei die Funktion Rundungsfunktion $\text{round}(\cdot)$ wie folgt definiert ist:
-
-\todo{should we define things like x is real}
-
-\begin{equation}
-    \text{round}(x) = \lfloor x + 0.5 \rfloor \quad \text{, } x \in \mathbb{R}
-    \label{eq:Rundungsfunktion}
-\end{equation}
-
+\begin{align*}
+\text{wobei:}&\\
+t, &\text{ ist die für die Klassifikation gewählte Threshold.}\\
+\hat{y}_i, &\text{ ist die Vorhersage des Modells für das Originalbild.} \\
+\hat{y}_{\text{adv},i}, &\text{ ist die Vorhersage des Modells für das perturbierte Bild.} \\
+N, &\text{ ist die Gesamtanzahl an Datenpunkte.}
+\end{align*}
 
 \subsubsection{Matrizennorm}
-\todo{Brauchen wir das so genau erklärt?}
 Vektoren repräsentieren nicht nur Richtungen, sondern auch Längen. Diese Längenmessung wird durch die sogenannte Norm ermöglicht. Für einen Vektor $v$ wird die Norm wie folgt berechnet:
 
 \begin{equation}
@@ -123,11 +120,11 @@ Matrizen sind eine Erweiterung dieses Konzepts. Ähnlich wie bei Vektoren könne
     \label{eq:Matrixnorm}
 \end{equation}
 
-Hier steht $p$ für einen Parameter, der die Art der Norm festlegt. Beispielsweise entspricht $p=2$ der Frobeniusnorm. Wenn $p$ gegen unendlich kovergiert, erhalten wir die Maximumnorm, die den höchsten Wert in der Matrix entspricht:
+Hier steht $p$ für einen Parameter, der die Art der Norm festlegt. Beispielsweise entspricht $p=2$ der Frobeniusnorm. Wenn $p$ gegen unendlich konvergiert, erhalten wir die Maximumnorm, die dem höchsten Wert in der Matrix entspricht:
 
 \begin{equation}
     \|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|
     \label{eq:Maximumnorm}
 \end{equation}
 
-Diese Definitionen helfen uns, die "`Grösse"' von Matrizen in verschiedenen Kontexten zu verstehen und zu quantifizieren.
+%Diese Definitionen helfen uns, die "`Grösse"' von Matrizen in verschiedenen Kontexten zu verstehen und zu quantifizieren.

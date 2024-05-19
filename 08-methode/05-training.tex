@@ -1,0 +1,33 @@
+\subsection{Modell Training}
+
+\todo{Finetuning, Fintuning mit Perturbation}
+\todo{Schematische Darstellung und Notation sowie Begriffe}
+
+\label{chap:baselinetraining}
+In diesem Kapitel erklären wir, wie wir unsere Baseline Modelle trainiert haben, sowie alle Komponenten, welche wir verwendet haben.
+
+\subsubsection{Loss-Funktion} \label{chap:loss-function}
+Für das Modelltraining verwenden wir den \acrlong{bce} Loss. Die \acrshort{bce} Loss wird minimiert, wenn das Modell eine perfekte Vorhersage trifft (d.h. wenn $\hat{y}_i = y_i$ für alle i), und wird grösser, je weiter von entfernt ist).  \\
+Die \acrshort{bce} Loss ist definiert als:
+
+\begin{equation}
+    L_{BCE} = -\frac{1}{N} \sum_{i=1}^{N} (y_i \cdot \log(\hat{y}_i) + (1-y_i) \cdot \log(1-\hat{y}_i))
+    \label{eq:TrainingBCE}
+\end{equation}
+
+\text{folgende Parameter stehen für:}
+\begin{align*}
+y_i,        &\text{ ist das tatsächliche Label des i-ten Datenpunkts} \\
+\hat{y}_i,  &\text{ ist die Vorhersage des Modells des i-ten Datenpunkts} \\
+N,          &\text{ ist die Gesamtanzahl an Datenpunkte} \\
+\end{align*} 
+
+\subsubsection{Optimizer} \label{chap:optimizer}
+Für die Optimierung der Modellparameter verwenden wir den Adam Optimizer von Kingma et al. \cite{kingma_adam_2017}. 
+\todo{Muss ich genau Zittieren oder Paraphrasieren, vorallem bei der nachfolgenden Zusammenfassung?}
+Adam ist ein Optimierungsalgorithmus, der für die Anpassung stochastischer Zielfunktionen mittels Gradientenverfahren entwickelt wurde. Er kombiniert Techniken wie Momentum und RMSprop, um die Lernrate anzupassen und die Konvergenz des Modells zu verbessern. Zudem ist es einfach zu implementieren, effizient und benötigt wenig Speicherplatz. Adam zeigt gute praktische Ergebnisse und ist mit anderen Methoden der stochastischen Optimierung vergleichbar. 
+
+\subsubsection{Hyperparamteroptimierung und Modellselektion}
+Für das Training iterieren wir durch alle Modelle und Datensätze, die in den Kapiteln \ref{chap:klassifikationsmodelle}: \nameref{chap:klassifikationsmodelle} und \ref{chap:Daten}: \nameref{chap:Daten} beschrieben sind. Aufgrund der Grösse des \nameref{chap:COVIDX-CXR4}-Datensatzes im Vergleich zum \nameref{chap:Brain-Tumor}-Datensatz wählen wir pro Trainingsepoche nur zufällig 15\% seines Trainingssubsets aus. Für jede Kombination aus Modell und Datensatz starten wir drei Trainingsdurchläufe, wobei wir die Learningrate von $10^{-5}$, $10^{-4}$ bis $10^{-3}$ variieren. 
+
+Wegen des hohen Rechenaufwands und begrenzter Ressourcen verzichten wir auf Hyperparameteroptimierung bei L2-Regularisierung und Dropout vor dem letzten Klassifikationslayer und deaktivieren diese. Stattdessen speichern wir den besten Checkpoint jedes Modells und Datensatzes, basierend auf dem niedrigsten Validierungsverlust, und setzen diese als unsere Baseline-Klassifikationsmodelle ein.
