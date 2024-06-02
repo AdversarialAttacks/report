@@ -1,4 +1,4 @@
-\subsection{UAP Algorithmus}
+\subsection{UAP Algorithmus} \label{chap:UAP}
 
 Unser Algorithmus für \acrfull{uap} basiert auf dem Ansatz von Moosavi-Dezfooli et al. \cite{moosavi-dezfooli_universal_2017}. Ziel ist es, eine Perturbation zu entwickeln, die auf neue Bilder übertragbar ist. Dies erreichen wir, indem wir iterativ durch eine Auswahl von Trainingsbildern gehen und den jeweils kürzesten Weg zur Entscheidungsgrenze jedes Bildes finden. Die dabei erzeugten Perturbationen werden summiert, um eine universelle Perturbation zu formen. 
 
@@ -40,7 +40,7 @@ Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=14.9cm]{01-images/04-methodik/UAP_ALG.png}
+    \includegraphics[width=14.3cm]{01-images/04-methodik/UAP_ALG.png}
     \caption{UAP Algorithmus}
     \label{fig:05-uap_algorithm}
 \end{figure}
@@ -55,5 +55,37 @@ r, &\text{ ist der prozentuelle Anteil von Trainingsbilder, welche durch die Per
 &\text{  getäuscht werden soll, damit die Perturbation } v_i \text{ gespeichert wird.} \\
 p, &\text{ ist der Normparameter der } L_p \text{ Norm.}\\
 \lambda_{norm}, &\text{ siehe Loss-Funktion.}\\
-\epsilon, &\text{ siehe Loss-Funktion.}
+\epsilon, &\text{ siehe Loss-Funktion.}\\
+lr_{\text{UAP}}, &\text{ ist die Lernrate für die Gewichtsaktualisierung von $\Delta v$.}
 \end{align*}
+
+\subsubsection{UAP Pseudo Algorithmus}
+
+\begin{algorithm}
+\caption{Algorithmus für universelle Störungs-Perturbationen}
+\begin{algorithmic}[1]
+\STATE \textbf{Initialisieren} Liste von Perturbationen $v$
+\FOR{$i=1$ \TO gewünschte Anzahl universeller Perturbationen}
+    \STATE \textbf{Initialisieren} Perturbationstensor $v_i$ als Nulltensorbild
+    \FOR{Epochen bis gewünschte Täuschungsrate $r$ erreicht ist}
+        \FOR{jedes Bild im Trainingsdatensatz}
+            \STATE Hole das nächste Bild $img$
+            \STATE \textbf{Initialisieren} bildspezifische Perturbation $\delta_v$ als Nulltensorbild
+            \IF{Modell mit $img + v + \delta_v$ getäuscht}
+                \REPEAT
+                    \STATE Mache Modellvorhersage mit $img + v_i + \delta_v$
+                    \STATE Berechne den Loss und führe Rückpropagierung durch
+                    \STATE Prüfe, ob Decision Boundary erreicht wurde
+                    \IF{Decision Boundary erreicht}
+                        \STATE Füge $\delta_v$ zu $v_i$ hinzu
+                    \ENDIF
+                \UNTIL{Ende der Rückpropagierungsschritte oder Abbruchkriterium erreicht}
+            \ENDIF
+        \ENDFOR
+        \STATE Berechne die Täuschungsrate der Perturbation $v_i$
+    \ENDFOR
+    \STATE Füge $v_i$ zur Liste $v$ hinzu
+\ENDFOR
+\STATE \textbf{Rückgabe} Liste von Perturbationen $v$
+\end{algorithmic}
+\end{algorithm}
