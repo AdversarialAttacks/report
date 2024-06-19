@@ -2,7 +2,7 @@
 
 Unser Algorithmus für \acrfull{uap} basiert auf dem Ansatz von Moosavi-Dezfooli et al. \cite{moosavi-dezfooli_universal_2017}. Ziel ist es, eine Perturbation zu entwickeln, die auf neue Bilder übertragbar ist. Dies erreichen wir, indem wir iterativ durch eine Auswahl von Trainingsbildern gehen und den jeweils kürzesten Weg zur Entscheidungsgrenze jedes Bildes finden. Die dabei erzeugten Perturbationen werden summiert, um eine universelle Perturbation zu formen. 
 
-\subsubsection{Loss-Funktion}
+\subsubsection{Loss-Funktion $L_\text{UAP}$}
 Das Optimierungsproblem wird in unserer Implementierung durch eine selbst definierte Loss-Funktion gelöst, welche die Norm der Perturbationsmatrix und die inverse \acrlong{bce} Funktion minimiert. Die Grundidee hierbei ist, dass mit der Norm die aktuelle Perturbation so klein wie möglich gehalten wird und mit der Inversen der \acrlong{bce} Funktion die aktuelle Perturbation an die Entscheidungsgrenze gebracht wird. 
 
 Unsere Verlustfunktion optimiert den Tensor $\Delta v$ und sieht wie folgt aus:
@@ -36,15 +36,32 @@ Für $\epsilon$ wird ein kleiner Wert wie $10^{-6}$ gewählt, der eine Division 
 
 \newpage
 \subsubsection{Technische UAP Umsetzung}
-Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder ist in der folgenden Grafik \ref{fig:05-uap_algorithm} dargestellt:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=14.3cm]{01-images/04-methodik/UAP_ALG.png}
-    \caption{UAP Algorithmus}
-    \label{fig:05-uap_algorithm}
-\end{figure}
+Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder ist im folgenden Pseudocode visualisiert.
 
+\begin{algorithm}[H]
+\caption{Algorithmus für die Generierung von Universal Adversarial Perturbations}
+\begin{algorithmic}[1]
+\label{algo:UAP Algorithmus}
+\STATE \textbf{initialize} Liste $v$
+\FOR{Anzahl Perturbationen $i$}
+    \STATE \textbf{initialize} Nulltensor $v_i$
+    \WHILE{$\text{Fooling Rate}(k) < r$}
+        \FOR{$\text{img}$ in Trainingsdatensatz $X_{1:n}$}
+        \STATE \textbf{initialize} Nulltensor $\Delta v$
+        \STATE \textbf{initialize} $j_{\text{tries}} \gets 0$
+            \WHILE{$(\hat{y}_{(img)} \geq k) = (\hat{y}_{({\text{img} + v_i + \Delta v})} \geq k)$ \textbf{and} $j_{\text{tries}} < t$}         
+            \STATE Aktualisiere $\Delta v$ mittels $L_{\text{UAP}}$: $$\Delta v \gets \Delta v - lr_{\text{UAP}} (\frac{\partial L_{UAP}}{\partial \Delta v})$$
+            \STATE Inkrementiere $j_{\text{tries}}$: $$j_{\text{tries}} \gets j_{\text{tries}} + 1$$
+            \ENDWHILE
+            \STATE Addiere die Perturbation $\Delta v$ auf $v_i$: $$v_i \leftarrow v_i + \Delta v$$
+        \ENDFOR
+    \ENDWHILE
+    \STATE Füge $v_i$ zur Liste $v$ hinzu
+\ENDFOR
+\STATE \textbf{return} Liste von Perturbationen $v$
+\end{algorithmic}
+\end{algorithm}
 
 \text{Wobei man folgende Parameter selbst bestimmen muss:}
 \begin{align*}
@@ -53,39 +70,14 @@ n, &\text{ ist die Anzahl Trainingsbilder, welche für die Generierung verwendet
 t, &\text{ ist die Anzahl Versuche, eine bildlokale Perturbation zu finden}\\
 r, &\text{ ist der prozentuelle Anteil von Trainingsbilder, welche durch die Perturbationen} \\ 
 &\text{  getäuscht werden soll, damit die Perturbation } v_i \text{ gespeichert wird.} \\
-p, &\text{ ist der Normparameter der } L_p \text{ Norm.}\\
-\lambda_{norm}, &\text{ siehe Loss-Funktion.}\\
-\epsilon, &\text{ siehe Loss-Funktion.}\\
+k, &\text{ ist der Threshold der Entscheidungsgrenze.} \\
+p, &\text{ ist der Normparameter der $L_p$ Norm, siehe \nameref{Loss}.}\\
+\lambda_{norm}, &\text{ siehe \nameref{Loss}.}\\
+\epsilon, &\text{ siehe \nameref{Loss}.}\\
 lr_{\text{UAP}}, &\text{ ist die Lernrate für die Gewichtsaktualisierung von $\Delta v$.}
 \end{align*}
 
-\subsubsection{UAP Pseudo Algorithmus}
+Eine visuelle Darstellung zum Algorithmus ist bei Abbildung \ref{fig:05-uap_algorithm} im Anhang zu finden. 
 
-\begin{algorithm}
-\caption{Algorithmus für universelle Störungs-Perturbationen}
-\begin{algorithmic}[1]
-\STATE \textbf{Initialisieren} Liste von Perturbationen $v$
-\FOR{$i=1$ \TO gewünschte Anzahl universeller Perturbationen}
-    \STATE \textbf{Initialisieren} Perturbationstensor $v_i$ als Nulltensorbild
-    \FOR{Epochen bis gewünschte Täuschungsrate $r$ erreicht ist}
-        \FOR{jedes Bild im Trainingsdatensatz}
-            \STATE Hole das nächste Bild $img$
-            \STATE \textbf{Initialisieren} bildspezifische Perturbation $\delta_v$ als Nulltensorbild
-            \IF{Modell mit $img + v + \delta_v$ getäuscht}
-                \REPEAT
-                    \STATE Mache Modellvorhersage mit $img + v_i + \delta_v$
-                    \STATE Berechne den Loss und führe Rückpropagierung durch
-                    \STATE Prüfe, ob Decision Boundary erreicht wurde
-                    \IF{Decision Boundary erreicht}
-                        \STATE Füge $\delta_v$ zu $v_i$ hinzu
-                    \ENDIF
-                \UNTIL{Ende der Rückpropagierungsschritte oder Abbruchkriterium erreicht}
-            \ENDIF
-        \ENDFOR
-        \STATE Berechne die Täuschungsrate der Perturbation $v_i$
-    \ENDFOR
-    \STATE Füge $v_i$ zur Liste $v$ hinzu
-\ENDFOR
-\STATE \textbf{Rückgabe} Liste von Perturbationen $v$
-\end{algorithmic}
-\end{algorithm}
+
+
