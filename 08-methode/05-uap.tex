@@ -1,46 +1,51 @@
 \subsection{UAP Algorithmus} \label{chap:UAP}
 
-Unser Algorithmus für \acrfull{uap} basiert auf dem Ansatz von Moosavi-Dezfooli et al. \cite{moosavi-dezfooli_universal_2017}. Ziel ist es, eine Perturbation zu entwickeln, die auf neue Bilder übertragbar ist. Dies erreichen wir, indem wir iterativ durch eine Auswahl von Trainingsbildern gehen und den jeweils kürzesten Weg zur Entscheidungsgrenze jedes Bildes finden. Die dabei erzeugten Perturbationen werden summiert, um eine universelle Perturbation zu formen. 
+Der hier beschriebene Algorithmus für die Generation von einer \acrfull{uap} basiert auf dem Ansatz von Moosavi-Dezfooli et al. \cite{moosavi-dezfooli_universal_2017}. Ziel ist, eine Perturbation zu entwickeln, die auf neue Bilder übertragbar ist. Der Algorithmus durchläuft iterativ eine Auswahl von Trainingsbildern und findet jeweils den kürzesten Weg zur Entscheidungsgrenze jedes Bildes. Dabei werden die erzeugten Perturbationen aufsummiert, um eine universelle Perturbation zu erzeugen.
 
-\subsubsection{Loss-Funktion $L_\text{UAP}$}
-Das Optimierungsproblem wird in unserer Implementierung durch eine selbst definierte Loss-Funktion gelöst, welche die Norm der Perturbationsmatrix und die inverse \acrlong{bce} Funktion minimiert. Die Grundidee hierbei ist, dass mit der Norm die aktuelle Perturbation so klein wie möglich gehalten wird und mit der Inversen der \acrlong{bce} Funktion die aktuelle Perturbation an die Entscheidungsgrenze gebracht wird. 
+Bei der Generation der \acrshort{uap}s wird nur eine Teilmenge der positiv gelabelten Trainingsbilder verwendet. Die generierten \acrshort{uap}s sind speziell darauf ausgelegt, positive Klassenbilder fälschlicherweise als negative zu klassifizieren.
 
-Unsere Verlustfunktion optimiert den Tensor $\Delta v$ und sieht wie folgt aus:
+\subsubsection{Loss-Funktion $L_{\text{UAP}}$}
+Das Optimierungsproblem des Referenzpapers \cite{moosavi-dezfooli_universal_2017} wird in dieser Implementierung durch eine selbst definierte Loss-Funktion gelöst, welche die Norm der Perturbationstensor und die inverse \acrlong{bce} Funktion minimiert. Durch die Minimierung der Norm der Perturbationstensor wird sichergestellt, dass die erzeugte Perturbation minimal ist und somit weniger auffällig. Gleichzeitig sorgt die Minimierung der Inverse \acrlong{bce} dafür, dass die aktuelle Perturbation an die Entscheidungsgrenze bringt. Diese doppelte Optimierung stellt sicher, dass die Perturbationen sowohl klein als auch wirksam ist.
+
+% Die Grundidee dabei ist, dass die Norm die aktuelle Perturbation so klein wie möglich hält und die Inverse der \acrlong{bce} die aktuelle Perturbation an die Entscheidungsgrenze bringt.
+
+Die Loss-Funktion optimiert den Tensor $\Delta v$ und sieht wie folgt aus:
 \begin{equation}
     L_{UAP} = \lambda_{norm} \cdot ||v + \Delta v||_p + \frac{1}{L_{BCE}(\hat{y}, \hat{y}_{\text{adv}}) + \epsilon}
 \label{Loss}
 \end{equation}
 
-Wobei der hier verwendete \acrlong{bce} wie folgt minimiert werden kann:
+Wobei die verwendete \acrlong{bce} wie folgt minimiert wird:
 \begin{equation}
 L_{BCE} = - (\hat{y} \cdot \log(\hat{y}_{\text{adv}}) + (1-\hat{y}) \cdot \log(1-\hat{y}_{\text{adv}}))
 \label{eq:BCE}
 \end{equation}
 
 \begin{align*}
-\text{wobei:}&\\
+%\text{wobei:}&\\
 L_{UAP}, &\text{ ist der gesamte Loss.} \\
 L_{BCE}, &\text{ bezeichnet den \acrlong{bce} Loss.} \\
-\lambda_{norm}, &\text{ ist der Regularisierungsparameter.} \\
-v, &\text{ ist die universelle gegnerische Störung.} \\
-\Delta v, &\text{ ist die Änderung der Störung } v \text{.} \\
+\lambda_{norm}, &\text{ ist der Regularisierungsparameter der Matrizennorm.} \\
+v, &\text{ ist die universelle adversarial Perturbation.} \\
+\Delta v, &\text{ ist die Änderung der Perturbation } v \text{.} \\
 ||v + \Delta v||_p, &\text{ repräsentiert die } L_p \text{-Norm der Perturbation } v + \Delta v. \\
 \hat{y}, &\text{ ist die Vorhersage des Modells für das Originalbild ($\text{img}$).} \\
 \hat{y}_{adv}, &\text{ ist die Vorhersage des Modells für das perturbierte Bild ($\text{img} + v + \Delta v$).} \\
 \epsilon, &\text{ ist eine kleine positive Konstante für numerische Stabilität.}
 \end{align*}
 
-Da unser Algorithmus eine Batch Size von 1 erfordert und nach jeder Berechnung die Backpropagation durchführt, muss bei der Loss-Funktion kein Mittelwert berechnet werden. $\hat{y}$ sowie $\hat{y}_{adv}$ beziehen sich auf das aktuelle Bild im Algorithmus.
+Der Algorithmus erfordert eine Batch Size von 1 und führt nach jeder Berechnung die Backpropagation durch, wodurch kein Mittelwert bei der Loss-Funktion berechnet wird. $\hat{y}$ sowie $\hat{y}_{adv}$ beziehen sich auf das aktuelle Bild im Algorithmus.
 
-Für $\epsilon$ wird ein kleiner Wert wie $10^{-6}$ gewählt, der eine Division durch null verhindert, wenn der Output unseres Modells sowohl mit als auch ohne Störung gleich ist. Dies ist vor allem bei der Berechnung der allerersten Perturbation ein Problem.
+Für $\epsilon$ wird ein kleiner Wert wie $10^{-6}$ gewählt, der eine Division durch 0 verhindert, wenn der Output unseres Modells sowohl mit als auch ohne Perturbation gleich ist. Dies ist vor allem bei der Berechnung der ersten Perturbation ein Problem, da zu diesem Zeitpunkt ein Nulltensor vorhanden ist.
 
-\newpage
-\subsubsection{Technische UAP Umsetzung}
+\subsubsection{Technische UAP Umsetzung} \label{chap:technische_umsetzung_uap}
 
 Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder ist im folgenden Pseudocode visualisiert.
 
+
+
 \begin{algorithm}[H]
-\caption{Algorithmus für die Generierung von Universal Adversarial Perturbations}
+\caption{Algorithmus für die Generierung von \acrlong{uap}}
 \begin{algorithmic}[1]
 \label{algo:UAP Algorithmus}
 \STATE \textbf{initialize} Liste $v$
@@ -65,19 +70,44 @@ Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder
 
 \text{Wobei man folgende Parameter selbst bestimmen muss:}
 \begin{align*}
-i, &\text{ ist die Anzahl Perturbationsbilder, welche generiert werden sollen.} \\
+i, &\text{ ist die Anzahl Perturbationsbilder, welche generiert werden.} \\
 n, &\text{ ist die Anzahl Trainingsbilder, welche für die Generierung verwendet werden.} \\
-t, &\text{ ist die Anzahl Versuche, eine bildlokale Perturbation zu finden}\\
+t, &\text{ ist die Anzahl Versuche, eine bildlokale Perturbation zu finden.}\\
+X_{1:n}, &\text{ ist eine Teilmenge aller positiven gelabelten Trainingsbilder.} \\
 r, &\text{ ist der prozentuelle Anteil von Trainingsbilder, welche durch die Perturbationen} \\ 
-&\text{  getäuscht werden soll, damit die Perturbation } v_i \text{ gespeichert wird.} \\
+&\text{  getäuscht werden, damit die Perturbation } v_i \text{ gespeichert wird.} \\
 k, &\text{ ist der Threshold der Entscheidungsgrenze.} \\
 p, &\text{ ist der Normparameter der $L_p$ Norm, siehe \nameref{Loss}.}\\
-\lambda_{norm}, &\text{ siehe \nameref{Loss}.}\\
-\epsilon, &\text{ siehe \nameref{Loss}.}\\
-lr_{\text{UAP}}, &\text{ ist die Lernrate für die Gewichtsaktualisierung von $\Delta v$.}
+\lambda_{norm},\epsilon, &\text{ siehe \nameref{Loss}.}\\
+lr_{\text{UAP}}, &\text{ ist die Learningrate für die Gewichtsaktualisierung von $\Delta v$.}
 \end{align*}
 
-Eine visuelle Darstellung zum Algorithmus ist bei Abbildung \ref{fig:05-uap_algorithm} im Anhang zu finden. 
+Eine visuelle Darstellung zum \Gls{algorithmus} ist bei Abbildung \ref{fig:05-uap_algorithm} im Anhang zu finden. 
 
+\subsubsection{Wahl des Matrizennormregularisierungsparameters $\lambda_{norm}$}
 
+In Vorversuchen wurde festgestellt, dass jedes Modell standardmässig unterschiedlich robust gegenüber \acrshort{uap}s ist und dass der Matrizennormalisierungsparameter $\lambda_{norm}$ nicht universell gewählt werden kann. Wenn dieser Parameter zu hoch gewählt wird, wird die Perturbationsgenerierung für manche Modelle instabil und die gewünschte Schwelle der Entscheidungsgrenze $k$ kann nicht erreicht werden. Daher muss vor jeder Robustifizierung für jedes Modell manuell ein stabiler Regularisierungsparameter $\lambda_{norm}$ gefunden werden. Je höher dieser gewählt wird, desto instabiler ist die Generierung der \acrshort{uap}s, aber desto geringer ist die Perturbation.
+\\
+\\
+In der folgenden Tabelle \ref{tab:Matrizennormregularisierungsparameter} werden einige der gewählten Werte erfasst:
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l}
+\hline
+\textbf{Datensatz} & \textbf{Modell} & \textbf{$\lambda_{norm}$} \\ 
+\hline
+MRI & ResNet50 & $0.05$ \\
+\hline
+'' & ResNet18 & $>$1 \\
+\hline
+COVIDx & - & - \\
+\hline
+'' & - & - \\
+\bottomrule
+\end{tabular}
+\caption{Beispiele der gewählten Matrizennormregularisierungsparameter $\lambda_{norm}$}
+\label{tab:Matrizennormregularisierungsparameter}
+\end{table}
+
+\todo{Befüllen}

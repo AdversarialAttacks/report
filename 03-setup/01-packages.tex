@@ -9,11 +9,15 @@
 \usepackage[a4paper, margin=2.5cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{fancyhdr, lastpage} 
 \pagestyle{fancy}
-\fancyfoot[C]{{\thepage} von
-\pageref{LastPage}}
+\fancyhead{}
+\fancyhead[R]{24FS I4DS27: Adversarial Attacks - 
+Wie kann KI überlistet werden?}
+\fancyfoot[C]{{\thepage} von \pageref{LastPage}}
 \setlength{\headheight}{15pt}
+\renewcommand{\footrulewidth}{0.4pt}
 \usepackage{parskip}
 \usepackage{csquotes}
+
 
 % For citations with apa or ieee
 \usepackage[style=ieee,urldate=comp,backend=biber]{biblatex}
@@ -31,6 +35,8 @@
 \usepackage{multicol}	
 \usepackage{hyperref}
 \usepackage[inkscapelatex=false]{svg}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % Todo Package
 \usepackage{todonotes} % Load the todonotes package
@@ -68,7 +74,7 @@
 % algorithm
 \usepackage{algorithm}
 \usepackage{algorithmic}
-
+\renewcommand{\listalgorithmname}{Algorithmenverzeichnis}
 
 % cross referencing
 \usepackage{nameref}

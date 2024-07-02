@@ -9,7 +9,7 @@ Die Abbildung \ref{fig:grundlagen} illustriert den allgemeinen adversarial Attac
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13.5cm]{01-images/02-grundlagen/adversarial-attack.png}
+    \includegraphics[width=0.8\linewidth]{01-images/02-grundlagen/adversarial-attack.png}
     \caption{Vorgang einer Attacke}
     \label{fig:grundlagen}
 \end{figure}
@@ -24,10 +24,9 @@ Die Abbildung \ref{fig:grundlagen} illustriert den allgemeinen adversarial Attac
     \item $\neq$, der Output von $y_0$ und $y_0^{*}$ ist nicht gleich.
 \end{itemize}
 
+\todo{Andere Adversarial Attacks Beispiele wie FGSM?}
 
 \subsubsection{Beispiele für Adversarial Attacks} 
-
-\todo{one pixel attack}
 
 Ein faszinierendes Beispiel für physische Adversarial Attacks ist das  ``Adversarial T-Shirt'', das in der Lage ist, Personenerkennungssysteme zu täuschen \cite{xu_adversarial_2020}. Dieses T-Shirt ist mit speziellen Mustern bedruckt, die darauf ausgelegt sind, die Algorithmen von Objekterkennungssystemen zu täuschen. Im Gegensatz zu herkömmlichen Angriffen, die oft statische Objekte wie Stopp Schilder oder Gesichtserkennung nutzen, bezieht sich dieses Beispiel auf ein dynamisches Objekt – ein T-Shirt auf einem bewegenden Menschen \cite{xu_adversarial_2020}. 
 
@@ -36,19 +35,21 @@ In Experimenten mit dem CIFAR-10 Datensatz konnte durch die Veränderung eines e
 
 \subsection{Universal Adversarial Attacks auf Bildklassifikation} 
 
-Bei der Universal Adversarial Attacks wird eine "Universelle" Perturbation erzeugt, welches mehrere Modelle und unabhängig vom Datensatz auf alle Bilder addiert werden kann und das Modell somit zu einer Fehlklassifikation geschieht. 
+\todo{Erwähnen, dass es eine Whitebox Attacke ist.}
+
+Bei der Universal Adversarial Attacks wird eine ``Universelle'' Perturbation erzeugt, welches mehrere Modelle und unabhängig vom Datensatz auf alle Bilder addiert werden kann und das Modell somit zu einer Fehlklassifikation geschieht. 
 
 \subsubsection{Grundlagen}
 
 Adversarial Attacks nutzen Schwachstellen in den Entscheidungsgrenzen von Klassifizierungsmodellen aus, indem sie gezielt minimale, aber effektive Veränderungen an den Eingabedaten vornehmen. Diese Veränderungen, oft als Perturbation bezeichnet, sind typischerweise für das menschliche Auge kaum wahrnehmbar, können jedoch das Modell dazu bringen, eine falsche Vorhersage zu treffen. Ein wesentliches Merkmal der universalen Perturbation ist ihre Übertragbarkeit über verschiedene Modelle und Daten hinweg, was sie besonders bedrohlich in realen Anwendungen macht.
 
-\subsubsection{Unser Hauptpaper}
+\subsubsection{Hauptstudie}
 
-Unser Hauptpaper ``Universal adversarial perturbations'' von Moosavi-Dezfooli et al. (2017) \cite{moosavi-dezfooli_universal_2017} bildet die Grundlage dieser Bachelorarbeit. Die Autoren demonstrieren die Existenz von universellen Perturbationen, die die Fähigkeit besitzen, mit hoher Wahrscheinlichkeit fehlerhafte Klassifizierungen über verschiedene Modelle und Datensätze hinweg zu induzieren. Ihre Forschung unterstreicht die signifikanten Sicherheitsrisiken, die durch solche Angriffe entstehen können, und betont die Notwendigkeit robusterer Verteidigungsmechanismen gegenüber adversarial attacks.
+Die Hauptstudie ``Universal adversarial perturbations'' von Moosavi-Dezfooli et al. (2017) \cite{moosavi-dezfooli_universal_2017} bildet die Grundlage für den Perturbationsalgorithmus dieser Bachelorarbeit. Die Autoren demonstrieren die Existenz von universellen Perturbationen, die die Fähigkeit besitzen, mit hoher Wahrscheinlichkeit fehlerhafte Klassifizierungen über verschiedene Modelle und Datensätze hinweg zu induzieren. Ihre Forschung unterstreicht die signifikanten Sicherheitsrisiken, die durch solche Angriffe entstehen können, und betont die Notwendigkeit robusterer Verteidigungsmechanismen gegenüber adversarial attacks.
 
 \subsubsection{Bisherige Herausforderungen bei der Verteidigung}
 
-\todo{verteidigung}
+\todo{TODO}
 
 \subsection{Anwendungsfall}
 

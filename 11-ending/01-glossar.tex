@@ -1,17 +1,5 @@
-\section{Glossar}
-
-Damit die Wörter auftauchen im Glossar oder Akronyme, müssen dabei folgende befehle ausgeführt werden:
-
-\textbackslash Gls\{algorithmus\} \Gls{algorithmus}     \\ 
-\textbackslash gls\{algorithmus\} \gls{algorithmus}     \\
-\textbackslash Glspl\{algorithmus\} \Glspl{algorithmus} \\
-
-\textbackslash acrlong\{uap\} \acrlong{uap}     \\
-\textbackslash acrshort\{uap\} \acrshort{uap}   \\
-\textbackslash acrfull\{bce\} \acrfull{bce}     \\
-
 % Wörterglossar
-
+\addcontentsline{toc}{section}{Glossar}
 \newglossaryentry{latex}
 {
         name=latex,
@@ -33,10 +21,11 @@ scientific documents}
 
 \newglossaryentry{algorithmus}
 {
-        name=algorithmus,
+        name=Algorithmus,
         description={Eine präzise Anweisung oder eine Folge von Anweisungen zur Lösung eines Problems oder zur Ausführung einer Aufgabe in endlicher Zeit}
 }
 
+\addcontentsline{toc}{section}{Akronyme}
 \newacronym{uap}{UAP}{Universal Adversarial Perturbation}
 
 \newacronym{bce}{BCE}{Binary Cross Entropy}

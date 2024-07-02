@@ -40,10 +40,25 @@
 
 \include{11-ending/01-glossar}
 
-\printbibliography[heading=bibnumbered]{}
+\printbibliography[title = {Literaturverzeichnis}]{}
+\addcontentsline{toc}{section}{Literaturverzeichnis}
 
-\include{11-ending/02-appendix}
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{\listfigurename}
+
+\newpage
+\listoftables
+\addcontentsline{toc}{section}{\listtablename} 
+
+\newpage
+\listofalgorithms
+\addcontentsline{toc}{section}{Algorithmenverzeichnis}
+
+\include{11-ending/04-hilfsmittelverzeichnis}
 
 \include{11-ending/03-ehrlichkeit}
+
+\include{11-ending/02-appendix}
 
 \end{document}

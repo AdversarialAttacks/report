@@ -3,7 +3,7 @@
 \subsubsection{Hirntumor} \label{chap:Hirntumor}
 Hirntumoren sind abnormale Wucherungen von Zellen im Gehirn, die entweder gutartig oder bösartig sein können. Diese Tumoren können sowohl im Gehirn selbst entstehen als auch als Metastasen von anderen Krebsarten in den Kopf wandern. Die Symptome variieren je nach Tumorart, -grösse und -lokalisation und können Kopfschmerzen, Übelkeit, Sehstörungen, Krampfanfälle und kognitive Beeinträchtigungen umfassen. Aufgrund ihrer Komplexität und der sensiblen Lage im zentralen Nervensystem stellen Hirntumoren eine erhebliche Herausforderung für die medizinische Diagnostik und Behandlung dar und haben oft weitreichende Auswirkungen auf die Lebensqualität der Betroffenen. 
 
-\todo{Quelle}
+\todo{Quelle? WHO}
 
 \subsubsection{Datensatz}
 Der \textbf{Brain Tumor Classification (MRI)-Datensatz} \cite{bhuvaji_brain_2020} umfasst 3.260 bereinigte und augmentierte, T1-gewichtete, kontrastverstärkte MRI-Bilder zur Identifikation und Klassifikation von Hirntumoren. 
@@ -12,14 +12,14 @@ Die MRI-Bilder in der Abbildung zeigen Beispiele von Gehirnscans, die zur Klassi
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth, height=4cm]{01-images/03-data/brain-klasse0.png}
+    \includegraphics[width=\linewidth]{01-images/03-data/brain-klasse0.png}
     \caption{Beispiele von negativen Hirntumor Patienten vom Brain Tumor Datensatz}
     \label{fig:brain-klasse0}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth, height=4cm]{01-images/03-data/brain-klasse1.png}
+    \includegraphics[width=\linewidth]{01-images/03-data/brain-klasse1.png}
     \caption{Beispiele von positiven Hirntumor Patienten vom Brain Tumor Datensatz}
     \label{fig:brain-klasse1}
 \end{figure}
@@ -85,14 +85,14 @@ Die Histogramme der Hirntumor-Klassifikation sehen im Vergleich zum COVIDx CXR-4
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth, height=4cm]{01-images/03-data/brain-klasse0-hist.png}
+    \includegraphics[width=\linewidth]{01-images/03-data/brain-klasse0-hist.png}
     \caption{Histogramm der Pixelverteilung von Abbildung \ref{fig:brain-klasse0}}
     \label{fig:brain-klasse0-hist}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth, height=4cm]{01-images/03-data/brain-klasse1-hist.png}
+    \includegraphics[width=\linewidth]{01-images/03-data/brain-klasse1-hist.png}
     \caption{Histogramm der Pixelverteilung von Abbildung \ref{fig:brain-klasse1}}
     \label{fig:brain-klasse1-hist}
 \end{figure}
@@ -101,39 +101,55 @@ Die niedrigen Pixelwerte in einem Bild deuten darauf hin, dass viele dunkle Bere
 
 
 
-\subsection{Datenverteilung \& Testperofmance} \label{chap:Datenverteilung-Testperformance-mri}
+\subsection{Datenverteilung \& Testperformance} \label{chap:Datenverteilung-Testperformance-mri}
 
 Wie im Kapitel \ref{chap:Datenverteilung-Testperformance-covidx} haben wir das Problem der Performance auf den Testmetriken ebenfalls auf den MRI Datensatz. 
 
 \subsubsection{Pixelverteilung} \label{chap:Pixelverteilung-TestProblemEda1-mri}
 
-
-Das Vorgehen, analog zu dem im Kapitel \ref{chap:Pixelverteilung-TestProblemEda1-covidx} beschriebenen, nutzen wir für unseren Hirntumor Datenpartitionen. In der Abbildung \ref{fig:hist-datapartition-brain} zeigt die Histogramme der Pixelwerte für jede Datenpartition.
+Das Vorgehen, analog zu dem im Kapitel \ref{chap:Pixelverteilung-TestProblemEda1-covidx} beschrieben, nutzen wir für unseren Hirntumor Datenpartitionierung. In der Abbildung \ref{fig:hist-datapartition-brain} zeigt die Histogramme der Pixelwerte für jede Datenpartition.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth, height=5cm]{01-images/03-data/brain-Pixelverteilung-Partitionen.png}
+    \includegraphics[width=\linewidth]{01-images/03-data/brain-Pixelverteilung-Partitionen.png}
     \caption{Histogramme der Pixelverteilung von Hirntumor in jeder Datenpartition}
     \label{fig:hist-datapartition-brain}
 \end{figure}
 
-Ein ähnliches Muster, das durch einen deutlichen Buckel gekennzeichnet ist, zeigt sich auch in diesem Hirntumor-Datensatz, jedoch mit einer Peakverschiebung. In den Hirntumor Histogrammen tritt dieser Peak typischerweise bei einem Pixelwert von etwa 80 auf. Sowohl die Trainings- als auch die Validierungspartition weisen ein vergleichbares Muster auf. In der Testpartition ist der Buckel allerdings weniger stark ausgeprägt. Zudem kommt es ab einem Pixelwert von 250 zu einem markanten Anstieg, der am Ende des Histogramms einen signifikanten Ausschlag verursacht. Eine mögliche Erklärung, dass die Testdatenpartition aus einer anderen Verteilung kommt. 
+Ein ähnliches Muster, wie bei Abbildung \ref{fig:hist-datapartition-covid}, das durch einen deutlichen Buckel gekennzeichnet ist, zeigt sich auch in diesem Hirntumor-Datensatz, jedoch mit einer Peakverschiebung. In den Hirntumor Histogrammen tritt dieser Peak typischerweise bei einem Pixelwert von etwa 80 auf. Sowohl die Trainings- als auch die Validierungspartition weisen ein vergleichbares Muster auf. In der Testpartition ist der Buckel allerdings weniger stark ausgeprägt. Zudem kommt es ab einem Pixelwert von 250 zu einem markanten Anstieg, der am Ende des Histogramms einen signifikanten Ausschlag verursacht. Eine mögliche Erklärung, dass die Testdatenpartition aus einer anderen Verteilung kommt. 
 
-\subsubsection{Differenzbilder} \label{chap:Differenzenbilder-TestProblemEda2-mri}
 
-Auch bei den Differenzbilder ist das Vorgehen, analog wie im Kapitel \ref{chap:Differenzenbilder-TestProblemEda2-covidx} beschrieben. 
+\newpage
+
+\subsubsection{Pixelmittelwerte} \label{chap:Differenzenbilder-TestProblemEda2-mri}
+
+Auch bei den Pixelmittelwerte ist das Vorgehen, analog wie im Kapitel \ref{chap:Pixelmittelwert-TestProblemEda2-covidx} beschrieben. 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth, height=5cm]{01-images/03-data/brain-Differenzenbilder-Partition.png}
+    \includegraphics[width=\linewidth]{01-images/03-data/brain-pixelmittelwerte.png}
+    \caption{Differenzbilder von Hirntumor in jeder Datenpartition}
+    \label{fig:pixelmittelwerte-datapartition-brain}
+\end{figure}
+
+In der Abbildung \ref{fig:pixelmittelwerte-datapartition-brain} sind die Differenzbilder der Pixelmittelwerte für die alle Hirntumor Datenpartitionen dargestellt. In allen drei Partitionen ist ein dunkler Kreis erkennbar. Feine Strukturen des Gehirns sind sowohl in der Validierungs- als auch in der Testpartition sichtbar, wobei diese Strukturen in der Testpartition deutlicher hervortreten als in der Validierungspartition. Zudem ist in der Testpartition erkennbar, dass die Pixelwerte ausserhalb des Kreises durchschnittlich höher sind und häufiger vorkommen als in den Trainings- und Validierungspartitionen. Weiter ist ein Rand bei der Testpartition zu erkennen. Dies deutet darauf hin, dass die Testdaten möglicherweise eine höhere Variabilität oder eine andere Verteilung aufweisen als die Trainings- und Validierungsdaten.
+
+\newpage
+
+
+\subsubsection{Differenzbilder} \label{chap:brain-differenzenbilder}
+ 
+Analoges Vorgehen wie bei Kapitel \ref{chap:Differenzenbilder-TestProblemEda2-covidx}
+
+\todo{Wym?}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth, height=4.5cm]{01-images/01-setup/04-placeholder.png}
     \caption{Differenzbilder von Hirntumor in jeder Datenpartition}
     \label{fig:differenzenbilder-datapartition-brain}
 \end{figure}
 
-In der Trainingspartition der Differenzbilder ist eine klare und detaillierte Konsistenz der Bilder vorhanden. In der Validierungs- und Testpartition ist dies jedoch nicht der Fall. Dort sind verschwommene Darstellungen zu erkennen, was auf die unterschiedliche Vielfalt der Bilder zurückzuführen ist. Dabei lässt sich visuell feststellen, dass die Verschwommenheit in der Validierungspartition nicht so stark ausgeprägt ist wie in der Testpartition.
+\todo{mit richtiger visualisierung ersetzen}
 
-\subsubsection{Feature Maps \& PCA} \label{chap:FeatureMaps-TestProblemEda3-mri}
-
-\todo{Im Anhang hinzufuegen ? }
-
-\newpage
+In den Plots ist zu erkennen, dass die Differenz zwischen der Trainings- und Validierungspartition gering ist, da die absoluten Differenzen klein sind, bzw. das Bild grosszügig in Blau gefärbt ist, welches eine niedrigere Differenz aufweist. Beim Vergleich dieser Differenz mit der Testpartition wird jedoch ein kreisförmiges rotes Muster sichtbar, das auf hohe Differenzen hinweist. Dieses Muster deutet darauf hin, dass die Testpartition möglicherweise aus einer anderen Verteilung stammt als die Trainingspartition.
