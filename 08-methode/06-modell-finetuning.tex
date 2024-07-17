@@ -1,10 +1,7 @@
-\subsection{Schutzmechanismen}
+\subsection{Adversarial Training} \label{chap:adversarial training}
+\todo{Adversarial Training Geschichte und wieso wir uns für diesen Schutzmechanismus entschieden haben}
 
-Im diesem Kapitel werden Mechanismen aufgelistet, die getestet werden sollen, um die in Kapitel \ref{chap:modelltraining} beschriebenen Modelle robuster gegen \todo{adversarial Angriffe?} adversariale Angriffe zu machen.
-
-\subsubsection{Adversarial Training} \label{chap:adversarial training}
-
-Die Grundidee hinter Adversarial Training besteht darin, Perturbationen zu generieren und das Modell iterativ auf diesen Perturbationen weiterzutrainieren. Dies soll bewirken, dass das Modell die Entscheidungsgrenze für mögliche Perturbationen weiter weg vom Nullpunkt verschiebt. Infolgedessen müssen diese Perturbationen grösser werden, um das Modell zu täuschen.
+Die Grundidee hinter Adversarial Training besteht darin, Perturbationen zu generieren und das Modell iterativ auf diesen Perturbationen weiterzutrainieren. Dies soll bewirken, dass das Modell robust gegenüber möglichen Perturbationen wird. Infolgedessen müssen diese Perturbationen grösser werden, um das Modell zu täuschen.
 
 \begin{figure}[H]
     \centering
@@ -13,68 +10,27 @@ Die Grundidee hinter Adversarial Training besteht darin, Perturbationen zu gener
     \label{fig:07-simplified_overview}
 \end{figure}
 
-Die Pipeline beginnt mit einem vortrainierten Modell. Zuerst werden \acrshort{uap}s generiert. Anschliessend erfolgt Inferenz auf dem unrobustifizierten Modell, um die Performance auf den Testdatensatz mit und ohne \acrshort{uap}s zu evaluieren. Danach wird das Modell mithilfe der generierten \acrshort{uap}s robustifiziert. Anschliessend erfolgt erneut Inferenz, diesmal mit dem robustifizierten Modell, für den Testdatensatz mit und ohne \acrshort{uap}s. Die Metriken aus beiden Inferenzdurchläufen werden gespeichert, um sie später evaluieren zu können. Schliesslich wird das ursprüngliche Modell durch das robustifizierte Modell ersetzt und der Zyklus beginnt von neuem. Im folgenden Pseudocode wird die technische Umsetzung illustriert:
+Die hier umgesetzte Pipeline beginnt mit dem Laden eines vortrainierten Modells $f(\cdot)$. Anschliessend werden \acrshort{uap}s für dieses Modell generiert. 
 
-\begin{algorithm}
-\caption{Pipeline zur Generierung von universelle adversarial Perturbationen}
-\label{alg:UAP_Pseudo_Algorithmmus}
-\begin{algorithmic}[1]
-\STATE Modell laden
-\FOR{Anzahl Robustifizierungen n\_robustifications}
-    \STATE Generierung der \acrshort{uap}s (Algorithmus \ref{algo:UAP Algorithmus})
-    \STATE Inferenz auf den Testdaten ($p_{\text{adv}}$=0.0)
-    \FOR{jede \acrshort{uap}}
-        \STATE Inferenz auf den Testdaten mit \acrshort{uap} ($p_{\text{adv}}$=1.0)
-    \ENDFOR
-    \STATE Modell finetuning mittels \acrshort{uap}s (random selection, $p_{\text{adv},\text{train}}$=0.5, $p_{\text{adv},\text{val}}$=0.5)
-    \STATE Laden des besten Modellcheckpoints
-    \STATE Inferenz auf den Testdaten mit dem robustifiziertem Modell ($p_{\text{adv}}$=0.0)
-    \FOR{jede \acrshort{uap}}
-        \STATE Inferenz auf den Testdaten mit \acrshort{uap} mit dem robustifizierem Modell ($p_{\text{adv}}$=1.0)
-    \ENDFOR
-\ENDFOR
-\end{algorithmic}
-\end{algorithm}
+Danach erfolgt eine erste Inferenz auf dem unrobustifizierten Modell, um die Performance auf dem Validierungs- und  Testdatensatz $X_{\text{val}}$ und $X_{\text{test}}$ ohne und mit \acrshort{uap}s zu evaluieren. Dabei wird für jede \acrshort{uap} eine separate Inferenz durchgeführt. 
 
-Wobei man folgende Parameter für die Pipeline selbst bestimmen muss:
+Nach dieser ersten Evaluation wird das Modell mithilfe der generierten \acrshort{uap}s robustifiziert. Dazu werden die \acrshort{uap}s dem Trainings- und Validierungsdatensatz $X_{\text{train}}$ und $X_{\text{val}}$ mit einer Wahrscheinlichkeit von $p_{\text{adv}} = 0.5$ hinzugefügt und das Modell wie im Kapitel \ref{chap:modelltraining} spezifiziert weitertrainiert. Somit lernt das Modell mit und ohne solche Störungen umzugehen. Hier bezieht sich $p_{\text{adv}}$ auf die Wahrscheinlichkeit, dass eine Perturbation beim Trainingsprozess oder bei der Inferenz auf das Bild addiert wird. 
+
+Nach diesem Finetuning wird der beste Modellcheckpoint geladen, und es erfolgt eine erneute Inferenz auf dem Validierungs- und Testdatensatz $X_{\text{val}}$ und $X_{\text{test}}$, diesmal mit dem robustifizierten Modell. Auch hier wird die Performance ohne und mit \acrshort{uap}s evaluiert und für jede \acrshort{uap} eine separate Inferenz durchgeführt. 
+
+Die Ergebnisse beider Inferenzdurchläufe werden gespeichert, um sie später vergleichen zu können. Schliesslich beginnt der Zyklus mit dem robustifiziertem Modell von neuem.
+
+\text{Für die Ausführung der Pipeline müssen folgende Parameter mitgegeben werden:}
 \begin{align*}
-\text{model}, &\text{ ist das Modell, welches Robustifiziert werden soll.} \\
-\text{dataset}, &\text{ ist der Datensatz, welcher zur Robustifizierung genutzt werden soll.} \\
-\text{n\_robustifications}, &\text{ ist die Anzahl Robustifizierungen, welche probiert werden sollten.} \\
-i,n,t,r,k,p,\lambda_{norm},\epsilon, &\text{ siehe Algorithmus \ref{algo:UAP Algorithmus}.}
+f(\cdot)\text{:} &\text{ Modell, welches Robustifiziert werden soll.} \\
+X_{\text{train}}\text{:} &\text{ Datensatz, welcher zur Robustifizierung genutzt wird.} \\
+X_{\text{val}}\text{:} &\text{ Datensatz, welcher für die Modellselektion im} \\
+ &\text{ Trainingsprozess verwendet wird.}\\
+X_{\text{test}}\text{:} &\text{ Datensatz, welcher zum Testen verwendet wird.} \\
+n_{\text{robustifications}}\text{:} &\text{ Anzahl Robustifizierungen, welche probiert wird.} \\
+i,n,t,r,k,p,\lambda_{norm},\epsilon\text{:} &\text{ siehe Algorithmus \ref{algo:UAP Algorithmus}.}
 \end{align*}
-
-Hier bezieht sich $p_{\text{adv}}$ auf die Wahrscheinlichkeit, dass eine Perturbation beim Trainingsprozess oder bei der Inferenz auf das Bild addiert wird. Im Trainingsprozess beträgt $p_{\text{adv}}$ beim Training sowie bei der Validierung ebenfalls 0.5. Der Trainingsprozess wird wie im Kapitel \ref{chap:modelltraining} beschrieben weitergeführt. Währenddessen nimmt die Inferenz auf den Testdaten Werte von entweder 0 oder 1 an. 
 
 Eine visuelle Darstellung zum Algorithmus ist bei Abbildung \ref{fig:Evaluierungspipeline} im Anhang zu finden.
 
-
-\subsubsection{Data Augmentation}
-
-\todo{Ausarbeiten}
-
-Bei der Data Augmentation verändern wir mit einer zufälligen Transformation die vorhandenen Trainingsdaten, um die Variabilität im Datensatz zu erhöhen. Dies kann durch verschiedene Methoden geschehen, wie zum Beispiel:
-
-\begin{itemize}
-    \item \textbf{Rotation}: Drehen des Bildes um einen bestimmten Winkel.
-    \item \textbf{Verschiebung}: Verschieben des Bildes in eine bestimmte Richtung.
-    \item \textbf{Skalierung}: Ändern der Grösse des Bildes.
-    \item \textbf{Spiegelung}: Spiegeln des Bildes entlang einer Achse.
-    \item \textbf{Rauschen hinzufügen}: Zufälliges Rauschen hinzufügen, um das Bild zu verändern.
-\end{itemize}
-
-Diese Techniken helfen, das Modell robuster zu machen und die Generalisierungsfähigkeit zu verbessern, indem sie es zwingen, verschiedene Variationen der Daten zu lernen.
-
-\subsubsection{Input Ensembles}
-
-\todo{Ausarbeiten}
-
-Mit Input Ensembles nutzen wir mehrere Modelle, die unabhängig voneinander trainiert wurden. Der Prozess sieht wie folgt aus:
-
-\begin{enumerate}
-    \item \textbf{Training mehrerer Modelle}: Jedes Modell wird separat mit demselben Trainingsdatensatz trainiert.
-    \item \textbf{Unabhängige Vorhersagen}: Jedes Modell gibt eine eigene Vorhersage, basierend auf dem Input.
-    \item \textbf{Kombinieren der Vorhersagen}: Der endgültige Output wird durch Mehrheitsentscheidung (Voting) bestimmt. 
-\end{enumerate}
-
-Durch diese Methode können wir die Genauigkeit und Robustheit der Vorhersagen verbessern.
+Eine als Pseudocode illustrierte Version ist auch als Algorithmus \ref{alg:UAP_Adversarial_Training_Pipeline} im Anhang zu finden.

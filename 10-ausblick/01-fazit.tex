@@ -1,12 +1,58 @@
 \section{Diskussion und Ausblick}
 
-\subsection{Multiklassifkation}
+\subsection{Auswirkungen unserer Ergebnisse}
+Mögliche Gefahren, wichtige Punkte für die Forschung, etc.
+
+\subsection{Opportunities}
+\subsubsection{Bias Detection}
+Mittels der Generation der Perturbationen könnte man auf Biases eines Modells schliessen, da die attakierte Stelle ja wichtig ist für das Modell. (Alternative zu Grad-Cam)
+
+\subsection{Weitere mögliche Verteidigungsmechanismen}
+
+
+
+\subsubsection{Data Augmentation}
+
+\todo{zu wenig Zeit}
+
+Bei der Data Augmentation verändern wir mit einer zufälligen Transformation die vorhandenen Trainingsdaten, um die Variabilität im Datensatz zu erhöhen. Dies kann durch verschiedene Methoden geschehen, wie zum Beispiel:
+
+\begin{itemize}
+    \item \textbf{Rotation}: Drehen des Bildes um einen bestimmten Winkel.
+    \item \textbf{Verschiebung}: Verschieben des Bildes in eine bestimmte Richtung.
+    \item \textbf{Skalierung}: Ändern der Grösse des Bildes.
+    \item \textbf{Spiegelung}: Spiegeln des Bildes entlang einer Achse.
+    \item \textbf{Rauschen hinzufügen}: Zufälliges Rauschen hinzufügen, um das Bild zu verändern.
+\end{itemize}
+
+Diese Techniken helfen, das Modell robuster zu machen und die Generalisierungsfähigkeit zu verbessern, indem sie es zwingen, verschiedene Variationen der Daten zu lernen.
+
+\subsubsection{Input Ensembles}
+
+\todo{zu wenig Zeit}
+
+Mit Input Ensembles nutzen wir mehrere Modelle, die unabhängig voneinander trainiert wurden. Der Prozess sieht wie folgt aus:
+
+\begin{enumerate}
+    \item \textbf{Training mehrerer Modelle}: Jedes Modell wird separat mit demselben Trainingsdatensatz trainiert.
+    \item \textbf{Unabhängige Vorhersagen}: Jedes Modell gibt eine eigene Vorhersage, basierend auf dem Input.
+    \item \textbf{Kombinieren der Vorhersagen}: Der endgültige Output wird durch Mehrheitsentscheidung (Voting) bestimmt. 
+\end{enumerate}
+
+Durch diese Methode können wir die Genauigkeit und Robustheit der Vorhersagen verbessern.
+
+\subsubsection{Multiklassifkation}
 
 Notiz: Diskussion zur Loss Funktion und Algorithmus für Multiklassifkation
 statt \acrlong{bce} können wir für Multiklassifkationen die \acrlong{ce} berücksichtigen. 
 Für Prediction, mit 0.5 Tresholding, kann man bei Multiklassifkationen Softmax nehmen und anschliessend Argmax. 
 
-\subsection{Performance von Testmetrik}
+\subsubsection{Bildmaske}
 
-\subsection{Weitere Verteidigungsmechanismen}
+Schwarze Pixel entfernen, da diese kein Informationen enthalten aber für Perturbationen anfällig sind. 
+
+\subsubsection{Bildanalysen}
 Detektion von Adversarial Bilder durch Bildanalysen, wie Fouriertransformation. 
+
+\subsection{Ein Wort zu Technology Credulity}
+Experten sollten bei kritischen Use Cases unbedingt in-the-loop bleiben und Ergebnisse kritisch hinterfragen.

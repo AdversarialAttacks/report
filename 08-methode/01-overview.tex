@@ -1,24 +1,22 @@
 \section{Methodik} 
+In diesem Abschnitt werden die angewandten Methoden erläutert, einschliesslich der verwendeten Modelle, Metriken und Algorithmen.
 
-In diesem Abschnitt widmen wir uns den angewandten Methoden unserer Arbeit und erläutern die verwendeten Modelle sowie ihre Metriken und Algorithmen.
-
-\subsection{Technische Umsetzung}
-
-Für die technische Umsetzung unserer Bachelorarbeit haben wir auf bewährte und bekannten Data Science Frameworks zurückgegriffen. Darunter gehören: Numpy, Pandas, Matplotlib, \& Seaborn. Für die Modelle sowie die Verarbeitung von Bildern nutzen wir PyTorch sowie die Erweiterung PyTorch-Lightning und tracken den Trainingsprozess sowie unsere Modelle in Weights \& Biases.
+\subsection{Technische Umsetzung} \label{chap:technische-umsetzung}
+Für die technische Umsetzung dieser Bachelorarbeit wurden bewährte Data Science Frameworks verwendet, darunter Numpy, Pandas, Matplotlib und Seaborn. Für die Modellierung und Bildverarbeitung kamen PyTorch und PyTorch-Lightning zum Einsatz. Der Trainingsprozess sowie die Modelle wurden mit Weights \& Biases verfolgt.
 
 \subsection{Preprocessing}  \label{chap:preprocessing}
-
-Der Preprocessing Schritt erlaubt es uns, die Rohdaten so zu transformieren, dass sie optimal für das Training oder die Verarbeitung durch unser Modell vorbereitet sind. In diesem Kapitel wird insbesondere auf zwei Arten von Preprocessing eingegangen: Preprocessing vor dem Training \ref{chap:Preprocessing vor dem Training} und Preprocessing mit Perturbation \ref{chap:Preprocessing mit Perturbation}.
+Der Preprocessing Schritt transformiert die Rohdaten so, dass sie optimal für das Training oder die Verarbeitung durch das Modell vorbereitet sind. Dieser Abschnitt behandelt zwei Arten des Preprocessings: Preprocessing vor dem Training \ref{chap:Preprocessing vor dem Training} und Preprocessing mit Perturbation \ref{chap:Preprocessing mit Perturbation}.
 
 \subsubsection{Preprocessing vor dem Training} \label{chap:Preprocessing vor dem Training}
+Alle Bilder werden vor dem Training durch eine Preprocessing Pipeline vorbereitet. Dabei werden die Bilder auf eine Grösse von 224 x 224 Pixel mit Antialiasing skaliert.
 
-Alle Bilder werden vor dem Training durch eine Preprocessing Pipeline vorbereitet. Dabei werden die Bilder, zu einer Grösse von 224 Pixelhöhe und 224 Pixelbreite, mit Antialiasing verarbeitet. 
-
-Antialiasing ist eine Technik, die in der Computergrafik verwendet wird, um den Aliasing-Effekt zu entfernen. Der Aliasing-Effekt ist das Auftreten von gezackten Kanten oder "`Jaggies"' in einem gerasterten Bild.
+Antialiasing ist eine Technik, die in der Computergrafik verwendet wird, um den Aliasing-Effekt zu entfernen. Der Aliasing-Effekt führt zu gezackten Kanten in gerasterten Bildern.
 
 \subsubsection{Preprocessing mit Perturbation} \label{chap:Preprocessing mit Perturbation}
+Die erzeugten Perturbationen werden durch eine elementweise Addition, den Inputbilder hinzugefügt. Dadurch werden die Bilder manipuliert und für den Angriff auf die Modelle vorbereitet. Die Addition der Perturbationen kann durch das Erstellen eigener PyTorch Custom Preprocessing Klassen codiert werden, was eine einfache Integration in die Pipeline ermöglicht.
 
-Die erzeugten Perturbationen werden durch eine elementweise Addition dem jeweiligen Eingangsbild hinzugefügt. Dadurch werden die Bilder manipuliert und für den Angriff auf die Modelle vorbereitet. Die Addition der Perturbationen kann durch das Erstellen eigener PyTorch Custom Preprocessing Klassen codiert werden. Dies erlaubt uns, diese einfach in die Pipeline hinzuzufügen. 
+
+
 
 
 
