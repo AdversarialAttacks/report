@@ -29,15 +29,10 @@
 \include{08-methode/06-modell-finetuning}
 
 % Resultat
-\include{09-resultate/01-result}
-\include{09-resultate/02-results-uap}
-%% ResNet
-\include{09-resultate/03-uap-resnet18}
-\include{09-resultate/04-uap-resnet50}
-%% DenseNet
-\include{09-resultate/05-uap-densenet}
-%% EfficientNet
-\include{09-resultate/06-uap-efficiennet}
+\include{09-resultate/01-modelltraining}
+\include{09-resultate/02-uap}
+\include{09-resultate/03-anfälligkeit-ungeschützt}
+\include{09-resultate/04-anfälligkeit-geschützt}
 
 % Diskussion und Ausblick
 \include{10-ausblick/01-fazit}
@@ -45,20 +40,26 @@
 % Schluss
 \include{11-ending/01-glossar}
 
+
+\phantomsection
 \printbibliography[title = {Literaturverzeichnis}]{}
 \addcontentsline{toc}{section}{Literaturverzeichnis}
 
 \newpage
+\phantomsection
 \listoffigures
 \addcontentsline{toc}{section}{\listfigurename}
 
 \newpage
+\phantomsection
 \listoftables
 \addcontentsline{toc}{section}{\listtablename} 
 
-\newpage
+\phantomsection
 \listofalgorithms
 \addcontentsline{toc}{section}{Algorithmenverzeichnis}
+
+
 
 \include{11-ending/04-hilfsmittelverzeichnis}
 \include{11-ending/03-ehrlichkeit}

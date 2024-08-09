@@ -1,36 +1,36 @@
 \subsection{Adversarial Training} \label{chap:adversarial training}
-\todo{Adversarial Training Geschichte und wieso wir uns für diesen Schutzmechanismus entschieden haben}
+Nicholas Carlini, der die Carlini-Wagner-Attacke \cite{carlini_towards_2017} im Jahr 2016 mitentwickelte, präsentierte auf der Camlis Konferenz 2019 \cite[19:15]{camlis_evaluating_2019} aktuelle Verteidigungen gegen Adversarial Attacks. Dabei berichtete er, dass Adversarial Training derzeit die einzige wirksame Verteidigung gegen Adversarial Attacks ist. Es wurden zwar viele andere Verteidigungsmechanismen vorgeschlagen, aber keine dieser Abwehrstrategien wurde als wirksam befunden. Obwohl es bereits umfangreiche Forschung zu Adversarial Training gegen Adversarial Attacks gibt, wird in dieser Thesis dieser Ansatz für \acrlong{uap}s untersucht.
 
-Die Grundidee hinter Adversarial Training besteht darin, Perturbationen zu generieren und das Modell iterativ auf diesen Perturbationen weiterzutrainieren. Dies soll bewirken, dass das Modell robust gegenüber möglichen Perturbationen wird. Infolgedessen müssen diese Perturbationen grösser werden, um das Modell zu täuschen.
+Die Grundidee hinter Adversarial Training besteht darin, Perturbationen zu generieren und das Modell iterativ auf diesen Perturbationen weiterzutrainieren. Dies soll bewirken, dass das Modell robust gegenüber neuen Perturbationen wird. Infolgedessen müssen diese Perturbationen grösser werden, um das Modell zu täuschen. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/04-methodik/simplified_overview.png}
-    \caption{Simplifizierte Version unseres Vorgehens}
+    \caption{Simplifizierte Version des Vorgehens}
     \label{fig:07-simplified_overview}
 \end{figure}
 
-Die hier umgesetzte Pipeline beginnt mit dem Laden eines vortrainierten Modells $f(\cdot)$. Anschliessend werden \acrshort{uap}s für dieses Modell generiert. 
+Die umgesetzte Pipeline beginnt mit dem Laden eines vortrainierten Modells $f(\cdot)$. Anschliessend werden \acrshort{uap}s für dieses Modell generiert. 
 
-Danach erfolgt eine erste Inferenz auf dem unrobustifizierten Modell, um die Performance auf dem Validierungs- und  Testdatensatz $X_{\text{val}}$ und $X_{\text{test}}$ ohne und mit \acrshort{uap}s zu evaluieren. Dabei wird für jede \acrshort{uap} eine separate Inferenz durchgeführt. 
+Danach erfolgt eine erste Inferenz auf dem nicht robustifizierten Modell, um die Performance auf dem Validierungs- und Testdatensatz sowohl ohne als auch mit \acrshort{uap}s zu evaluieren. Dabei wird für jede \acrshort{uap} eine separate Inferenz durchgeführt.
 
-Nach dieser ersten Evaluation wird das Modell mithilfe der generierten \acrshort{uap}s robustifiziert. Dazu werden die \acrshort{uap}s dem Trainings- und Validierungsdatensatz $X_{\text{train}}$ und $X_{\text{val}}$ mit einer Wahrscheinlichkeit von $p_{\text{adv}} = 0.5$ hinzugefügt und das Modell wie im Kapitel \ref{chap:modelltraining} spezifiziert weitertrainiert. Somit lernt das Modell mit und ohne solche Störungen umzugehen. Hier bezieht sich $p_{\text{adv}}$ auf die Wahrscheinlichkeit, dass eine Perturbation beim Trainingsprozess oder bei der Inferenz auf das Bild addiert wird. 
+Nach dieser ersten Evaluation wird das Modell mithilfe der generierten \acrshort{uap}s finetuned. Dazu wird mit einer Wahrscheinlichkeit von $p_{\text{adv}} = 0.5$ eine einzelne, zufällig ausgewählte \acrshort{uap} zu jedem Bild im Trainings- und Validierungsdatensatz hinzugefügt. Das Modell wird dann, wie im Kapitel \ref{chap:modelltraining} spezifiziert, weitertrainiert. Somit sollte das Modell lernen, mit und ohne Perturbationen umzugehen. Hier bezieht sich $p_{\text{adv}}$ auf die Wahrscheinlichkeit, dass eine Perturbation beim Trainingsprozess oder bei der Inferenz auf das Bild addiert wird. 
 
-Nach diesem Finetuning wird der beste Modellcheckpoint geladen, und es erfolgt eine erneute Inferenz auf dem Validierungs- und Testdatensatz $X_{\text{val}}$ und $X_{\text{test}}$, diesmal mit dem robustifizierten Modell. Auch hier wird die Performance ohne und mit \acrshort{uap}s evaluiert und für jede \acrshort{uap} eine separate Inferenz durchgeführt. 
+Nach diesem Finetuning wird der beste Modellcheckpoint geladen, und es erfolgt eine erneute Inferenz auf dem Validierungs- und Testdatensatz, diesmal mit dem robustifizierten Modell. Auch hier wird die Performance ohne und mit \acrshort{uap}s evaluiert und für jede \acrshort{uap} eine separate Inferenz durchgeführt. 
 
-Die Ergebnisse beider Inferenzdurchläufe werden gespeichert, um sie später vergleichen zu können. Schliesslich beginnt der Zyklus mit dem robustifiziertem Modell von neuem.
+Die Ergebnisse beider Inferenzdurchläufe werden gespeichert, um sie vergleichen zu können. Schliesslich beginnt der Zyklus mit dem robustifiziertem Modell von neu.
 
 \text{Für die Ausführung der Pipeline müssen folgende Parameter mitgegeben werden:}
 \begin{align*}
 f(\cdot)\text{:} &\text{ Modell, welches Robustifiziert werden soll.} \\
-X_{\text{train}}\text{:} &\text{ Datensatz, welcher zur Robustifizierung genutzt wird.} \\
+X_{\text{train}}\text{:} &\text{ Datensatz, welcher zur \Gls{robustifizierung} genutzt wird.} \\
 X_{\text{val}}\text{:} &\text{ Datensatz, welcher für die Modellselektion im} \\
- &\text{ Trainingsprozess verwendet wird.}\\
+ &\text{ Finetuningprozess verwendet wird.}\\
 X_{\text{test}}\text{:} &\text{ Datensatz, welcher zum Testen verwendet wird.} \\
-n_{\text{robustifications}}\text{:} &\text{ Anzahl Robustifizierungen, welche probiert wird.} \\
-i,n,t,r,k,p,\lambda_{norm},\epsilon\text{:} &\text{ siehe Algorithmus \ref{algo:UAP Algorithmus}.}
+n_{\text{robustifications}}\text{:} &\text{ Anzahl \Gls{robustifizierung}en, welche probiert wird.} \\
+j,n,t,r,k,p,\lambda_{norm},\epsilon,lr_{\text{UAP}}\text{:} &\text{ siehe Algorithmus \ref{algo:UAP Algorithmus}.}
 \end{align*}
 
-Eine visuelle Darstellung zum Algorithmus ist bei Abbildung \ref{fig:Evaluierungspipeline} im Anhang zu finden.
+Eine visuelle Darstellung zur Pipeline ist bei Abbildung \ref{fig:Evaluierungspipeline} im Anhang zu finden.
 
-Eine als Pseudocode illustrierte Version ist auch als Algorithmus \ref{alg:UAP_Adversarial_Training_Pipeline} im Anhang zu finden.
+Eine als Pseudocode illustrierte Version ist auch, als Algorithmus \ref{alg:UAP_Adversarial_Training_Pipeline} im Anhang zu finden.

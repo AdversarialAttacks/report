@@ -1,26 +1,26 @@
 \subsection{Metriken} \label{chap:metriken}
-Metriken sind entscheidend für die Bewertung und Beurteilung der Leistung von Klassifikationsmodellen. In diesem Kapitel werden verschiedene Metriken zur Evaluierung von Klassifikationsmodellen vorgestellt. Zudem werden Metriken von grosser Relevanz für Adversarial Attacks, wie zum Beispiel die Fooling Rate im Kapitel \ref{chap:fooling rate}, erläutert.
+In diesem Kapitel werden verschiedene Metriken zur Evaluierung von Klassifikationsmodellen vorgestellt. Metriken sind entscheidend für die Bewertung und Beurteilung der Leistung von Klassifikationsmodellen. Zudem werden Metriken für die Generierung und Messung von \acrlong{uap}s, wie zum Beispiel die Fooling Rate im Kapitel \ref{chap:fooling rate}, erläutert. 
 
-\subsubsection{Konfusionsmatrix} \label{chap:konfusionmatrix}
-Die Konfusionsmatrix ist ein Werkzeug, das genutzt wird, um die Vorhersagen eines Klassifikationsmodells mit den tatsächlichen Ergebnissen zu vergleichen. Dabei werden die Vorhersagen des Modells in vier Kategorien unterteilt:
+\subsubsection{Konfusionsmatrix} \label{chap:konfusionmatrix} 
+Die Konfusionsmatrix wird genutzt, um die Vorhersagen eines Klassifikationsmodells mit den tatsächlichen Ergebnissen zu vergleichen. Dabei werden die Vorhersagen des Modells in vier Kategorien unterteilt:
 
-\begin{enumerate} 
-    \item True Positives (TP): Elemente, die korrekterweise als zur Zielklasse gehörend erkannt wurden.
+\begin{itemize} 
+    \item True Positives (TP): Elemente, die korrekterweise als zur Zielklasse gehörend  erkannt wurden.
     \item True Negatives (TN): Elemente, die korrekterweise als nicht zur Zielklasse gehörend erkannt wurden.
     \item False Positives (FP): Elemente, die fälschlicherweise als zur Zielklasse gehörend vorhergesagt wurden, obwohl sie es in Wirklichkeit nicht sind.
-    \item False Negatives (FN): Elemente, die fälschlicherweise nicht als zur Zielklasse gehörend erkannt wurden, obwohl sie es eigentlich sind.
-\end{enumerate}
+    \item False Negatives (FN): Elemente, die fälschlicherweise nicht als zur Zielklasse gehörend erkannt wurden, obwohl sie es eigentlich sind. 
+\end{itemize}
 
-Nachfolgend wird eine Konfusionsmatrix dargestellt, wie sie in PyTorch Torchmetrics angeordnet ist.
+Nachfolgend wird eine Konfusionsmatrix dargestellt, wie sie in PyTorch TorchMetrics angeordnet ist.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{l|l|c|c|}
-        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted label}\\
+        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Vorhergesagtes Label}\\
         \cline{3-4}
         \multicolumn{2}{c|}{}&Negativ&Positiv\\
         \cline{2-4}
-        \multirow{2}{*}{Actual label}& Negativ & $TN$ & $FP$\\
+        \multirow{2}{*}{Tatsächliches Label}& Negativ & $TN$ & $FP$\\
         \cline{2-4}
         & Positiv & $FN$ & $TP$\\
         \cline{2-4}
@@ -30,7 +30,7 @@ Nachfolgend wird eine Konfusionsmatrix dargestellt, wie sie in PyTorch Torchmetr
 \end{table}
 
 \subsubsection{Precision} \label{chap:precision}
-Precision (Präzision) gibt das Verhältnis der korrekt identifizierten positiven Instanzen zu allen Instanzen an, die das Modell als positiv klassifiziert hat. Anders ausgedrückt, Precision zeigt, wie viele der als positiv identifizierten Fälle tatsächlich positiv sind. Die Formel für Precision lautet:
+Precision gibt das Verhältnis der korrekt identifizierten positiven Elemente zu allen als positiv klassifizierten Elementen an. Anders ausgedrückt zeigt Precision, wie viele der als positiv identifizierten Fälle tatsächlich positiv sind. Die Formel für Precision lautet:
 
 \begin{equation}
     \text{Precision} = \frac{TP}{TP + FP}
@@ -38,7 +38,7 @@ Precision (Präzision) gibt das Verhältnis der korrekt identifizierten positive
 \end{equation}
 
 \subsubsection{Recall} \label{chap:recall}
-Recall misst das Verhältnis der korrekt identifizierten positiven Instanzen zu allen tatsächlich positiven Instanzen. Anders ausgedrückt zeigt Recall, wie viele der tatsächlich positiven Fälle vom Modell korrekt identifiziert wurden. Die Formel für Recall lautet:
+Recall misst das Verhältnis der korrekt identifizierten positiven Elemente zu allen tatsächlich positiven Elementen. Anders ausgedrückt zeigt Recall, wie viele der tatsächlich positiven Fälle vom Modell korrekt identifiziert wurden. Die Formel für Recall lautet:
 
 \begin{equation}
     \text{Recall} = \frac{TP}{TP + FN}
@@ -46,9 +46,9 @@ Recall misst das Verhältnis der korrekt identifizierten positiven Instanzen zu 
 \end{equation}
 
 \subsubsection{Specificity} \label{chap:specificity}
-Specificity (Spezifität) ist eine wichtige Metrik zur Bewertung der Leistung von Klassifizierungsmodellen. Während Precision und Recall die Leistung des Modells bei der Identifizierung positiver Instanzen messen, fokussiert sich Specificity auf die Fähigkeit des Modells, negative Instanzen korrekt zu identifizieren.
+Während Precision und Recall die Leistung des Modells bei der Identifizierung positiver Elemente messen, fokussiert sich Specificity auf die Fähigkeit des Modells, negative Elemente korrekt zu identifizieren.
 
-Specificity gibt das Verhältnis der korrekt identifizierten negativen Instanzen zur Gesamtzahl der tatsächlich negativen Instanzen an. Anders ausgedrückt, Specificity zeigt, wie viele der tatsächlich negativen Fälle vom Modell korrekt erkannt wurden. Die Formel für Specificity lautet:
+Specificity gibt das Verhältnis der korrekt identifizierten negativen Elemente zu allen tatsächlich negativen Elementen. Anders ausgedrückt, Specificity zeigt, wie viele der tatsächlich negativen Fälle vom Modell korrekt erkannt wurden. Die Formel für Specificity lautet:
 
 \begin{equation}
     \text{Specificity} = \frac{TN}{TN + FP}
@@ -56,7 +56,9 @@ Specificity gibt das Verhältnis der korrekt identifizierten negativen Instanzen
 \end{equation}
 
 \subsubsection{AUROC} \label{chap:auroc}
-Die AUROC (Area under the receiver operating characteristic curve) ist eine Metrik zur quantitativen Bewertung der Leistungsfähigkeit von Klassifizierungsmodellen. Die zugrundeliegende ROC-Kurve (Receiver Operating Characteristic Curve) visualisiert das Verhältnis zwischen der True Positive Rate (TPR) und der False Positive Rate (FPR) eines Klassifizierungsmodells über verschiedene Klassifikationsschwellen. Dabei variiert die TPR als Prozentsatz der korrekt identifizierten positiven Fälle im Verhältnis zur Gesamtzahl der tatsächlich positiven Fälle, während die FPR den Anteil der fälschlicherweise als positiv klassifizierten Fälle im Verhältnis zur Gesamtzahl der tatsächlich negativen Fälle beschreibt.
+AUROC (Area Under the Receiver Operating Characteristic) ist eine Metrik zur quantitativen Bewertung der Leistungsfähigkeit von Klassifikationsmodellen. 
+
+Die zugrundeliegende ROC-Kurve (Receiver Operating Characteristic) visualisiert das Verhältnis zwischen der Richtig-Positiv-Rate (TPR) und der Falsch-Positiv-Rate (FPR) eines Klassifikationsmodells über verschiedene Klassifikationsschwellen. 
 
 \begin{equation}
     \text{True Positive Rate (TPR)} = \text{Recall} =\frac{\text{TP}}{\text{TP} + \text{FN}}
@@ -68,24 +70,22 @@ Die AUROC (Area under the receiver operating characteristic curve) ist eine Metr
     \label{eq:FPR}
 \end{equation}
 
-Die AUROC quantifiziert die Gesamtleistung des Klassifizierungsmodells durch die Berechnung der Fläche unter der ROC-Kurve. Ein Wert von 0.5 deutet auf ein schlechtes Modell hin, das einer zufälligen Klassifikation entspricht, während ein Wert von 1 eine perfekte Klassifikation ohne Fehler bedeutet. Die AUROC ermöglicht somit eine quantitative Vergleichbarkeit verschiedener Klassifizierungsmodelle.
+AUROC quantifiziert die Gesamtleistung des Klassifikationsmodells durch die Berechnung der Fläche unter der ROC-Kurve. Ein Wert von 0.5 ist ein schlechtes Modell hin, das einer zufälligen Klassifikation entspricht, während ein Wert von 1 eine perfekte Klassifikation ohne Fehler bedeutet. AUROC ermöglicht somit eine quantitative Vergleichbarkeit verschiedener Klassifikationsmodelle.
 
 \subsubsection{F1-Score} \label{chap:f1-score}
-Der F1-Score kombiniert Precision und Recall, um die Gesamtleistung eines Klassifizierungsmodells zu bewerten. Diese Metrik ist besonders nützlich, wenn ein ausgewogenes Verhältnis zwischen Precision und Recall angestrebt wird.
-
-Der F1-Score wird als harmonischer Mittelwert von Precision und Recall berechnet und berücksichtigt sowohl falsch positive als auch falsch negative Vorhersagen. Die Formel für den F1-Score lautet:
+Der F1-Score wird als harmonischer Mittelwert von Precision und Recall berechnet. Die Formel für den F1-Score lautet:
 
 \begin{equation}
     \text{F1} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
     \label{eq:F1Score}
 \end{equation}
 
-Durch die Berücksichtigung von Precision und Recall ermöglicht der F1-Score eine umfassende Bewertung der Leistung eines Klassifizierungsmodells. Ein hoher F1-Score zeigt, dass das Modell sowohl eine hohe Precision als auch einen hohen Recall aufweist, was bedeutet, dass es präzise und umfassend bei der Identifizierung von positiven Instanzen ist.
+Ein hoher F1-Score zeigt, dass das Modell sowohl eine hohe Precision als auch einen hohen Recall aufweist, was bedeutet, dass es präzise und umfassend bei der Identifizierung von positiven Elementen ist.
 
-Der F1-Score ist besonders nützlich in Situationen mit einem Ungleichgewicht zwischen den Klassen oder wenn sowohl Precision als auch Recall wichtig sind, wie zum Beispiel bei der Erkennung von Betrug oder bei medizinischen Diagnosen.
+Der F1-Score ist besonders nützlich in Situationen mit einem Ungleichgewicht zwischen den Klassen oder wenn sowohl Precision als auch Recall wichtig sind.
 
 \subsubsection{Fooling Rate} \label{chap:fooling rate}
-Die Fooling Rate quantifiziert die Erfolgsrate von adversarial Angriffen auf ein Modell. Sie gibt den Prozentsatz der Bilder an, die nach einer Modifikation anders klassifiziert werden als zuvor. Eine Fooling Rate von 80\% bedeutet beispielsweise, dass 80 von 100 modifizierten Bildern anders als die unveränderten Bilder klassifiziert werden. Eine hohe Fooling Rate weist auf eine hohe Anfälligkeit des Modells gegenüber den generierten adversarial Attacken hin. Mathematisch wird die Fooling Rate wie folgt definiert:
+Die Fooling Rate quantifiziert die Erfolgsrate von Adversarial Attacks auf ein Modell. Sie gibt den Prozentsatz der Bilder an, die nach einer Modifikation anders klassifiziert werden als zuvor. Eine Fooling Rate von 20\% bedeutet beispielsweise, dass 20 von 100 modifizierten Bildern anders als die unveränderten Bilder klassifiziert werden. Eine hohe Fooling Rate weist auf eine hohe Anfälligkeit des Modells gegenüber Adversarial Attacks hin. Mathematisch wird die Fooling Rate wie folgt definiert:
 
 \begin{equation}
     \text{Fooling Rate}(t) = \text{FR}(t) = \frac{1}{N} \sum_{i=1}^{N} \mathds{1}_{\{f(x_i) \geq t \neq f(x_{i,\text{adv}}) \geq t\}}
@@ -93,30 +93,23 @@ Die Fooling Rate quantifiziert die Erfolgsrate von adversarial Angriffen auf ein
 \end{equation}
 
 \begin{align*}
-t\text{:} &\text{ Klassifikations Threshold, } t \in \left] 0, 1 \right[ \\
-x_i\text{:} &\text{ Originalbild} \\
-x_{i,\text{adv}}\text{:} &\text{ Bild mit addierter Perturbation} \\
-N\text{:} &\text{ Gesamtanzahl Datenpunkte}
+    t\text{:} &\text{ Klassifikations Threshold. } t \in \left] 0, 1 \right[ \\
+    x_i\text{:} &\text{ Originalbild mit Index $i$.} \\
+    x_{i,\text{adv}}\text{:} &\text{ Bild $i$ mit addierter Perturbation.} \\
+    N\text{:} &\text{ Gesamtanzahl Datenpunkte.}
 \end{align*}
 
 \subsubsection{Matrizennorm} \label{chap:matrizennorm}
-Vektoren repräsentieren nicht nur Richtungen, sondern auch Längen. Diese Längenmessung erfolgt durch die sogenannte Norm. Für einen Vektor $v$ wird die Norm wie folgt berechnet:
+Vektoren repräsentieren Richtungen und Längen. Diese Längenmessung erfolgt durch die Norm. Für einen Vektor $v$ wird die Norm wie folgt berechnet:
 
 \begin{equation}
     \| v \| = \sqrt{\sum_{i=1}^{n} v_i^2}
     \label{eq:Vektornorm}
 \end{equation}
 
-Matrizen erweitern dieses Konzept. Ähnlich wie bei Vektoren kann die "`Grösse"' einer Matrix mit einer entsprechenden Norm gemessen werden. Die Norm einer Matrix $A$ wird durch die folgende Formel definiert:
+Matrizen erweitern dieses Konzept. Ähnlich wie bei Vektoren kann die ``Grösse'' einer Matrix mit einer entsprechenden Norm gemessen werden. Die in dieser Thesis verwendete L2-Norm einer Matrix $A$ wird durch die folgende Formel definiert:
 
 \begin{equation}
-    \| A \|_P = \sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} |a_{ij}|^p}
+    \| A \|_2 = \sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} |a_{ij}|^2}
     \label{eq:Matrixnorm}
-\end{equation}
-
-Hierbei steht $p$ für einen Parameter, der die Art der Norm festlegt. Beispielsweise entspricht $p = 2$ der Frobeniusnorm. Konvergiert $p$ gegen unendlich, erhalten wir die Maximumnorm, die dem höchsten Wert in der Matrix entspricht:
-
-\begin{equation}
-    \|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|
-    \label{eq:Maximumnorm}
 \end{equation}

@@ -1,8 +1,9 @@
 \subsection{Modell Training} \label{chap:modelltraining}
-In diesem Kapitel wird erläutert, wie die Baseline-Modelle trainiert wurden und welche Komponenten dabei zum Einsatz kamen.
+In diesem Kapitel wird erläutert, wie die Baseline-Modelle trainiert werden und welche Komponenten dabei zum Einsatz kommen.
 
 \subsubsection{Loss-Funktion} \label{chap:loss-function}
-Das Modelltraining nutzt den \acrlong{bce} Loss. Der \acrshort{bce} Loss wird minimiert, wenn das Modell eine perfekte Vorhersage trifft (d.h. wenn $\hat{y}_i = y_i$ für alle i) und steigt, je weiter $\hat{y}_i$ von $y_i$ abweicht. \\
+Das Modelltraining nutzt den \acrfull{bce} Loss. Der \acrshort{bce} Loss wird minimiert, wenn das Modell eine perfekte Vorhersage trifft (d.h. wenn $\hat{y}_i = y_i$ für alle $i$) und steigt, je weiter $\hat{y}_i$ von $y_i$ abweicht.
+
 Der \acrshort{bce} Loss ist definiert als:
 
 \begin{equation}
@@ -11,15 +12,15 @@ Der \acrshort{bce} Loss ist definiert als:
 \end{equation}
 
 \begin{align*}
-y_i,        &\text{ Label des i-ten Datenpunkts} \\
-\hat{y}_i,  &\text{ Vorhersage des Modells des i-ten Datenpunkts} \\
-N,          &\text{ Gesamtanzahl Datenpunkte} \\
+    y_i,        &\text{ Label des $i$-ten Datenpunkts.} \\
+    \hat{y}_i,  &\text{ Vorhersage des Modells des $i$-ten Datenpunkts.} \\
+    N,          &\text{ Gesamtanzahl Datenpunkte.} \\
 \end{align*} 
 
-\subsubsection{Optimizer} \label{chap:optimizer}
-Für die Optimierung der Modellparameter wird der Adam-Optimizer von Kingma et al. \cite{kingma_adam_2017} genutzt. Dieser Optimierungsalgorithmus wurde zur Anpassung stochastischer Zielfunktionen mittels Gradientenverfahren entwickelt. Er kombiniert Techniken wie Momentum und RMSprop, um die Lernrate dynamisch anzupassen und die Konvergenz des Modells zu verbessern. Zudem ist er einfach zu implementieren, effizient und benötigt wenig Speicherplatz. Adam zeigt in der Praxis gute Ergebnisse und ist mit anderen Methoden der stochastischen Optimierung vergleichbar.
+\subsubsection{Adam-Optimizer} \label{chap:optimizer}
+Für die Optimierung der Modellparameter wird der Adam-Optimizer von Kingma et al. \cite{kingma_adam_2017} genutzt. Dieser Optimierungsalgorithmus wurde zur Anpassung stochastischer Zielfunktionen mittels Gradientenverfahren entwickelt. Er kombiniert Techniken wie Momentum und RMSprop, um die Lernrate dynamisch anzupassen und die Konvergenz des Modells zu verbessern. Adam-Optimizer zeigt in der Praxis gute Ergebnisse und ist mit anderen Methoden der stochastischen Optimierung vergleichbar.
 
 \subsubsection{Hyperparamteroptimierung und Modellselektion}
-Für das Training werden alle Modelle und Datensätze iteriert, die in den Kapiteln \ref{chap:klassifikationsmodelle}, (\nameref{chap:klassifikationsmodelle}) und Kapitel \ref{chap:Daten} (\nameref{chap:Daten}), beschrieben sind. Aufgrund der Grösse des \nameref{chap:COVIDx CXR-4} Datensatzes im Vergleich zum \nameref{chap:Brain-Tumor} werden pro Trainingsepoche zufällig 5 \% des Trainingssubsets ausgewählt. Für jede Kombination aus Modell und Datensatz werden drei Trainingsdurchläufe gestartet, wobei die Lernrate von $10^{-5}$, $10^{-4}$ und $10^{-3}$ variiert.
+Für das Training werden alle Datensätze und Modelle iteriert, die in den Kapitel \ref{chap:Daten} und \ref{chap:klassifikationsmodelle} beschrieben sind. Aufgrund der Grösse des \nameref{chap:COVIDx CXR-4}-Datensatzes im Vergleich zum \nameref{chap:Brain-Tumor} werden beim \nameref{chap:COVIDx CXR-4} Datensatz pro Trainingsepoche zufällig 5\% des Trainingssubsets ausgewählt. Für jede Kombination aus Datensatz und Modell werden drei Trainingsdurchläufe gestartet, wobei für die Lernrate jeweils die drei Werte $10^{-5}$, $10^{-4}$ und $10^{-3}$ nacheinander verwendet werden.
 
 Aufgrund des hohen Rechenaufwands und begrenzter Ressourcen wird auf eine Hyperparameteroptimierung bei der L2-Regularisierung und dem Dropout vor dem letzten Klassifikationslayer verzichtet. Stattdessen wird der beste Checkpoint jeder Modell-Datensatz-Kombination basierend auf dem niedrigsten Validierungsloss gespeichert.

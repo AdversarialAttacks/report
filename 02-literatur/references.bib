@@ -1,4 +1,122 @@
 
+@misc{kariyappa_improving_2019,
+	title = {Improving Adversarial Robustness of Ensembles with Diversity Training},
+	url = {http://arxiv.org/abs/1901.09981},
+	doi = {10.48550/arXiv.1901.09981},
+	abstract = {Deep Neural Networks are vulnerable to adversarial attacks even in settings where the attacker has no direct access to the model being attacked. Such attacks usually rely on the principle of transferability, whereby an attack crafted on a surrogate model tends to transfer to the target model. We show that an ensemble of models with misaligned loss gradients can provide an effective defense against transfer-based attacks. Our key insight is that an adversarial example is less likely to fool multiple models in the ensemble if their loss functions do not increase in a correlated fashion. To this end, we propose Diversity Training, a novel method to train an ensemble of models with uncorrelated loss functions. We show that our method significantly improves the adversarial robustness of ensembles and can also be combined with existing methods to create a stronger defense.},
+	number = {{arXiv}:1901.09981},
+	publisher = {{arXiv}},
+	author = {Kariyappa, Sanjay and Qureshi, Moinuddin K.},
+	urldate = {2024-07-29},
+	date = {2019-01-28},
+	eprinttype = {arxiv},
+	eprint = {1901.09981 [cs, stat]},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
+}
+
+@misc{pang_improving_2019,
+	title = {Improving Adversarial Robustness via Promoting Ensemble Diversity},
+	url = {http://arxiv.org/abs/1901.08846},
+	doi = {10.48550/arXiv.1901.08846},
+	abstract = {Though deep neural networks have achieved significant progress on various tasks, often enhanced by model ensemble, existing high-performance models can be vulnerable to adversarial attacks. Many efforts have been devoted to enhancing the robustness of individual networks and then constructing a straightforward ensemble, e.g., by directly averaging the outputs, which ignores the interaction among networks. This paper presents a new method that explores the interaction among individual networks to improve robustness for ensemble models. Technically, we define a new notion of ensemble diversity in the adversarial setting as the diversity among non-maximal predictions of individual members, and present an adaptive diversity promoting ({ADP}) regularizer to encourage the diversity, which leads to globally better robustness for the ensemble by making adversarial examples difficult to transfer among individual members. Our method is computationally efficient and compatible with the defense methods acting on individual networks. Empirical results on various datasets verify that our method can improve adversarial robustness while maintaining state-of-the-art accuracy on normal examples.},
+	number = {{arXiv}:1901.08846},
+	publisher = {{arXiv}},
+	author = {Pang, Tianyu and Xu, Kun and Du, Chao and Chen, Ning and Zhu, Jun},
+	urldate = {2024-07-29},
+	date = {2019-05-29},
+	eprinttype = {arxiv},
+	eprint = {1901.08846 [cs, stat]},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
+}
+
+@misc{harder_spectraldefense_2021,
+	title = {{SpectralDefense}: Detecting Adversarial Attacks on {CNNs} in the Fourier Domain},
+	url = {http://arxiv.org/abs/2103.03000},
+	doi = {10.48550/arXiv.2103.03000},
+	shorttitle = {{SpectralDefense}},
+	abstract = {Despite the success of convolutional neural networks ({CNNs}) in many computer vision and image analysis tasks, they remain vulnerable against so-called adversarial attacks: Small, crafted perturbations in the input images can lead to false predictions. A possible defense is to detect adversarial examples. In this work, we show how analysis in the Fourier domain of input images and feature maps can be used to distinguish benign test samples from adversarial images. We propose two novel detection methods: Our first method employs the magnitude spectrum of the input images to detect an adversarial attack. This simple and robust classifier can successfully detect adversarial perturbations of three commonly used attack methods. The second method builds upon the first and additionally extracts the phase of Fourier coefficients of feature-maps at different layers of the network. With this extension, we are able to improve adversarial detection rates compared to state-of-the-art detectors on five different attack methods.},
+	number = {{arXiv}:2103.03000},
+	publisher = {{arXiv}},
+	author = {Harder, Paula and Pfreundt, Franz-Josef and Keuper, Margret and Keuper, Janis},
+	urldate = {2024-07-29},
+	date = {2021-06-02},
+	eprinttype = {arxiv},
+	eprint = {2103.03000 [cs]},
+	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computer Vision and Pattern Recognition},
+}
+
+@inproceedings{li_data_2022,
+	title = {Data augmentation alone can improve adversarial training},
+	url = {https://openreview.net/forum?id=y4uc4NtTWaq},
+	abstract = {Adversarial training suffers from the issue of robust overfitting, which seriously impairs its generalization performance. Data augmentation, which is effective at preventing overfitting in standard training, has been observed by many previous works to be ineffective in mitigating overfitting in adversarial training. This work proves that, contrary to previous findings, data augmentation alone can significantly boost accuracy and robustness in adversarial training. We find that the hardness and the diversity of data augmentation are important factors in combating robust overfitting. In general, diversity can improve both accuracy and robustness, while hardness can boost robustness at the cost of accuracy within a certain limit and degrade them both over that limit. To mitigate robust overfitting, we first propose a new crop transformation Cropshift with improved diversity compared to the conventional one (Padcrop). We then propose a new data augmentation scheme, based on Cropshift, with much improved diversity and well-balanced hardness. Empirically, our augmentation method achieves the state-of-the-art accuracy and robustness for data augmentations in adversarial training. Furthermore, it matches, or even exceeds when combined with weight averaging, the performance of the best contemporary regularization methods for alleviating robust overfitting.},
+	eventtitle = {The Eleventh International Conference on Learning Representations},
+	author = {Li, Lin and Spratling, Michael W.},
+	urldate = {2024-07-29},
+	date = {2022-09-29},
+	langid = {english},
+}
+
+@misc{perruchoud_24fs_i4ds27_2023,
+	title = {24FS\_I4DS27: Adversarial Attacks - Wie kann {KI} überlistet werden?},
+	abstract = {Was lernen neuronale Netze genau?
+Wie sicher sind sie sich ihrer Vorher-
+sage und wie einfach lassen sie sich
+austricksen? Es stellt sich heraus,
+dass es ein Leichtes ist ein neurona-
+les Netz ({NN}) zu korrumpieren: ein
+Bild einer vorgegebenen Klasse lässt
+sich mit kleinsten Anpassungen so
+verändern, dass {KI} die richtige Klasse
+nicht mehr erkennt und eine komplett
+falsche Klassifikation vornimmt (s. Bild).
+In einer Welt, wo {ML}/{AI} mehr und mehr Einfluss auf unser Leben insbesondere in sensitiven Bereichen wie Gesundheitswesen und Finanzen nimmt, sind die Implikationen von Adversarial Attacks von enormer Trag- weite. Dieses Projekt widmet sich der Thematik Adversarial Attack und zielt darauf ab Modelle robuster zu machen.},
+	publisher = {{FHNW}},
+	author = {Perruchoud, Daniel and Heule, Stephan},
+	date = {2023-11-12},
+}
+
+@unpublished{sommer_gesellschaftliche_2024,
+	title = {Gesellschaftliche Auswirkungen von {KI}-Design {LE}2: System deployment and operating and its challenges},
+	url = {https://spaces.technik.fhnw.ch/lernmaterialien/file/gki-skript-le2},
+	abstract = {Next to internal issues that are tackled during development and have been covered in {LE}1,
+computer algorithms, machine learning, and artificial intelligence systems also interact with
+their environment once they are deployed. This is the focus of this element, {LE}2.},
+	author = {Sommer, David Marco},
+	urldate = {2024-07-25},
+	date = {2024-01},
+}
+
+@article{noauthor_gesellschaftliche_nodate,
+	title = {Gesellschaftliche Auswirkungen von {KI}-Design - {LE}2: System deployment and operating and its challenges},
+	langid = {english},
+}
+
+@video{camlis_evaluating_2019,
+	title = {On Evaluating Adversarial Robustness},
+	url = {https://www.youtube.com/watch?v=-p2il-V-0fk},
+	abstract = {{CAMLIS} 2019, Nicholas Carlini
+On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keynotes/...)},
+	author = {{CAMLIS} and Carlini, Nicholas},
+	urldate = {2024-07-22},
+	date = {2019-11-13},
+	note = {19:15},
+}
+
+@misc{carlini_towards_2017,
+	title = {Towards Evaluating the Robustness of Neural Networks},
+	url = {http://arxiv.org/abs/1608.04644},
+	doi = {10.48550/arXiv.1608.04644},
+	abstract = {Neural networks provide state-of-the-art results for most machine learning tasks. Unfortunately, neural networks are vulnerable to adversarial examples: given an input \$x\$ and any target classification \$t\$, it is possible to find a new input \$x'\$ that is similar to \$x\$ but classified as \$t\$. This makes it difficult to apply neural networks in security-critical areas. Defensive distillation is a recently proposed approach that can take an arbitrary neural network, and increase its robustness, reducing the success rate of current attacks' ability to find adversarial examples from \$95{\textbackslash}\%\$ to \$0.5{\textbackslash}\%\$. In this paper, we demonstrate that defensive distillation does not significantly increase the robustness of neural networks by introducing three new attack algorithms that are successful on both distilled and undistilled neural networks with \$100{\textbackslash}\%\$ probability. Our attacks are tailored to three distance metrics used previously in the literature, and when compared to previous adversarial example generation algorithms, our attacks are often much more effective (and never worse). Furthermore, we propose using high-confidence adversarial examples in a simple transferability test we show can also be used to break defensive distillation. We hope our attacks will be used as a benchmark in future defense attempts to create neural networks that resist adversarial examples.},
+	number = {{arXiv}:1608.04644},
+	publisher = {{arXiv}},
+	author = {Carlini, Nicholas and Wagner, David},
+	urldate = {2024-07-23},
+	date = {2017-03-22},
+	eprinttype = {arxiv},
+	eprint = {1608.04644 [cs]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Cryptography and Security},
+}
+
 @misc{xu_adversarial_2020,
 	title = {Adversarial T-shirt! Evading Person Detectors in A Physical World},
 	url = {http://arxiv.org/abs/1910.11099},
@@ -345,25 +463,6 @@
 	eprinttype = {arxiv},
 	eprint = {1312.6199 [cs]},
 	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Computer Science - Neural and Evolutionary Computing},
-}
-
-@misc{perruchoud_24fs_i4ds27_2023,
-	title = {24FS\_I4DS27: Adversarial Attacks - Wie kann {KI} überlistet wer- den?},
-	abstract = {Was lernen neuronale Netze genau?
-Wie sicher sind sie sich ihrer Vorher-
-sage und wie einfach lassen sie sich
-austricksen? Es stellt sich heraus,
-dass es ein Leichtes ist ein neurona-
-les Netz ({NN}) zu korrumpieren: ein
-Bild einer vorgegebenen Klasse lässt
-sich mit kleinsten Anpassungen so
-verändern, dass {KI} die richtige Klasse
-nicht mehr erkennt und eine komplett
-falsche Klassifikation vornimmt (s. Bild).
-In einer Welt, wo {ML}/{AI} mehr und mehr Einfluss auf unser Leben insbesondere in sensitiven Bereichen wie Gesundheitswesen und Finanzen nimmt, sind die Implikationen von Adversarial Attacks von enormer Trag- weite. Dieses Projekt widmet sich der Thematik Adversarial Attack und zielt darauf ab Modelle robuster zu machen.},
-	publisher = {{FHNW}},
-	author = {Perruchoud, Daniel and Heule, Stephan},
-	date = {2023-11-12},
 }
 
 @online{madry_brief_nodate,
