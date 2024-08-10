@@ -1,5 +1,7 @@
-\subsection{Universal Adversarial Perturbation}
-In diesem Kapitel werden die generierten \acrlong{uap}s vor der \Gls{robustifizierung} für jedes der untersuchten Klassifikationsmodelle präsentiert. Diese Modelle wurden jeweils auf den Datensätzen COVIDx CXR-4 und MRI vortrainiert. Es werden ausschliesslich die als relevant erachteten \acrshort{uap}s visualisiert. Weitere \acrshort{uap}s sind im Anhang zu finden. Die Darstellung der \acrshort{uap}s erfolgt in Form von Heatmaps. In diesen Visualisierungen repräsentieren rote Bereiche positive Werte, während blaue Bereiche negative Werte darstellen. Positive Werte führen zu einer Erhöhung des Pixelwertes im Eingabebild, was in einer Aufhellung resultiert, wohingegen negative Werte den Pixelwert reduzieren und folglich zu einer Verdunkelung führen. Graue Werte weisen darauf hin, dass die Perturbationen in diesem Bildbereich keine Änderungen verursachen.
+\subsection{Universal Adversarial Perturbations}
+In diesem Kapitel werden die generierten \acrlong{uap}s vor der \Gls{robustifizierung} für jedes der untersuchten Klassifikationsmodelle präsentiert. Diese Modelle wurden jeweils auf den Datensätzen COVIDx CXR-4 und MRI vortrainiert. Es werden ausschliesslich die als relevant erachteten \acrshort{uap}s visualisiert. Weitere \acrshort{uap}s sind im Anhang zu finden. 
+
+Die Darstellung der \acrshort{uap}s erfolgt in Form von Heatmaps. In diesen Visualisierungen repräsentieren rote Bereiche positive Werte, während blaue Bereiche negative Werte darstellen. Positive Werte führen zu einer Erhöhung des Pixelwertes im Eingabebild, was in einer Aufhellung resultiert, wohingegen negative Werte den Pixelwert reduzieren und folglich zu einer Verdunkelung führen. Graue Werte weisen darauf hin, dass die Perturbationen in diesem Bildbereich keine Änderungen verursachen.
 
 % UAP Resultate
 \begin{figure}[H]
@@ -92,5 +94,9 @@ Bei der \acrshort{uap} von DenseNet121 sind die Perturbationen im oberen rechten
 Die \acrshort{uap} für EfficientNetV2-S weist horizontale Muster auf, die über die gesamte Heatmap gleichmässig verteilt sind. Ein ähnliches Muster, das bei Abbildung \ref{fig:uap-densenet121-mri-prerobustification} beobachtet wurde. Im Gegensatz dazu weist das grössere Modell, EfficientNetV2-M, auffällige vertikale Linien im oberen linken und unteren mittleren Bereich der \acrshort{uap} auf. Im Zentrum sind rote Bereiche erkennbar, die von blauen Flächen links und rechts eingerahmt werden. Zudem sind zwei grosse blaue Flecken auf der rechten Seite sichtbar.
 
 Die \acrshort{uap} für ResNet18 zeigt ein diagonales, wellenförmiges Muster. Diese Struktur ist über die gesamte \acrshort{uap} hinweg sichtbar. Auffällig ist die hohe Konzentration von solchen Perturbationen auf der rechten Seite und in der oberen rechten Ecke, wobei sowohl hohe rote als auch blaue Werte nebeneinander auftreten. Im Vergleich dazu zeigt die \acrshort{uap} für ResNet50, wie beim DenseNet169, lediglich in der oberen rechten Ecke einen starken Ausschlag. Ansonsten bleibt die Verteilung der Perturbationen über das gesamte Bild hinweg gleichmässig und fein.
+
+\subsubsection{Beispiele an Bildern}
+
+\todo{add beispiele}
 
 \newpage

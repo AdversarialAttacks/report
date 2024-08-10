@@ -1,8 +1,7 @@
 # Bericht
 
-Hier befindet sich unsere Bachelor-Thesis.
+Dieses Repository enthält den LaTeX-Code für den Bericht unserer Bachelor-Thesis.
 
-Der Bericht wurde auf Overleaf geschrieben.  
-Hier geht es zum Overleaf view Ansicht:
+Der Bericht wurde auf Overleaf geschrieben und kann [hier]((https://www.overleaf.com/read/bkbcrngvtfgm#7d5ef1)) eingesehen werden. 
 
-[Link zum Overleaf](https://www.overleaf.com/read/bkbcrngvtfgm#7d5ef1)
+[Hier](Bericht.pdf) der Bericht als PDF Datei. 
