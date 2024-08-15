@@ -1,4 +1,103 @@
 
+@misc{kingma_adam_2017,
+	title = {Adam: A Method for Stochastic Optimization},
+	url = {http://arxiv.org/abs/1412.6980},
+	doi = {10.48550/arXiv.1412.6980},
+	shorttitle = {Adam},
+	abstract = {We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss {AdaMax}, a variant of Adam based on the infinity norm.},
+	number = {{arXiv}:1412.6980},
+	publisher = {{arXiv}},
+	author = {Kingma, Diederik P. and Ba, Jimmy},
+	urldate = {2024-05-06},
+	date = {2017-01-30},
+	eprinttype = {arxiv},
+	eprint = {1412.6980 [cs]},
+	keywords = {Computer Science - Machine Learning},
+}
+
+@misc{su_one_2019,
+	title = {One pixel attack for fooling deep neural networks},
+	url = {http://arxiv.org/abs/1710.08864},
+	doi = {10.1109/TEVC.2019.2890858},
+	abstract = {Recent research has revealed that the output of Deep Neural Networks ({DNN}) can be easily altered by adding relatively small perturbations to the input vector. In this paper, we analyze an attack in an extremely limited scenario where only one pixel can be modified. For that we propose a novel method for generating one-pixel adversarial perturbations based on differential evolution ({DE}). It requires less adversarial information (a black-box attack) and can fool more types of networks due to the inherent features of {DE}. The results show that 67.97\% of the natural images in Kaggle {CIFAR}-10 test dataset and 16.04\% of the {ImageNet} ({ILSVRC} 2012) test images can be perturbed to at least one target class by modifying just one pixel with 74.03\% and 22.91\% confidence on average. We also show the same vulnerability on the original {CIFAR}-10 dataset. Thus, the proposed attack explores a different take on adversarial machine learning in an extreme limited scenario, showing that current {DNNs} are also vulnerable to such low dimension attacks. Besides, we also illustrate an important application of {DE} (or broadly speaking, evolutionary computation) in the domain of adversarial machine learning: creating tools that can effectively generate low-cost adversarial attacks against neural networks for evaluating robustness.},
+	author = {Su, Jiawei and Vargas, Danilo Vasconcellos and Kouichi, Sakurai},
+	urldate = {2024-02-21},
+	date = {2019-10-17},
+	eprinttype = {arxiv},
+	eprint = {1710.08864 [cs, stat]},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Statistics - Machine Learning},
+}
+
+@misc{xu_adversarial_2020,
+	title = {Adversarial T-shirt! Evading Person Detectors in A Physical World},
+	url = {http://arxiv.org/abs/1910.11099},
+	abstract = {It is known that deep neural networks ({DNNs}) are vulnerable to adversarial attacks. The so-called physical adversarial examples deceive {DNN}-based decision makers by attaching adversarial patches to real objects. However, most of the existing works on physical adversarial attacks focus on static objects such as glass frames, stop signs and images attached to cardboard. In this work, we propose Adversarial T-shirts, a robust physical adversarial example for evading person detectors even if it could undergo non-rigid deformation due to a moving person’s pose changes. To the best of our knowledge, this is the ﬁrst work that models the effect of deformation for designing physical adversarial examples with respect to non-rigid objects such as T-shirts. We show that the proposed method achieves 74\% and 57\% attack success rates in the digital and physical worlds respectively against {YOLOv}2. In contrast, the state-of-the-art physical attack method to fool a person detector only achieves 18\% attack success rate. Furthermore, by leveraging min-max optimization, we extend our method to the ensemble attack setting against two object detectors {YOLO}-v2 and Faster R-{CNN} simultaneously.},
+	number = {{arXiv}:1910.11099},
+	publisher = {{arXiv}},
+	author = {Xu, Kaidi and Zhang, Gaoyuan and Liu, Sijia and Fan, Quanfu and Sun, Mengshu and Chen, Hongge and Chen, Pin-Yu and Wang, Yanzhi and Lin, Xue},
+	urldate = {2024-06-18},
+	date = {2020-07-06},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1910.11099 [cs]},
+	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+}
+
+@inproceedings{li_data_2023,
+	title = {Data augmentation alone can improve adversarial training},
+	url = {https://openreview.net/forum?id=y4uc4NtTWaq},
+	abstract = {Adversarial training suffers from the issue of robust overfitting, which seriously impairs its generalization performance. Data augmentation, which is effective at preventing overfitting in standard training, has been observed by many previous works to be ineffective in mitigating overfitting in adversarial training. This work proves that, contrary to previous findings, data augmentation alone can significantly boost accuracy and robustness in adversarial training. We find that the hardness and the diversity of data augmentation are important factors in combating robust overfitting. In general, diversity can improve both accuracy and robustness, while hardness can boost robustness at the cost of accuracy within a certain limit and degrade them both over that limit. To mitigate robust overfitting, we first propose a new crop transformation Cropshift with improved diversity compared to the conventional one (Padcrop). We then propose a new data augmentation scheme, based on Cropshift, with much improved diversity and well-balanced hardness. Empirically, our augmentation method achieves the state-of-the-art accuracy and robustness for data augmentations in adversarial training. Furthermore, it matches, or even exceeds when combined with weight averaging, the performance of the best contemporary regularization methods for alleviating robust overfitting.},
+	eventtitle = {The Eleventh International Conference on Learning Representations},
+	author = {Li, Lin and Spratling, Michael W.},
+	urldate = {2024-07-29},
+	date = {2023-02-01},
+	langid = {english},
+}
+
+@video{camlis_evaluating_2019,
+	title = {On Evaluating Adversarial Robustness},
+	url = {https://www.youtube.com/watch?v=-p2il-V-0fk},
+	abstract = {{CAMLIS} 2019, Nicholas Carlini
+On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keynotes/...)},
+	author = {{CAMLIS} and Carlini, Nicholas},
+	urldate = {2024-07-22},
+	date = {2019-11-13},
+	langid = {english},
+	note = {19:15},
+}
+
+@inproceedings{krizhevsky_imagenet_2012,
+	title = {{ImageNet} Classification with Deep Convolutional Neural Networks},
+	volume = {25},
+	url = {https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf},
+	booktitle = {Advances in Neural Information Processing Systems},
+	publisher = {Curran Associates, Inc.},
+	author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
+	editor = {Pereira, F. and Burges, C. J. and Bottou, L. and Weinberger, K. Q.},
+	date = {2012},
+}
+
+@misc{bhuvaji_brain_2020,
+	title = {Brain Tumor Classification ({MRI})},
+	url = {https://www.kaggle.com/dsv/1183165},
+	doi = {DOI: 10.34740/KAGGLE/DSV/1183165},
+	publisher = {Kaggle},
+	author = {Bhuvaji, Sartaj and Kadam, Ankita and Bhumkar, Prajakta and Dedge, Sameer and Kanchan, Swati},
+	date = {2020},
+}
+
+@unpublished{sommer_gesellschaftliche_2024,
+	title = {Gesellschaftliche Auswirkungen von {KI}-Design {LE}2: System deployment and operating and its challenges},
+	url = {https://spaces.technik.fhnw.ch/lernmaterialien/file/gki-skript-le2},
+	abstract = {Next to internal issues that are tackled during development and have been covered in {LE}1,
+computer algorithms, machine learning, and artificial intelligence systems also interact with
+their environment once they are deployed. This is the focus of this element, {LE}2.},
+	author = {Sommer, David Marco},
+	urldate = {2024-07-25},
+	date = {2024-01},
+	langid = {english},
+}
+
 @misc{kariyappa_improving_2019,
 	title = {Improving Adversarial Robustness of Ensembles with Diversity Training},
 	url = {http://arxiv.org/abs/1901.09981},
@@ -45,17 +144,6 @@
 	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computer Vision and Pattern Recognition},
 }
 
-@inproceedings{li_data_2022,
-	title = {Data augmentation alone can improve adversarial training},
-	url = {https://openreview.net/forum?id=y4uc4NtTWaq},
-	abstract = {Adversarial training suffers from the issue of robust overfitting, which seriously impairs its generalization performance. Data augmentation, which is effective at preventing overfitting in standard training, has been observed by many previous works to be ineffective in mitigating overfitting in adversarial training. This work proves that, contrary to previous findings, data augmentation alone can significantly boost accuracy and robustness in adversarial training. We find that the hardness and the diversity of data augmentation are important factors in combating robust overfitting. In general, diversity can improve both accuracy and robustness, while hardness can boost robustness at the cost of accuracy within a certain limit and degrade them both over that limit. To mitigate robust overfitting, we first propose a new crop transformation Cropshift with improved diversity compared to the conventional one (Padcrop). We then propose a new data augmentation scheme, based on Cropshift, with much improved diversity and well-balanced hardness. Empirically, our augmentation method achieves the state-of-the-art accuracy and robustness for data augmentations in adversarial training. Furthermore, it matches, or even exceeds when combined with weight averaging, the performance of the best contemporary regularization methods for alleviating robust overfitting.},
-	eventtitle = {The Eleventh International Conference on Learning Representations},
-	author = {Li, Lin and Spratling, Michael W.},
-	urldate = {2024-07-29},
-	date = {2022-09-29},
-	langid = {english},
-}
-
 @misc{perruchoud_24fs_i4ds27_2023,
 	title = {24FS\_I4DS27: Adversarial Attacks - Wie kann {KI} überlistet werden?},
 	abstract = {Was lernen neuronale Netze genau?
@@ -75,31 +163,9 @@ In einer Welt, wo {ML}/{AI} mehr und mehr Einfluss auf unser Leben insbesondere 
 	date = {2023-11-12},
 }
 
-@unpublished{sommer_gesellschaftliche_2024,
-	title = {Gesellschaftliche Auswirkungen von {KI}-Design {LE}2: System deployment and operating and its challenges},
-	url = {https://spaces.technik.fhnw.ch/lernmaterialien/file/gki-skript-le2},
-	abstract = {Next to internal issues that are tackled during development and have been covered in {LE}1,
-computer algorithms, machine learning, and artificial intelligence systems also interact with
-their environment once they are deployed. This is the focus of this element, {LE}2.},
-	author = {Sommer, David Marco},
-	urldate = {2024-07-25},
-	date = {2024-01},
-}
-
 @article{noauthor_gesellschaftliche_nodate,
 	title = {Gesellschaftliche Auswirkungen von {KI}-Design - {LE}2: System deployment and operating and its challenges},
 	langid = {english},
-}
-
-@video{camlis_evaluating_2019,
-	title = {On Evaluating Adversarial Robustness},
-	url = {https://www.youtube.com/watch?v=-p2il-V-0fk},
-	abstract = {{CAMLIS} 2019, Nicholas Carlini
-On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keynotes/...)},
-	author = {{CAMLIS} and Carlini, Nicholas},
-	urldate = {2024-07-22},
-	date = {2019-11-13},
-	note = {19:15},
 }
 
 @misc{carlini_towards_2017,
@@ -115,21 +181,6 @@ On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keyn
 	eprinttype = {arxiv},
 	eprint = {1608.04644 [cs]},
 	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Cryptography and Security},
-}
-
-@misc{xu_adversarial_2020,
-	title = {Adversarial T-shirt! Evading Person Detectors in A Physical World},
-	url = {http://arxiv.org/abs/1910.11099},
-	abstract = {It is known that deep neural networks ({DNNs}) are vulnerable to adversarial attacks. The so-called physical adversarial examples deceive {DNN}-based decision makers by attaching adversarial patches to real objects. However, most of the existing works on physical adversarial attacks focus on static objects such as glass frames, stop signs and images attached to cardboard. In this work, we propose Adversarial T-shirts, a robust physical adversarial example for evading person detectors even if it could undergo non-rigid deformation due to a moving person’s pose changes. To the best of our knowledge, this is the ﬁrst work that models the effect of deformation for designing physical adversarial examples with respect to non-rigid objects such as T-shirts. We show that the proposed method achieves 74\% and 57\% attack success rates in the digital and physical worlds respectively against {YOLOv}2. In contrast, the state-of-the-art physical attack method to fool a person detector only achieves 18\% attack success rate. Furthermore, by leveraging min-max optimization, we extend our method to the ensemble attack setting against two object detectors {YOLO}-v2 and Faster R-{CNN} simultaneously.},
-	number = {{arXiv}:1910.11099},
-	publisher = {{arXiv}},
-	author = {Xu, Kaidi and Zhang, Gaoyuan and Liu, Sijia and Fan, Quanfu and Sun, Mengshu and Chen, Hongge and Chen, Pin-Yu and Wang, Yanzhi and Lin, Xue},
-	urldate = {2024-06-18},
-	date = {2020-07-05},
-	langid = {english},
-	eprinttype = {arxiv},
-	eprint = {1910.11099 [cs]},
-	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
 }
 
 @online{reiff_understand_2021,
@@ -168,22 +219,6 @@ On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keyn
 	abstract = {Deep Learning ({DL}) is the most widely used tool in the contemporary field of computer vision. Its ability to accurately solve complex problems is employed in vision research to learn deep neural models for a variety of tasks, including security critical applications. However, it is now known that {DL} is vulnerable to adversarial attacks that can manipulate its predictions by introducing visually imperceptible perturbations in images and videos. Since the discovery of this phenomenon in 2013{\textasciitilde}[1], it has attracted significant attention of researchers from multiple sub-fields of machine intelligence. In [2], we reviewed the contributions made by the computer vision community in adversarial attacks on deep learning (and their defenses) until the advent of year 2018. Many of those contributions have inspired new directions in this area, which has matured significantly since witnessing the first generation methods. Hence, as a legacy sequel of [2], this literature review focuses on the advances in this area since 2018. To ensure authenticity, we mainly consider peer-reviewed contributions published in the prestigious sources of computer vision and machine learning research. Besides a comprehensive literature review, the article also provides concise definitions of technical terminologies for non-experts in this domain. Finally, this article discusses challenges and future outlook of this direction based on the literature reviewed herein and [2].},
 	author = {Akhtar, Naveed and Mian, Ajmal and Kardan, Navid and Shah, Mubarak},
 	date = {2021-08-01},
-}
-
-@misc{kingma_adam_2017,
-	title = {Adam: A Method for Stochastic Optimization},
-	url = {http://arxiv.org/abs/1412.6980},
-	doi = {10.48550/arXiv.1412.6980},
-	shorttitle = {Adam},
-	abstract = {We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss {AdaMax}, a variant of Adam based on the infinity norm.},
-	number = {{arXiv}:1412.6980},
-	publisher = {{arXiv}},
-	author = {Kingma, Diederik P. and Ba, Jimmy},
-	urldate = {2024-05-06},
-	date = {2017-01-29},
-	eprinttype = {arxiv},
-	eprint = {1412.6980 [cs]},
-	keywords = {Computer Science - Machine Learning},
 }
 
 @misc{dosovitskiy_image_2021,
@@ -233,15 +268,6 @@ On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keyn
 	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Computers and Society, Computer Science - Cryptography and Security, Computer Science - Machine Learning},
 }
 
-@misc{bhuvaji_brain_2020,
-	title = {Brain Tumor Classification ({MRI})},
-	url = {https://www.kaggle.com/dsv/1183165},
-	publisher = {Kaggle},
-	author = {Bhuvaji, Sartaj and Kadam, Ankita and Bhumkar, Prajakta and Dedge, Sameer and Kanchan, Swati},
-	date = {2020},
-	doi = {10.34740/KAGGLE/DSV/1183165},
-}
-
 @misc{wu_covidx_2023,
 	title = {{COVIDx} {CXR}-4: An Expanded Multi-Institutional Open-Source Benchmark Dataset for Chest X-ray Image-Based Computer-Aided {COVID}-19 Diagnostics},
 	url = {http://arxiv.org/abs/2311.17677},
@@ -269,18 +295,6 @@ On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keyn
 	eprinttype = {arxiv},
 	eprint = {1608.06993 [cs]},
 	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
-}
-
-@inproceedings{krizhevsky_imagenet_2012,
-	title = {{ImageNet} Classification with Deep Convolutional Neural Networks},
-	volume = {25},
-	url = {https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html},
-	abstract = {We trained a large, deep convolutional neural network to classify the 1.3 million high-resolution images in the {LSVRC}-2010 {ImageNet} training set into the 1000 different classes. On the test data, we achieved top-1 and top-5 error rates of 39.7{\textbackslash}\% and 18.9{\textbackslash}\% which is considerably better than the previous state-of-the-art results. The neural network, which has 60 million parameters and 500,000 neurons, consists of five convolutional layers, some of which are followed by max-pooling layers, and two globally connected layers with a final 1000-way softmax. To make training faster, we used non-saturating neurons and a very efficient {GPU} implementation of convolutional nets. To reduce overfitting in the globally connected layers we employed a new regularization method that proved to be very effective.},
-	booktitle = {Advances in Neural Information Processing Systems},
-	publisher = {Curran Associates, Inc.},
-	author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
-	urldate = {2024-03-14},
-	date = {2012},
 }
 
 @misc{szegedy_going_2014,
@@ -430,25 +444,6 @@ On Evaluating Adversarial Robustness (abstract: https://www.camlis.org/2019/keyn
 	eprinttype = {arxiv},
 	eprint = {1709.03423 [cs, stat]},
 	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
-}
-
-@article{su_one_2019,
-	title = {One pixel attack for fooling deep neural networks},
-	volume = {23},
-	issn = {1089-778X, 1089-778X, 1941-0026},
-	url = {http://arxiv.org/abs/1710.08864},
-	doi = {10.1109/TEVC.2019.2890858},
-	abstract = {Recent research has revealed that the output of Deep Neural Networks ({DNN}) can be easily altered by adding relatively small perturbations to the input vector. In this paper, we analyze an attack in an extremely limited scenario where only one pixel can be modified. For that we propose a novel method for generating one-pixel adversarial perturbations based on differential evolution ({DE}). It requires less adversarial information (a black-box attack) and can fool more types of networks due to the inherent features of {DE}. The results show that 67.97\% of the natural images in Kaggle {CIFAR}-10 test dataset and 16.04\% of the {ImageNet} ({ILSVRC} 2012) test images can be perturbed to at least one target class by modifying just one pixel with 74.03\% and 22.91\% confidence on average. We also show the same vulnerability on the original {CIFAR}-10 dataset. Thus, the proposed attack explores a different take on adversarial machine learning in an extreme limited scenario, showing that current {DNNs} are also vulnerable to such low dimension attacks. Besides, we also illustrate an important application of {DE} (or broadly speaking, evolutionary computation) in the domain of adversarial machine learning: creating tools that can effectively generate low-cost adversarial attacks against neural networks for evaluating robustness.},
-	pages = {828--841},
-	number = {5},
-	journaltitle = {{IEEE} Transactions on Evolutionary Computation},
-	shortjournal = {{IEEE} Trans. Evol. Computat.},
-	author = {Su, Jiawei and Vargas, Danilo Vasconcellos and Kouichi, Sakurai},
-	urldate = {2024-02-21},
-	date = {2019-10},
-	eprinttype = {arxiv},
-	eprint = {1710.08864 [cs, stat]},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Statistics - Machine Learning},
 }
 
 @misc{szegedy_intriguing_2014,

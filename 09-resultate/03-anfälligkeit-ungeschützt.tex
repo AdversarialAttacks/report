@@ -7,20 +7,20 @@ Beim Vergleich der AUROC-Modellmetriken in Abbildung \ref{fig:auroc-uap} wird si
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/AUROCScores_UAP.png}
-    \caption{AUROC Metriken der Modelle mit und ohne UAPs}
+    \caption{AUROC Mittelwert (und Standardfehler) der Modelle mit und ohne UAPs}
     \label{fig:auroc-uap}
 \end{figure}
 
 \newpage
 
 \subsubsection{Recall Metriken}
-Da der Perturbationsalgorithmus darauf ausgelegt ist Falsch-Negativ Klassifikationen zu verursachen, ist es sinnvoll, auch die Recall-Metrik in Abbildung \ref{fig:recall-uap} zu betrachten. Dabei zeigen sich grössere Differenzen im Vergleich zu den AUROC-Metriken. Bei jedem Modell nimmt die Recall-Metrik mit der Addition der \acrshort{uap}s signifikant ab. Durch die Anpassung der Mindesttäuschungsrate $r$ und des Regularisierungsparameters der Matrizennorm $\lambda_{norm}$ bei der Generierung der \acrshort{uap}s können diese Differenzen sogar vergrössert werden.
+Da der Perturbationsalgorithmus darauf ausgelegt ist falsch-negative Klassifikationen zu verursachen, ist es sinnvoll, auch die Recall-Metrik in Abbildung \ref{fig:recall-uap} zu betrachten. Dabei zeigen sich grössere Differenzen im Vergleich zu den AUROC-Metriken. Bei jedem Modell nimmt die Recall-Metrik mit der Addition der \acrshort{uap}s signifikant ab. Durch die Anpassung der Mindesttäuschungsrate $r$ und des Regularisierungsparameters der Matrizennorm $\lambda_{norm}$ bei der Generierung der \acrshort{uap}s können diese Differenzen sogar vergrössert werden.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/RECALLScores_UAP.png}
-    \caption{Recall Metriken der Modelle mit und ohne UAPs}
+    \caption{Recall Mittelwert (und Standardfehler) der Modelle mit und ohne UAPs}
     \label{fig:recall-uap}
 \end{figure}
 
-Aus dieser Analyse lässt sich erschliessen, dass die ungeschützten Modelle sehr anfällig gegenüber den generierten \acrshort{uap}s sind und dass der angepasste Algorithmus erfolgreich Perturbationen generieren kann, welche zu Falsch-Negativ Klassifikationen führen.
+Aus dieser Analyse lässt sich erschliessen, dass die ungeschützten Modelle sehr anfällig gegenüber den generierten \acrshort{uap}s sind und dass der angepasste Algorithmus erfolgreich Perturbationen generieren kann, welche zu falsch-negativen Klassifikationen führen.

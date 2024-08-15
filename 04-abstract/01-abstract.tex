@@ -1,11 +1,11 @@
 \section*{Abstract} 
 Adversarial Attacks, insbesondere \acrlong{uap}s (\acrshort{uap}s), stellen eine grosse Herausforderung für die Robustheit von Deep Learning Modellen dar. Diese Thesis konzentriert sich auf die Entwicklung und Implementierung von \acrshort{uap}s und die Evaluierung von Adversarial Training als Verteidigungsmechanismus gegen solche Angriffe, insbesondere für die Modelle ResNet, DenseNet und EfficientNetV2.
 
-Unser Anwendungsfall zielt auf die Erkennung kritischer Krankheiten durch binäre Klassifikationsmodelle. Im Gegensatz zum Ansatz von Moosavi-Dezfooli et al. \cite{moosavi-dezfooli_universal_2017} lösen wir das Optimierungsproblem der Generierung von \acrshort{uap}s durch eine selbstdefinierte Loss-Funktion, welche die Inverse der \acrlong{bce} und die $L_2$-Matrizennorm verwendet. Bei der Generierung der \acrshort{uap}s werden gezielt positiv gelabelte Bilder angegriffen, um deren Falsch-Negativ-Rate zu erhöhen.
+Unser Anwendungsfall zielt auf die Erkennung kritischer Krankheiten durch binäre Klassifikationsmodelle. Im Gegensatz zum Ansatz von Moosavi-Dezfooli et al. \cite{moosavi-dezfooli_universal_2017} lösen wir das Optimierungsproblem der Generierung von \acrshort{uap}s durch eine selbstdefinierte Loss-Funktion, welche die Inverse der \acrlong{bce} und die $L_2$-Matrizennorm verwendet. Bei der Generierung der \acrshort{uap}s werden gezielt positiv gelabelte Bilder angegriffen, um deren falsch-negativ Rate zu erhöhen.
 
 Die Analyse zeigt, dass die Addition von \acrshort{uap}s die Recall-Metriken verschlechtern und dass \Gls{robustifizierung} oft nicht in der Lage ist, die ursprüngliche Modellperformance zu erreichen. Obwohl Adversarial Training die Robustheit erhöht, bleiben die Modelle anfällig für neu generierte \acrshort{uap}s. \Gls{robustifizierung} erzwingt in einigen Fällen grössere Perturbationen, dadurch wird die Zeitintensität der \acrshort{uap}-Generierung erhöht.
 
-Insbesondere im Gesundheitswesen, aber auch in anderen Bereichen, kann eine erhöhte Falsch-Negativ-Rate gefährliche Folgen haben. Daher ist weitere Forschung auf dem Gebiet der Adversarial Attacks und ihrer \Gls{robustifizierung} von entscheidender Bedeutung. Diese Thesis unterstreicht die Notwendigkeit, die Widerstandsfähigkeit gegen Adversarial Attacks zu verbessern.
+Insbesondere im Gesundheitswesen, aber auch in anderen Bereichen, kann eine erhöhte falsch-negativ Rate gefährliche Folgen haben. Daher ist weitere Forschung auf dem Gebiet der Adversarial Attacks und ihrer \Gls{robustifizierung} von entscheidender Bedeutung. Diese Thesis unterstreicht die Notwendigkeit, die Widerstandsfähigkeit gegen Adversarial Attacks zu verbessern.
 
 \clearpage
 
@@ -18,6 +18,8 @@ Auch möchten wir dem Studiengang Data Science und dem Institut für Data Scienc
 
 Ein herzliches Dankeschön geht auch an unsere Freunde, Eltern und Mitstudierenden. Ihre moralische Unterstützung und ihr stetiger Zuspruch haben uns während des gesamten Arbeitsprozesses getragen und ermutigt.
 
+\vfill
 
+\textbf{Gender-Hinweis}
 
-
+Zur besseren Lesbarkeit wird in dieser Bachelorthesis das generische Maskulinum verwendet. Die in dieser Thesis verwendeten Personenbezeichnungen beziehen sich – sofern nicht anders kenntlich gemacht – auf alle Geschlechter.

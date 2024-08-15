@@ -31,7 +31,7 @@ In diesem Abschnitt werden die \acrshort{uap}s über verschiedene Stufen der \Gl
     \label{fig:uap-densenet121-hirntumor}
 \end{figure}
 
-In Abbildung \ref{fig:uap-densenet121-hirntumor} ist zu erkennen, dass im Zentrum sich mit zunehmender \acrlong{robustifizierung} eine blaue Fläche entwickelt. Links und rechts vom Zentrum zeigt sich ein abwechselndes Muster von blauen und roten Werten, das über alle Robustifizierungsdurchläufe hinweg ähnlich bleibt. In der letzten Stufe der \Gls{robustifizierung} ist zudem eine erhöhte Intensität der Perturbationen im unteren Bereich zu erkennen. Diese Beobachtungen deuten darauf hin, dass Angriffe zunächst im zentralen Bereich der Bilder besonders effektiv sind und sich mit zunehmender \Gls{robustifizierung} allmählich in Richtung der Bildränder ausbreiten.
+In Abbildung \ref{fig:uap-densenet121-hirntumor} ist zu erkennen, dass im Zentrum sich mit zunehmender \acrlong{robustifizierung} eine blaue (negative) Fläche entwickelt. Links und rechts vom Zentrum zeigt sich ein abwechselndes Muster von blauen und roten (positiven) Werten, das über alle Robustifizierungsdurchläufe hinweg ähnlich bleibt. In der letzten Stufe der \Gls{robustifizierung} ist zudem eine erhöhte Intensität der Perturbationen im unteren Bereich zu erkennen. Diese Beobachtungen deuten darauf hin, dass Angriffe zunächst im zentralen Bereich der Bilder besonders effektiv sind und sich mit zunehmender \Gls{robustifizierung} allmählich in Richtung der Bildränder ausbreiten.
 
 % DenseNet169
 \begin{figure}[H]
@@ -49,7 +49,7 @@ In Abbildung \ref{fig:uap-densenet121-hirntumor} ist zu erkennen, dass im Zentru
     \label{fig:uap-densenet169-hirntumor}
 \end{figure}
 
-In Abbildung \ref{fig:uap-densenet169-hirntumor} zeigen die \acrshort{uap}s über alle Robustifizierungsdurchläufe Gemeinsamkeiten. Wie beim kleineren Modell DenseNet121 konzentrieren sich die blauen Perturbationswerte deutlich im Zentrum, während die roten Perturbationswerte mehrheitlich in den Randbereichen auftreten. Auffällig ist, dass bei den \acrshort{uap}s eine horizontal wechselnde Struktur der Perturbationen rechts des Zentrumsbereichs erkennbar ist, die ebenfalls im kleineren Modell beobachtet werden kann.
+In Abbildung \ref{fig:uap-densenet169-hirntumor} zeigen die \acrshort{uap}s über alle Robustifizierungsdurchläufe Gemeinsamkeiten. Wie beim kleineren Modell DenseNet121 konzentrieren sich die blauen (negativen) Perturbationswerte deutlich im Zentrum, während die roten (positiven) Perturbationswerte mehrheitlich in den Randbereichen auftreten. Auffällig ist, dass bei den \acrshort{uap}s eine horizontal wechselnde Struktur der Perturbationen rechts des Zentrumsbereichs erkennbar ist, die ebenfalls im kleineren Modell beobachtet werden kann.
 
 \paragraph{EfficientNetV2}
 In diesem Abschnitt werden die \acrshort{uap}s der EfficientNetV2 Modelle, die mit dem MRI Datensatz trainiert wurden, analysiert.
@@ -70,7 +70,7 @@ In diesem Abschnitt werden die \acrshort{uap}s der EfficientNetV2 Modelle, die m
     \label{fig:uap-efficientnetv2s-hirntumor}
 \end{figure}
 
-Beim Modell EfficientNetV2-S konnten nach der initialen \Gls{robustifizierung} keine weiteren \acrshort{uap}s erzeugt werden. Bei der Analyse der \acrshort{uap} ist kein eindeutiges Perturbationsmuster zu erkennen. Die Werte sind am oberen sowie am linken und rechten Rand der \acrshort{uap} überwiegend rot, während der untere Rand keine auffälligen Werte aufweist. Das Zentrum des Bildes weist eine Mischung aus roten und blauen Werte auf. Etwas unterhalb vom oberen Rand der \acrshort{uap} ist eine breite und blaue Linie zu vorhanden. Insgesamt ist das Muster der Perturbationen schwer zu beschreiben.
+Beim Modell EfficientNetV2-S konnten nach der initialen \Gls{robustifizierung} keine weiteren \acrshort{uap}s erzeugt werden. Bei der Analyse der \acrshort{uap} ist kein eindeutiges Perturbationsmuster zu erkennen. Die Werte sind am oberen sowie am linken und rechten Rand der \acrshort{uap} überwiegend rot (positiv), während der untere Rand keine auffälligen Werte aufweist. Das Zentrum des Bildes weist eine Mischung aus roten und blauen (negativen) Werte auf. Etwas unterhalb vom oberen Rand der \acrshort{uap} ist eine breite und blaue Linie zu vorhanden. Insgesamt ist das Muster der Perturbationen schwer zu beschreiben.
 
 % EfficientNetV2-M
 \begin{figure}[H]
@@ -88,11 +88,11 @@ Beim Modell EfficientNetV2-S konnten nach der initialen \Gls{robustifizierung} k
     \label{fig:uap-efficientnetv2m-hirntumor}
 \end{figure}
 
-Die \acrshort{uap}s des Modells EfficientNetV2-M, weisen über fünf Robustifizierungsdurchläufen hinweg einheitliche vertikale Muster auf der rechten Seite auf. Diese vertikalen Muster sind durch rote Werte gekennzeichnet. Blaue Werte treten tendenziell in der oberen Hälfte der \acrshort{uap} auf. Der untere Teil scheint zum oberen weniger durch die Perturbationen betroffen zu sein. 
+Die \acrshort{uap}s des Modells EfficientNetV2-M, weisen über fünf Robustifizierungsdurchläufen hinweg einheitliche vertikale Muster auf der rechten Seite auf. Diese vertikalen Muster sind durch rote (positive) Werte gekennzeichnet. Blaue (negative) Werte treten tendenziell in der oberen Hälfte der \acrshort{uap} auf. Der untere Teil scheint zum oberen weniger durch die Perturbationen betroffen zu sein. 
 
 \newpage
 
-\paragraph{ResNet}
+\paragraph{ResNet}\label{fig:result-resnet-uap}
 In diesem Abschnitt werden die \acrshort{uap}s der ResNet Modelle, die mit dem MRI Datensatz trainiert wurden, analysiert.
 
 %%%%%%%%%%%%%%%%%%%%%% UAP RESNET18 %%%%%%%%%%%%%%%%%%%%%% CHECK
@@ -113,25 +113,25 @@ In diesem Abschnitt werden die \acrshort{uap}s der ResNet Modelle, die mit dem M
     \label{fig:uap-resnet18-hirntumor}
 \end{figure}
 
-Die Perturbationen, sowohl rote als auch blaue, sind über die gesamte \acrshort{uap} punktuell verteilt. Zusätzlich sind die Perturbationen an den Rändern der \acrshort{uap}s überwiegend rot. Diese Tendenz bleibt über verschiedene Robustifizierungsdurchläufe in unterschiedlicher Intensität bestehen.
+Die Perturbationen, sowohl rote (positive) als auch blaue (negative), sind über die gesamte \acrshort{uap} punktuell verteilt. Zusätzlich sind die Perturbationen an den Rändern der \acrshort{uap}s überwiegend rot. Diese Tendenz bleibt über verschiedene Robustifizierungsdurchläufe in unterschiedlicher Intensität bestehen.
 
 %%%%%%%%%%%%%%%%%%%%%% RECALL RESNET18 %%%%%%%%%%%%%%%%%%%%%% CHECK
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/RecallRobustification_MRI_ResNet18.png}
-    \caption{Verlauf der Recall Metrik pro Robustifizierungsdurchlauf für das Modell ResNet18 auf den MRI Datensatz}
+    \caption{Verlauf der Recall Testmetrik pro Robustifizierungsdurchlauf für das Modell ResNet18 auf den MRI Datensatz}
     \label{fig:RecallRobustification MRI ResNet18}
 \end{figure}
 
-Der Verlauf der Recall-Metrik während des Robustifizierungsprozesses des ResNet18 Modells auf den MRI Datensatz zeigt einen Anstieg des Recall-Wertes mit \acrshort{uap}s nach jedem Robustifizierungsdurchlauf. Allerdings bleibt das Modell bei der Generierung neuer \acrshort{uap}s weiterhin vulnerabel, was zu einem erneuten Absinken der Recall-Metrik führt. Über die Robustifizierungsdurchläufe hinweg ist jedoch ein tendenzieller Anstieg des Recalls zu beobachten, was auf eine erfolgreiche Reduzierung von Falsch-Negativen Klassifikation nach mehreren Robustifizierungsdurchläufen hindeutet.
+Der Verlauf der Recall-Metrik während des Robustifizierungsprozesses des ResNet18 Modells auf den MRI Datensatz zeigt einen Anstieg des Recall-Wertes mit \acrshort{uap}s nach jedem Robustifizierungsdurchlauf. Allerdings bleibt das Modell bei der Generierung neuer \acrshort{uap}s weiterhin vulnerabel, was zu einem erneuten Absinken der Recall-Metrik führt. Über die Robustifizierungsdurchläufe hinweg ist jedoch ein tendenzieller Anstieg des Recalls zu beobachten, was auf eine erfolgreiche Reduzierung von falsch-negativen Klassifikation nach mehreren Robustifizierungsdurchläufen hindeutet.
 
 %%%%%%%%%%%%%%%%%%%%%% AUROC RESNET18 %%%%%%%%%%%%%%%%%%%%%% CHECK
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/AUROCRobustification_MRI_ResNet18.png}
-    \caption{Verlauf der AUROC Metrik pro Robustifizierungsdurchlauf für das Modell ResNet18 auf den MRI Datensatz}
+    \caption{Verlauf der AUROC Testmetrik pro Robustifizierungsdurchlauf für das Modell ResNet18 auf den MRI Datensatz}
     \label{fig:AUROCRobustification MRI ResNet18}
 \end{figure}
 
@@ -154,49 +154,49 @@ Eine genauere Betrachtung der AUROC-Metrik offenbart jedoch, dass diese während
     \label{fig:uap-resnet50-hirntumor}
 \end{figure}
 
-Die \acrshort{uap}s im ResNet50 Modell zeigen über alle Robustifizierungsdurchläufe ein konsistentes Muster. Wie bereits beim ResNet18 Modell sind auch hier punktuelle Perturbationen vorhanden. Allerdings sind die Perturbationen im ResNet50 konzentrierter auf einen bestimmten Bereich vorhanden. Auffällig ist, dass im Zentrum der \acrshort{uap}s sowohl rote als auch blaue Perturbationen auftreten, während an den Rändern, wie beim Resnet18 Modell, überwiegend rote Werte zu finden sind.
+Die \acrshort{uap}s im ResNet50 Modell zeigen über alle Robustifizierungsdurchläufe ein konsistentes Muster. Wie bereits beim ResNet18 Modell sind auch hier punktuelle Perturbationen vorhanden. Allerdings sind die Perturbationen im ResNet50 konzentrierter auf einen bestimmten Bereich vorhanden. Auffällig ist, dass im Zentrum der \acrshort{uap}s sowohl rote (positive) als auch blaue (negative) Perturbationen auftreten, während an den Rändern, wie beim Resnet18 Modell, überwiegend rote Werte zu finden sind.
 
 %%%%%%%%%%%%%%%%%%%%%% RECALL RESNET50 %%%%%%%%%%%%%%%%%%%%%% CHECK
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/RecallRobustification_MRI_ResNet50.png}
-    \caption{Verlauf der Recall Metrik pro Robustifizierungsdurchlauf für das Modell ResNet50 auf den MRI Datensatz}
+    \caption{Verlauf der Recall Testmetrik pro Robustifizierungsdurchlauf für das Modell ResNet50 auf den MRI Datensatz}
     \label{fig:RecallRobustification MRI ResNet50}
 \end{figure}
 
-Der Robustifizierungsverlauf des ResNet50 Modells zeigt ein ähnliches, jedoch weniger ausgeprägteres Muster, im Vergleich zum ResNet18 Modell. Die \Gls{robustifizierung} scheint hier auch effektiv in der Reduzierung von Falsch-Negativen Klassifikationen zu sein.
+Der Robustifizierungsverlauf des ResNet50 Modells zeigt ein ähnliches, jedoch weniger ausgeprägteres Muster, im Vergleich zum ResNet18 Modell. Die \Gls{robustifizierung} scheint hier auch effektiv in der Reduzierung von falsch-negativen Klassifikationen zu sein.
 
 %%%%%%%%%%%%%%%%%%%%%% AUROC RESNET50 %%%%%%%%%%%%%%%%%%%%%% CHECK
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/AUROCRobustification_MRI_ResNet50.png}
-    \caption{Verlauf der AUROC Metrik pro Robustifizierungsdurchlauf für das Modell ResNet50 auf den MRI Datensatz}
+    \caption{Verlauf der AUROC Testmetrik pro Robustifizierungsdurchlauf für das Modell ResNet50 auf den MRI Datensatz}
     \label{fig:AUROCRobustification MRI ResNet50}
 \end{figure}
 
-\newpage
-
-Im Vergleich dazu zeigt die AUROC-Metrik keine signifikante Verschlechterung trotz des Anstiegs der Recall-Metrik. Dies deutet auf eine ausgewogene Verbesserung der Modellleistung in Hinsicht der Falsch-Negativen Klassifikationen.
+Im Vergleich dazu zeigt die AUROC-Metrik keine signifikante Verschlechterung trotz des Anstiegs der Recall-Metrik. Dies deutet auf eine ausgewogene Verbesserung der Modellleistung in Hinsicht der falsch-negativen Klassifikationen.
 
 \paragraph{Zusammenfassung} 
-Bei beiden DenseNet Modellen wurde festgestellt, dass das Zentrum der MRI Bilder über alle Robustifizierungsdurchläufe blaue Perturbationen beinhaltet. Diese Werte werden von abwechselnden horizontalen Perturbationen umrahmt. Diese Muster bleiben über die Robustifizierungsstufen weitgehend konstant, ändern sich aber in ihrer Intensität.
+Bei beiden DenseNet Modellen wurde festgestellt, dass das Zentrum der MRI Bilder über alle Robustifizierungsdurchläufe blaue (negative) Perturbationen beinhaltet. Diese Werte werden von abwechselnden horizontalen Perturbationen umrahmt. Diese Muster bleiben über die Robustifizierungsstufen weitgehend konstant, ändern sich aber in ihrer Intensität.
 
 EfficientNetV2 Modelle zeigen hingegen ein konsistentes vertikales Muster in den Perturbationen. Diese vertikalen Linien durchziehen die \acrshort{uap}, unabhängig von der Grösse des Modells oder dem Robustifizierungsdurchlauf. 
 
-Bei den ResNet Modellen treten punktuelle Perturbationen auf, welche über das gesamte Bild verteilt sind, wobei am Rand der \acrshort{uap}s tendenziell rote Perturbationen dominieren. Im Gegensatz dazu sind im Zentrum der Bilder sowohl blaue als auch rote Werte punktuell verteilt. Bei ResNet50 sind diese punktuellen Perturbationen besonders stark ausgeprägt, was zu einer intensiveren Beeinflussung des Eingabebildes führt.
+Bei den ResNet Modellen treten punktuelle Perturbationen auf, welche über das gesamte Bild verteilt sind, wobei am Rand der \acrshort{uap}s tendenziell rote (positive) Perturbationen dominieren. Im Gegensatz dazu sind im Zentrum der Bilder sowohl blaue (negative) als auch rote Werte punktuell verteilt. Bei ResNet50 sind diese punktuellen Perturbationen besonders stark ausgeprägt, was zu einer intensiveren Beeinflussung des Eingabebildes führt.
 
 Jedes Modell weist charakteristische Muster in den \acrshort{uap}s auf, die sowohl von der Netzwerkarchitektur als auch von den angewandten Robustifizierungsdurchläufen abhängen.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/VerlaufAUROC_MRI.png}
-    \caption{Verlauf der Test AUROC Metrik vor der n-ten \Gls{robustifizierung} für alle Modelle auf den MRI Datensatz}
+    \caption{Verlauf der AUROC Testmetrik und Standardfehler vor der n-ten \Gls{robustifizierung} für alle Modelle auf den MRI Datensatz mit addierten \acrshort{uap}s}
     \label{fig:VerlaufAUROC_MRI}
 \end{figure}
 
 Bei der Abbildung \ref{fig:VerlaufAUROC_MRI} ist der Verlauf der Test-AUROC-Metrik nach der Generation neuer \acrshort{uap}s und vor der Robustifikation dargestellt. Mit Ausnahme des bereits erwähnten ResNet18 Modells zeigt nur das DenseNet121 Modell eine stetige Verschlechterung der AUROC-Metrik mit jedem Robustifizierungsdurchlauf. Bei den übrigen Modellen bleibt die Leistung während des Prozesses weitgehend konstant. Bei keinem der Modelle ist eine Verbesserung hinsichtlich dieser Metrik festzustellen.
+
+\newpage
 
 \subsubsection{COVIDx CXR-4 Datensatz}
 Die Generation von \acrshort{uap}s konnte auf 2 der 6 Modelle, welche auf den COVIDx CXR-4 Datensatz trainiert wurden, erfolgreich erschwert werden.  Diese beiden Modelle waren DenseNet-Modelle. Im Vergleich zu den Modellen des MRI-Datensatzes lässt sich nicht deutlich erkennen, dass die Generierungszeit eines \acrshort{uap}s während des Robustifizierungsdurchlaufs zugenommen hat. Verglichen zu den Modellen auf den MRI Datensatz wurden auch nicht sehr hohe Regularisierungsparameter $\lambda_{norm}$, wie in Tabelle \ref{tab:Regularisierungsparameter} dokumentiert, gewählt.  
@@ -225,7 +225,7 @@ Die Generation von \acrshort{uap}s konnte auf 2 der 6 Modelle, welche auf den CO
     \label{fig:uap-densenet121-covid}
 \end{figure}
 
-Die durch das DenseNet121 Modell generierten \acrshort{uap}s zeigen, dass bei den ersten zwei Robustifizierungsdurchläufen starke Perturbationen im oberen rechten Bereich auftreten. Diese Perturbationen werden mit zunehmender Robustifizierung deutlicher und intensiver. Bereits ab der dritten Robustifizierung breiten sich diese Perturbationen im unteren rechten Bereich aus. Generell sind die Perturbationen sowohl im negativen (blau) als auch im positiven (rot) Bereich stärker ausgeprägt.
+Die durch das DenseNet121 Modell generierten \acrshort{uap}s zeigen, dass bei den ersten zwei Robustifizierungsdurchläufen starke Perturbationen im oberen rechten Bereich auftreten. Diese Perturbationen werden mit zunehmender Robustifizierung deutlicher und intensiver. Bereits ab der dritten Robustifizierung breiten sich diese Perturbationen im unteren rechten Bereich aus. Generell sind die Perturbationen sowohl im negativen (blauen) als auch im positiven (roten) Bereich stärker ausgeprägt.
 
 % DenseNet169
 \begin{figure}[H]
@@ -242,6 +242,8 @@ Die durch das DenseNet121 Modell generierten \acrshort{uap}s zeigen, dass bei de
     \caption{Entwicklung der UAPs bei der Robustifizierung vom DenseNet169 Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
     \label{fig:uap-densenet169-covid}
 \end{figure}
+
+\newpage
 
 Analog zu den Ergebnissen beim DenseNet121 zeigen die \acrshort{uap}s beim grösseren Modell, dem DenseNet169, ähnliche Muster. In der ersten \acrshort{uap} ist ebenfalls eine grössere Perturbation im oberen rechten Bereich zu erkennen, während kleinere Perturbationen fein über die gesamte \acrshort{uap} verteilt sind. In der zweiten \acrshort{uap} sind zwei stärkere Perturbationen sichtbar. Das Perturbationsmuster ist weiterhin präsent, wobei ein zusätzliches Muster weiter unten hinzugekommen ist. In der dritten \acrshort{uap} sind die intensiven und signifikanten Perturbationen breiter und über die gesamte \acrshort{uap} hinweg verteilt.
 
@@ -280,6 +282,8 @@ Beim Betrachten der \acrshort{uap}s, die für das EfficientNetV2-S mit dem COVID
 \end{figure}
 
 Die \acrshort{uap}s vom Modell EfficientNetV2-M zeigen zwei auffällige Muster. Zunächst ist festzuhalten, dass sowohl positive (rot) als auch negative (blau) Perturbationen in horizontalen, verwässerten Formen auftreten. In der unteren Hälfte aller \acrshort{uap}s lässt sich ein alternierendes Muster von positiven und negativen Perturbationen erkennen, welche sich in vertikaler Richtung ausbreiten. Dabei fallen die positiven Perturbationen, in Abhängigkeit vom jeweiligen Robustifizierungsdurchlauf, stärker ins Auge. Es lässt sich vermuten, dass die vertikalen Muster der Perturbationen hinter den horizontalen, verwässerten Mustern verborgen sind.
+
+\newpage
 
 \paragraph{ResNet}
 
@@ -331,7 +335,7 @@ Es lässt sich feststellen, dass die \acrlong{uap}s je nach Modell unterschiedli
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/05-resultate/VerlaufAUROC_COVIDx.png}
-    \caption{Verlauf der Test AUROC Metrik vor der n-ten \Gls{robustifizierung} für alle Modelle auf den COVIDx CXR-4 Datensatz}
+    \caption{Verlauf der AUROC Testmetrik und Standardfehler vor der n-ten \Gls{robustifizierung} für alle Modelle auf den COVIDx CXR-4 Datensatz mit addierten \acrshort{uap}s}
     \label{fig:VerlaufAUROC COVIDx}
 \end{figure}
 

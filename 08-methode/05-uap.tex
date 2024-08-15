@@ -45,7 +45,7 @@ Für die Berechnung eines perturbierten Bildes $x_{i,\text{adv}}$ wird das Origi
 
 Der Algorithmus \ref{alg:uap-generierung} iteriert durch jedes Bild einzeln und sucht die Entscheidungsgrenze des aktuellen Bildes, was eine Batch-Grösse von 1 erfordert, wodurch kein Mittelwert in der Loss-Funktion berechnet wird.
 
-Für $\epsilon$ wird ein kleiner Wert wie $10^{-6}$ gewählt, der eine Division durch 0 verhindert, wenn $L_{\text{BCE,UAP}}$ Null beträgt. Somit wird das Problem bei der Berechnung der ersten Perturbation gelöst, da zu diesem Zeitpunkt $v_j + \Delta v_j$ einen Nulltensor ergibt. 
+Für $\epsilon$ wird ein kleiner Wert wie $10^{-6}$ gewählt, der eine Division durch 0 verhindert, wenn $L_{\text{BCE,UAP}}$ 0 beträgt. Somit wird das Problem bei der Berechnung der ersten Perturbation gelöst, da zu diesem Zeitpunkt $v_j + \Delta v_j$ einen Nulltensor ergibt. 
 
 \newpage
 
@@ -92,7 +92,7 @@ Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap}s ist i
     lr_{\text{UAP}}\text{:} &\text{ Lernrate der Gewichtsaktualisierung von $\Delta v_j$.}
 \end{align*}
 
-Ein Flow Chart zum \Gls{algorithmus} ist bei Abbildung \ref{fig:05-uap_algorithm} im Anhang zu finden. 
+Ein Flow Chart zum Algorithmus ist bei Abbildung \ref{fig:05-uap_algorithm} im Anhang zu finden. 
 
 \subsubsection{Wahl des Regularisierungsparameters \texorpdfstring{$\lambda_{norm}$}{lambda\_norm}} \label{chap:wahl des Regularisierungsparameters}
 Jedes Modell ist standardmässig unterschiedlich robust gegenüber \acrshort{uap}s. Deshalb kann nicht der gleiche Regularisierungsparameter $\lambda_{norm}$ für alle Modelle gewählt werden. Wird dieser Parameter zu hoch gewählt, wird die Generierung der \acrshort{uap}s instabil, sodass die gewünschte Schwelle der Entscheidungsgrenze $k$ nicht erreicht werden kann. Jedoch darf $\lambda_{norm}$ nicht zu klein gewählt werden, da ein kleinerer Wert zu einer geringen Bestrafung grosser Werte in den Perturbationen führt und dadurch die Perturbationen grösser werden. Aufgrund dieses Trade-offs wird ein Wert gesucht, welcher so gross wie möglich ist, jedoch noch eine stabile Generation der \acrshort{uap}s ermöglicht.

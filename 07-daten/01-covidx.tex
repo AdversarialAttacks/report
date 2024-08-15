@@ -8,21 +8,23 @@ COVID-19, verursacht durch das Coronavirus SARS-CoV-2, ist eine hochansteckende 
 
 \textbf{COVIDx CXR-4} \cite{wu_covidx_2023} ist ein öffentlicher Datensatz für die COVID-19 Diagnostik mit Röntgenbildern, der 84'818 Bilder von 45'342 Patienten enthält. COVIDx CXR-4 ist nach Kenntnisstand der Autoren der grösste und vielfältigste öffentlich verfügbare COVID-19 Datensatz für Röntgenbilder und soll die Forschung unterstützen, um Kliniker im Kampf gegen COVID-19 zu helfen.
 
-Patienten mit einem negativen Befund erhalten das Klassenlabel Null, bei einem positiven Befund das Klassenlabel Eins. Die Röntgenbilder beschränken sich auf den Brustkorb der jeweiligen Personen.
+Patienten mit einem negativen Befund erhalten das Klassenlabel 0, bei einem positiven Befund das Klassenlabel 1. Die Röntgenbilder beschränken sich auf den Brustkorb der jeweiligen Personen.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/03-data/covid19-klasse0.png}
-    \caption{Beispiele von Patienten mit einem negativen COVID-19 Befund}
+    \caption{Beispiele von Patientenscans mit einem negativen COVID-19 Befund}
     \label{fig:covid19-beispiele-klasse0-negativ}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/03-data/covid19-klasse1.png}
-    \caption{Beispiele von Patienten mit einem positiven COVID-19 Befund}
+    \caption{Beispiele von Patientenscans mit einem positiven COVID-19 Befund}
     \label{fig:covid19-beispiele-klasse1-positiv}
 \end{figure}
+
+\newpage
 
 \subsubsection{Datenpartitionierung} \label{chap:COVID19-Partition}
 Die Datenpartitionierung ist bereits durch die Struktur vorgegeben. Die Klassenverteilung von positiven und negativen Labels für die Validierungs- und Testdatensätze ist nahezu gleich verteilt, mit einem Verhältnis von 50\% positiven zu 50\% negativen Fällen.
@@ -70,13 +72,15 @@ Um die Verteilung der Pixelwerte zu analysieren, werden alle Bilder einer Partit
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/03-data/covid-Pixelverteilung-Partitionen.png}
-    \caption{Histogramme der Pixelverteilung von jeder Datenpartition im COVIDx CXR-4 Datensatz}
+    \caption{Histogramme der Pixelverteilung von jeder Datenpartition im COVIDx CXR-4 Datensatz mit einer Bin-Grösse von 100}
     \label{fig:covid-datapartition-pixelverteilung-histo}
 \end{figure}
 
-Die Histogramme weisen charakteristische Merkmale von Röntgenaufnahmen auf, mit einer hohen Häufigkeit von Pixelwerten nahe null, die schwarzen Pixeln entsprechen. Ein markanter Gipfel bei einem Pixelwert von etwa 180 ist im Trainings- und, weniger ausgeprägt, im Validierungsdatensatz zu beobachten. Der Testdatensatz zeigt hingegen ein abweichendes Muster. Der typische Gipfel fehlt weitgehend, stattdessen ist ein leichter Anstieg am oberen Ende der Verteilung erkennbar, was auf einen höheren Anteil weisser Pixel hindeutet. 
+Die Histogramme weisen charakteristische Merkmale von Röntgenaufnahmen auf, mit einer hohen Häufigkeit von Pixelwerten nahe 0, die schwarzen Pixeln entsprechen. Ein markanter Gipfel bei einem Pixelwert von etwa 180 ist im Trainings- und, weniger ausgeprägt, im Validierungsdatensatz zu beobachten. Der Testdatensatz zeigt hingegen ein abweichendes Muster. Der typische Gipfel fehlt weitgehend, stattdessen ist ein leichter Anstieg am oberen Ende der Verteilung erkennbar, was auf einen höheren Anteil weisser Pixel hindeutet. 
 
 Während die Pixelwertverteilungen in den Trainings- und Validierungsdaten trotz Intensitäts-unterschieden ähnliche Muster aufweisen, hebt sich der Testdatensatz deutlich ab. Diese Diskrepanz könnte auf verschiedene Faktoren zurückzuführen sein, wie unterschiedliche Bildaufnahmetechniken zwischen den Datenpartitionen, variierende Belichtungszeiten oder Sensoreinstellungen sowie den Einsatz verschiedener Röntgengeräte bei der Datenerfassung. Diese Beobachtungen legen nahe, dass der Testdatensatz möglicherweise einer anderen statistischen Verteilung folgt als die Trainings- und Validierungsdaten.
+
+\newpage
 
 \paragraph{Pixelmittelwert} \label{chap:COVID19-pixelmittelwert}
 Die folgende Visualisierung \ref{fig:covid-pixelmittelwert-comparison} dient dem Zweck, Unterschiede zwischen den Datenpartitionen anschaulich darzustellen und mögliche Auffälligkeiten oder Muster sichtbar zu machen. Für jede Datenpartitionen wurden Pixelmittelwerte berechnet, die den durchschnittlichen Pixelwert innerhalb einer festgelegten Dimension von 224 x 224 Pixeln repräsentieren. Diese spezifische Dimensionsgrösse wurde gewählt, da unsere Bilder beim Preprocessing auf diese Grösse reduziert werden.
@@ -101,6 +105,8 @@ Die folgende Visualisierung \ref{fig:covid-pixelmittelwert-comparison} dient dem
 \end{figure}
 
 Die Analyse der Pixelmittelwerte über die verschiedenen Datenpartitionen des COVIDx CXR-4-Datensatzes zeigt minimale Unterschiede zwischen Trainings-, Validierungs- und Testpartitionen. In allen Datenpartitionen sind beide Lungenflügel sowie das umliegende Bauchgewebe deutlich erkennbar. Die Dunkelheit in der Mitte der Bilder könnte auf die Dichte des Gewebes in diesen Bereichen hindeuten, während hellere Bereiche weniger dichte Gewebe repräsentieren. Die Trainingspartition enthält wesentlich mehr Bilder als die Validierungs- und Testpartitionen. Daher wurde Abbildung \ref{fig:covid-pixelmittelwert-subsample} erstellt, die eine Teilmenge der Trainingsbilder zeigt. Visuell sind zwischen Abbildung \ref{fig:covid-pixelmittelwert-full} und \ref{fig:covid-pixelmittelwert-subsample} minimale Unterschiede zu erkennen.
+
+\newpage
 
 \paragraph{Differenzbilder} \label{chap:COVID19-differenzbilder}
 Eine weiterführende Analyse der Pixelmittelwerte wird durch die Berechnung der Differenzen zwischen den Datenpartitionen durchgeführt. Abbildung \ref{fig:differenz-datapartition-covid} visualisiert diese Unterschiede in Form einer Heatmap. Dabei werden die in Abbildung \ref{fig:covid-pixelmittelwert-full} dargestellten Pixelmittelwerte jeder Datenpartition voneinander subtrahiert, um die Differenzen anschaulich darzustellen.

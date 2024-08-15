@@ -1,12 +1,13 @@
 \subsection{Universal Adversarial Perturbations}
-In diesem Kapitel werden die generierten \acrlong{uap}s vor der \Gls{robustifizierung} für jedes der untersuchten Klassifikationsmodelle präsentiert. Diese Modelle wurden jeweils auf den Datensätzen COVIDx CXR-4 und MRI vortrainiert. Es werden ausschliesslich die als relevant erachteten \acrshort{uap}s visualisiert. Weitere \acrshort{uap}s sind im Anhang zu finden. 
+In diesem Kapitel werden die generierten \acrlong{uap}s vor der \Gls{robustifizierung} für jedes der untersuchten Klassifikationsmodelle präsentiert. Diese Modelle wurden jeweils auf den Datensätzen COVIDx CXR-4 und MRI vortrainiert. 
+
+Aufgrund des erheblichen Umfangs der generierten Daten werden in diesem Abschnitt ausschliesslich die als besonders interessant erachteten \acrshort{uap}s visualisiert und diskutiert. Insgesamt wurden 420 \acrshort{uap}s erzeugt. Eine umfassende Darstellung und Analyse aller generierten \acrshort{uap}s würde den Rahmen dieses Berichts überschreiten. 
 
 Die Darstellung der \acrshort{uap}s erfolgt in Form von Heatmaps. In diesen Visualisierungen repräsentieren rote Bereiche positive Werte, während blaue Bereiche negative Werte darstellen. Positive Werte führen zu einer Erhöhung des Pixelwertes im Eingabebild, was in einer Aufhellung resultiert, wohingegen negative Werte den Pixelwert reduzieren und folglich zu einer Verdunkelung führen. Graue Werte weisen darauf hin, dass die Perturbationen in diesem Bildbereich keine Änderungen verursachen.
 
 % UAP Resultate
 \begin{figure}[H]
     \centering
-    \text{\acrshort{uap} von vortrainierten Klassifikationsmodellen auf den MRI Datensatz} \\
     \begin{subfigure}{0.16\linewidth} % Adjust the width to fit six images in one line
         \centering
         \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet121/uap0-densenet121-mri_data-n200-robustificationslevel0.png}
@@ -38,21 +39,20 @@ Die Darstellung der \acrshort{uap}s erfolgt in Form von Heatmaps. In diesen Visu
         \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet50/uap0-resnet50-mri_data-n200-robustificationslevel0.png}
         \caption{ResNet50\\\textcolor{white}{messi goat}}
     \end{subfigure}
-    \caption{Darstellung generierter \acrshort{uap}s für den Hirntumor-Datensatz, basierend auf 200 Trainingsbildern und verschiedenen Klassifikationsmodellen.}
+    \caption{Darstellung generierter \acrshort{uap}s für den Hirntumor-Datensatz, basierend auf 200 Trainingsbildern und verschiedenen Klassifikationsmodellen}
     \label{fig:unterschiedliche-uaps-mri}
 \end{figure}
 
 In den \acrshort{uap}s in Abbildung \ref{fig:unterschiedliche-uaps-mri} sind spezifische Muster erkennbar, die charakteristisch für jedes Modell sind. 
 
-Die \acrlong{uap} für DenseNet121 zeigt in der Heatmap eine klare Struktur mit horizontalen, alternierenden Mustern. Im Zentrum sind blaue Bereiche zu sehen, während die Ränder überwiegend rote Muster aufweisen. Diese Verteilung deutet darauf hin, dass die \acrshort{uap} in diesen Regionen besonders effektiv ist. Bei DenseNet169 hingegen dominiert ein grosser blauer Bereich das Zentrum, umgeben von zahlreichen roten Flecken, die sich über das gesamte Bild erstrecken.
+Die \acrshort{uap} für DenseNet121 zeigt in der Heatmap eine klare Struktur mit horizontalen, alternierenden Mustern. Im Zentrum sind blaue (negative) Bereiche zu sehen, während die Ränder überwiegend rote (positive) Muster aufweisen. Diese Verteilung deutet darauf hin, dass die \acrshort{uap} in diesen Regionen besonders effektiv ist. Bei DenseNet169 hingegen dominiert ein grosser blauer Bereich das Zentrum, umgeben von zahlreichen roten Flecken, die sich über das gesamte Bild erstrecken.
 
-EfficientNetV2-S zeigt insgesamt sehr feine Perturbationen, wobei die linke Seite durch eine deutliche rote vertikale Linie am Rand hervorsticht. Im Gegensatz dazu sind die Perturbationen beim grösseren Modell, EfficientNetV2-M, deutlicher ausgeprägt und weniger fein granular. Die Perturbationen in diesem Modell weisen sowohl rote als auch blaue Muster auf, die überwiegend senkrecht verlaufen. Dies ist besonders interessant, da bei der \acrshort{uap} von DenseNet121 horizontale Muster beobachtet wurden.
+EfficientNetV2-S zeigt insgesamt sehr feine Perturbationen, wobei die linke Seite durch eine deutliche rote (positive) vertikale Linie am Rand hervorsticht. Im Gegensatz dazu sind die Perturbationen beim grösseren Modell, EfficientNetV2-M, deutlicher ausgeprägt und weniger fein granular. Die Perturbationen in diesem Modell weisen sowohl rote als auch blaue (negative) Muster auf, die überwiegend senkrecht verlaufen. Dies ist besonders interessant, da bei der \acrshort{uap} von DenseNet121 horizontale Muster beobachtet wurden.
 
-Bei ResNet18 sind die Perturbationen punktuell, mit roten Bereichen ausserhalb des Zentrums der Heatmap, während im Zentrum tendenziell blaue Werte vorhanden sind. ResNet50 weist ein ähnliches Muster auf, unterscheidet sich jedoch dabei, dass im Zentrum der Heatmap punktuell hohe Perturbationswerte zu beobachten sind. Diese Ausprägungen fehlen in den äusseren Bereichen.
+Bei ResNet18 sind die Perturbationen punktuell, mit roten (positiven) Bereichen ausserhalb des Zentrums der Heatmap, während im Zentrum tendenziell blaue (negative) Werte vorhanden sind. ResNet50 weist ein ähnliches Muster auf, unterscheidet sich jedoch dabei, dass im Zentrum der Heatmap punktuell hohe Perturbationswerte zu beobachten sind. Diese Ausprägungen fehlen in den äusseren Bereichen.
 
 \begin{figure}[H]
     \centering
-    \text{\acrshort{uap} von COVIDx CXR-4 trainierten Klassifikationsmodelle} \\
     \begin{subfigure}{0.16\linewidth} % Adjust the width to fit six images in one line
         \centering
         \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet121/uap0-densenet121-covidx_data-n200-robustificationslevel0.png}
@@ -83,20 +83,64 @@ Bei ResNet18 sind die Perturbationen punktuell, mit roten Bereichen ausserhalb d
         \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet50/uap0-resnet50-covidx_data-n200-robustificationslevel0.png}
         \caption{ResNet50\\\textcolor{white}{Despotar}}
     \end{subfigure}
-    \caption{Darstellung generierter \acrshort{uap}s für den COVIDx CXR-4-Datensatz, basierend auf 200 Trainingsbildern und verschiedenen Klassifikationsmodellen.}
+    \caption{Darstellung generierter \acrshort{uap}s für den COVIDx CXR-4-Datensatz, basierend auf 200 Trainingsbildern und verschiedenen Klassifikationsmodellen}
     \label{fig:unterschiedliche-uaps-covid}
 \end{figure}
 
 Analog wie bei Abbildung \ref{fig:unterschiedliche-uaps-mri} werden die Perturbationen auf dem COVIDx CXR-4 Datensatz trainierten Modelle visualisiert.
 
-Bei der \acrshort{uap} von DenseNet121 sind die Perturbationen im oberen rechten Bereich des Bildes stärker ausgeprägt, während sie im restlichen Bildbereich gleichmässig verteilt sind. Es treten punktuelle Perturbationen mit hohen Werten auf, die eine erhöhte Sensitivität des Modells in diesen Bereichen anzeigen. Im Gegensatz dazu zeigt die \acrshort{uap} für DenseNet169 eine gleichmässige Verteilung der Perturbationen über das gesamte Bild. Eine auffällige, intensive, rote Stelle im oberen rechten Bereich weist auf eine spezifische Schwäche hin. Bemerkenswert ist, dass bei DenseNet169 nur ein intensiver roter Punkt existiert, während bei DenseNet121 mehrere solcher Punkte in der gleichen Region vorhanden sind.
+Bei der \acrshort{uap} von DenseNet121 sind die Perturbationen im oberen rechten Bereich des Bildes stärker ausgeprägt, während sie im restlichen Bildbereich gleichmässig verteilt sind. Es treten punktuelle Perturbationen mit hohen Werten auf, die eine erhöhte Sensitivität des Modells in diesen Bereichen anzeigen. Im Gegensatz dazu zeigt die \acrshort{uap} für DenseNet169 eine gleichmässige Verteilung der Perturbationen über das gesamte Bild. Eine auffällige, intensive, rote (positive) Stelle im oberen rechten Bereich weist auf eine spezifische Schwäche hin. Bemerkenswert ist, dass bei DenseNet169 nur ein intensiver roter Punkt existiert, während bei DenseNet121 mehrere solcher Punkte in der gleichen Region vorhanden sind.
 
-Die \acrshort{uap} für EfficientNetV2-S weist horizontale Muster auf, die über die gesamte Heatmap gleichmässig verteilt sind. Ein ähnliches Muster, das bei Abbildung \ref{fig:uap-densenet121-mri-prerobustification} beobachtet wurde. Im Gegensatz dazu weist das grössere Modell, EfficientNetV2-M, auffällige vertikale Linien im oberen linken und unteren mittleren Bereich der \acrshort{uap} auf. Im Zentrum sind rote Bereiche erkennbar, die von blauen Flächen links und rechts eingerahmt werden. Zudem sind zwei grosse blaue Flecken auf der rechten Seite sichtbar.
+Die \acrshort{uap} für EfficientNetV2-S weist horizontale Muster auf, die über die gesamte Heatmap gleichmässig verteilt sind. Ein ähnliches Muster, das bei Abbildung \ref{fig:uap-densenet121-mri-prerobustification} beobachtet wurde. Im Gegensatz dazu weist das grössere Modell, EfficientNetV2-M, auffällige vertikale Linien im oberen linken und unteren mittleren Bereich der \acrshort{uap} auf. Im Zentrum sind rote (positive) Bereiche erkennbar, die von blauen (negativen) Flächen links und rechts eingerahmt werden. Zudem sind zwei grosse blaue Flecken auf der rechten Seite sichtbar.
 
-Die \acrshort{uap} für ResNet18 zeigt ein diagonales, wellenförmiges Muster. Diese Struktur ist über die gesamte \acrshort{uap} hinweg sichtbar. Auffällig ist die hohe Konzentration von solchen Perturbationen auf der rechten Seite und in der oberen rechten Ecke, wobei sowohl hohe rote als auch blaue Werte nebeneinander auftreten. Im Vergleich dazu zeigt die \acrshort{uap} für ResNet50, wie beim DenseNet169, lediglich in der oberen rechten Ecke einen starken Ausschlag. Ansonsten bleibt die Verteilung der Perturbationen über das gesamte Bild hinweg gleichmässig und fein.
+Die \acrshort{uap} für ResNet18 zeigt ein diagonales, wellenförmiges Muster. Diese Struktur ist über die gesamte \acrshort{uap} hinweg sichtbar. Auffällig ist die hohe Konzentration von solchen Perturbationen auf der rechten Seite und in der oberen rechten Ecke, wobei sowohl hohe rote (positive) als auch blaue (negative) Werte nebeneinander auftreten. Im Vergleich dazu zeigt die \acrshort{uap} für ResNet50, wie beim DenseNet169, lediglich in der oberen rechten Ecke einen starken Ausschlag. Ansonsten bleibt die Verteilung der Perturbationen über das gesamte Bild hinweg gleichmässig und fein.
 
-\subsubsection{Beispiele an Bildern}
+\newpage
 
-\todo{add beispiele}
+\subsubsection{Visuelle Beispiele}
+Die folgenden Abbildungen zeigen, die Addition der \acrshort{uap}s zu einem positiv gelabelten Bild. Des Weiteren wird anhand eines Violinplots sowie eines Histogramms die Verteilung der \acrshort{uap}s dargestellt. Weitere Abbildungen sind im Anhang zu finden. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_resnet18_mri-uap3-rob0-imageindex10.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten ResNet18 Modell erzeugt wurde}
+    \label{fig:resnet18_mri_perturbation}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_densenet169_mri-uap4-rob0-imageindex10.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten DenseNet169 Modell erzeugt wurde}
+    \label{fig:densenet169_mri_perturbation}
+\end{figure}
+
+Der ausgewählte MRI-Scan zeigt eine sagittale Ansicht des Kopfes. In diesen Visualisierungen wurden \acrshort{uap}s der Modelle ResNet18 und DenseNet169 auf diese Bilder angewandt. Die resultierende perturbierte Bilder führen zu einer falsch-negativen Klassifikation durch die entsprechenden Modelle. 
+
+Dabei fällt auf, dass die Perturbation des ResNet18-Modells visuell weniger auffällig erscheint als die des DenseNet169-Modells. Die Werteverteilungen der \acrshort{uap}s weisen deutliche Unterschiede auf, wie sowohl in den Violinplots als auch in den Histogrammen ersichtlich sind. Die \acrshort{uap} des ResNet18-Modells weist eine bimodale Verteilung mit zwei Peaks im Bereich von -1 und +1 auf. Im Gegensatz dazu ähnelt die Werteverteilung der \acrshort{uap} des DenseNet169-Modells eher einer symmetrischen Verteilung. 
+
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_resnet50_covidx-uap0-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten ResNet50 Modell erzeugt wurde}
+    \label{fig:resnet50_covidx_perturbation}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_efficientnetm_covidx-uap0-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten EfficientNetV2-M Modell erzeugt wurde}
+    \label{fig:efficientnetm_covidx_perturbation}
+\end{figure}
+
+Das ausgewählte X-Ray Bild zeigt eine frontale Aufnahme eines Oberkörpers. In dieser Analyse wurden \acrshort{uap}s der Modelle ResNet50 und EfficientNetV2-M auf diese Bilder angewandt. Die resultierenden perturbierten Bilder führen zu einer falsch-negativen Klassifikation durch die entsprechenden Modelle.
+
+Bei der Betrachtung der Ergebnisse fällt auf, dass das durch EfficientNetV2-M perturbierte Bild deutliche Interferenzen im Röntgenscan aufweist. Für Betrachtende ist somit erkennbar, dass das Bild manipuliert wurde oder zumindest Unregelmässigkeiten aufweist, die auf eine mögliche Attacke hindeuten könnten.
+
+Im Gegensatz dazu sind die Veränderungen im perturbierten Bild des ResNet50-Modells kaum wahrnehmbar. Lediglich bei einem direkten Vergleich mit dem Originalbild, der in einem realen Angriffsszenario nicht möglich wäre, lässt sich eine minimale Veränderung in Form eines kleinen Punktes oberhalb der rechten Schulter des Patienten erkennen.
 \newpage

@@ -3,7 +3,6 @@
 \addcontentsline{toc}{section}{Anhang}
 
 \subsection*{Technische Umsetzung des UAP-Generierungsprozesses}
-
 Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder ist in der folgenden Grafik dargestellt:
 
 \begin{figure}[H]
@@ -13,9 +12,13 @@ Die technische Umsetzung des Prozesses zur Generierung der \acrshort{uap} Bilder
     \label{fig:05-uap_algorithm}
 \end{figure}
 
+Die hier erwähnten Variablen stimmen nicht vollständig mit den Variablen aus Kapitel \ref{chap:technische_umsetzung_uap} überein, da diese Visualisierung älter ist.
 \newpage
 
+
 \subsection*{Technische Umsetzung der Adversarial Training Pipeline}
+
+Der hier referenzierte Algorithmus bezieht sich auf Kapitel \ref{chap:adversarial training}:
 
 \begin{algorithm}
 \caption{Pipeline zur Generierung von universelle adversarial Perturbationen}
@@ -50,230 +53,372 @@ Eine vereinfachte, visualisierte Version der Adversarial Training Pipeline ohne 
 
 \newpage
 
-\subsection*{Weitere Analysen}
+\subsection*{Weitere Datenpartitionsanalysen}
 \subsubsection*{Feature Maps \& PCA} \label{chap:FeatureMaps-TestProblemEda3-mri}
-Im Rahmen unserer Analyse nutzen wir ein ResNet50-Modell, das zum einen durch PyTorch vorab trainiert und zum anderen speziell auf unseren Datensatz angepasst. Besonderes Augenmerk liegt auf der Featureextraktion aus dem vorletzten Layer des Modells, direkt vor dem Klassifikationslayer. Die in diesem Schritt gewonnenen Vektoren, auch als Feature Maps bekannt, durchlaufen einer PCA Dimensionsreduktion. Ziel dieser Reduktion ist es, die Dimensionalität der Daten auf zwei Dimensionen zu reduzieren, um eine Visualisierung der verschiedenen Datenpartitionen zu ermöglichen. Die Interpretation erweist sich als sehr komplex und die Ergebnisse sind nur schwer zu interpretieren. 
+Im Rahmen unserer Thesis nutzen wir ein ResNet50-Modell, das zum einen durch PyTorch vorab trainiert und zum anderen speziell auf unseren Datensatz angepasst. Besonderes Augenmerk liegt auf der Featureextraktion aus dem vorletzten Layer des Modells, direkt vor dem Klassifikationslayer. Die in diesem Schritt gewonnenen Vektoren, auch als Feature Maps bekannt, durchlaufen einer PCA Dimensionsreduktion. Ziel dieser Reduktion ist es, die Dimensionalität der Daten auf zwei Dimensionen zu reduzieren, um eine Visualisierung der verschiedenen Datenpartitionen zu ermöglichen. Die Interpretation erweist sich als sehr komplex und die Ergebnisse sind nur schwer zu interpretieren. 
 
-\paragraph*{Covid}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{01-images/06-ending/covidx-all-feautremap-pca-ourmodel-resnet50.png}
-    \caption{Hauptkomponenten der PCA-Analyse von zweitletzten Covid Featuremaps Layer eines vortrainierten ResNet50-Modells für Covid}
-    \label{fig:covidx-feautremap-pca-ourmodel-resnet50}
-\end{figure}
+\paragraph*{COVIDx CXR-4}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/06-ending/covidx-all-feautremap-pca-model-resnet50.png}
-    \caption{Hauptkomponenten der PCA-Analyse von zweitletzten Covid Featuremaps Layer eines vortrainierten ResNet50-Modells}
+    \caption{Hauptkomponenten der PCA-Analyse jeder Datenpartition vom zweitletzten Layer eines vortrainierten ResNet50-Modells}
     \label{fig:covidx-feautremap-pca-model-resnet50}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/06-ending/covidx-all-feautremap-pca-ourmodel-resnet50.png}
+    \caption{Hauptkomponenten der PCA-Analyse jeder Datenpartition vom zweitletzten Layer eines trainierten ResNet50-Modells für COVIDx CXR-4}
+    \label{fig:covidx-feautremap-pca-ourmodel-resnet50}
+\end{figure}
 
-\paragraph*{Hirntumor}
+\paragraph*{Brain Tumor Classification (MRI)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/06-ending/brain-all-feautremap-pca-model-resnet50.png}
+    \caption{Hauptkomponenten der PCA-Analyse jeder Datenpartition vom zweitletzten Layer eines vortrainierten ResNet50-Modells}
+    \label{fig:brain-feautremap-pca-model-resnet50}
+\end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{01-images/06-ending/brain-all-feautremap-pca-ourmodel-resnet50.png}
-    \caption{Hauptkomponenten der PCA-Analyse von zweitletzten Hirntumor Featuremaps Layer eines vortrainierten ResNet50-Modells für Hirntumor}
+    \caption{Hauptkomponenten der PCA-Analyse jeder Datenpartition vom zweitletzten Layer eines vortrainierten ResNet50-Modells für den MRI Datensatz}
     \label{fig:brain-feautremap-pca-ourmodel-resnet50}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{01-images/06-ending/brain-all-feautremap-pca-model-resnet50.png}
-    \caption{Hauptkomponenten der PCA-Analyse von zweitletzten Hirntumor Featuremaps Layer eines vortrainierten ResNet50-Modells}
-    \label{fig:brain-feautremap-pca-model-resnet50}
 \end{figure}
 
 \newpage
 
+%%%%%%%%%%%%%%%%%%%% Beispiele Universelle Adversarial Perturbation %%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Weitere visuelle Beispiele der \acrshort{uap}s}
+In diesem Abschnitt sind weitere Visualisierungen mit \acrshort{uap}s vorhanden.
+
+\subsubsection*{COVIDx CXR-4}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_densenet121_covidx-uap0-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten DenseNet121 Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_densenet169_covidx-uap0-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten DenseNet169 Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_efficientnets_covidx-uap0-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten EfficientNetV2-S Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_efficientnetm_covidx-uap2-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten EfficientNetV2-M Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_resnet18_covidx-uap0-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten ResNet18 Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_resnet50_covidx-uap2-rob0-imageindex5.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein X-Ray Bild, wobei die Perturbation durch das auf den COVIDx CXR-4 Datensatz trainierten ResNet50 Modell erzeugt wurde}
+\end{figure}
+
+\newpage
+
+\subsubsection*{Brain Tumor Classification (MRI)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_densenet121_mri-uap0-rob0-imageindex0.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten DenseNet121 Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_densenet169_mri-uap0-rob0-imageindex0.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten DenseNet169 Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_efficientnets_mri-uap0-rob0-imageindex0.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten EfficientNetV2-S Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_efficientnetm_mri-uap0-rob0-imageindex0.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten EfficientNetV2-M Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_resnet18_mri-uap0-rob0-imageindex0.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten ResNet18 Modell erzeugt wurde}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{01-images/05-resultate/uap_example/uaps_resnet50_mri-uap0-rob0-imageindex0.png}
+    \caption{
+    Beispiel der Addition einer \acrshort{uap} auf ein MRI-Bild, wobei die Perturbation durch das auf den MRI Datensatz trainierten ResNet50 Modell erzeugt wurde}
+\end{figure}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%% Übreige Universelle Adversarial Perturbation Visualisierungen %%%%%%%%%%%%%%%%%%%%
+
 % Übrige UAP
-\subsection*{Übrige Universelle Adversarial Perturbation} \label{appendix:übrige-uaps}
-Hier werden die übrig gebliebenen UAP Indexe für jede Robustifikationslevel, Modell und Datensatz visualisiert. 
+\subsection*{Übrige \acrshort{uap}s} \label{appendix:übrige-uaps}
+Hier werden die übrig gebliebenen \acrshort{uap}-Indizes für jeden Robustifikationsdurchlauf, Modell und Datensatz visualisiert. 
 
-% ResNet18 Covid
-\subsubsection*{UAP von ResNet18 - Covidx CXR-4} 
+% DenseNet121 COVIDx
+\subsubsection*{\acrshort{uap}s vom DenseNet121 Modell auf den COVIDx CXR-4 Datensatz}
 \begin{figure}[H]
     \centering
     \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,9} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,2} {%
+            \ifnum\x>0 \hfill \fi 
             \begin{subfigure}{0.095\linewidth}
                 \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet18/uap\y-resnet18-covidx_data-n200-robustificationslevel\x.png}
-            \end{subfigure}\hfill%
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet121/uap\y-densenet121-covidx_data-n200-robustificationslevel\x.png}
+            \end{subfigure}%
         }
-    }
-    \caption{Übrige Generierte UAPs der mit ResNet18 trainierten Covidx CXR-4 Datensätze nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-resnet18-covid-rest}
+    }\\
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom DenseNet121 Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-densenet121-covid-rest}
 \end{figure}
 
-% ResNet18 MRI
-\subsubsection*{UAP von ResNet18 - Hirntumor}
+% DenseNet169 Covid
+\subsubsection*{\acrshort{uap}s vom DenseNet169 Modell auf den COVIDx CXR-4 Datensatz}
 \begin{figure}[H]
     \centering
     \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,6} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,2} {%
+            \ifnum\x>0 \hfill \fi 
             \begin{subfigure}{0.095\linewidth}
                 \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet18/uap\y-resnet18-mri_data-n200-robustificationslevel\x.png}
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet169/uap\y-densenet169-covidx_data-n200-robustificationslevel\x.png}
             \end{subfigure}\hfill%
-        }
+        }\\
     }
-    \caption{Übrige Generierte UAPs der mit ResNet18 trainierten Hirntumor Datensatz nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-resnet18-hirntumor-rest}
-\end{figure}
-
-% ResNet50 Covid
-\subsection*{UAP von ResNet50 - Covidx CXR-4}
-\begin{figure}[H]
-    \centering
-    \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,9} {%
-            \begin{subfigure}{0.095\linewidth}
-                \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet50/uap\y-resnet50-covidx_data-n200-robustificationslevel\x.png}
-            \end{subfigure}\hfill%
-        }
-    }
-    \caption{Übrige Generierte UAPs der mit ResNet50 trainierten Covidx CXR-4 Datensätze nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-resnet50-covid-rest}
-\end{figure}
-
-% ResNet50 MRI
-\subsubsection*{UAP von ResNet50 - Hirntumor}
-\begin{figure}[H]
-    \centering
-    \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,9} {%
-            \begin{subfigure}{0.095\linewidth}
-                \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet50/uap\y-resnet50-mri_data-n200-robustificationslevel\x.png}
-            \end{subfigure}\hfill%
-        }
-    }
-    \caption{Übrige Generierte UAPs der mit ResNet50 trainierten Hirntumor Datensatz nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-resnet50-hirntumor-rest}
-\end{figure}
-
-% EfficientNetV2-M Covid
-\subsubsection*{UAP von EfficientNetV2-M - Covidx CXR-4}
-\begin{figure}[H]
-    \centering
-    \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,9} {%
-            \begin{subfigure}{0.095\linewidth}
-                \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_efficientnet_m/uap\y-efficientnet_v2_m-covidx_data-n200-robustificationslevel\x.png}
-            \end{subfigure}\hfill%
-        }
-    }
-    \caption{Übrige Generierte UAPs der mit EfficientNetV2-M trainierten Covidx CXR-4 Datensätze nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-efficientnetv2m-covid-rest}
-\end{figure}
-
-% EfficientNetV2-M MRI
-\subsubsection*{UAP von EfficientNetV2-M - Hirntumor}
-\begin{figure}[H]
-    \centering
-    \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,4} {%
-            \begin{subfigure}{0.095\linewidth}
-                \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_efficientnet_m/uap\y-efficientnet_v2_m-mri_data-n200-robustificationslevel\x.png}
-            \end{subfigure}\hfill%
-        }
-    }
-    \caption{Übrige Generierte UAPs der mit EfficientNetV2-M trainierten Hirntumor Datensatz nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-efficientnetv2m-hirntumor-rest}
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom DenseNet169 Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-densenet169-covid-rest}
 \end{figure}
 
 % EfficientNetV2-S Covid
-\subsubsection*{UAP von EfficientNetV2-S - Covidx CXR-4}
+\subsubsection*{\acrshort{uap}s vom EfficientNetV2-S Modell auf den COVIDx CXR-4 Datensatz}
 \begin{figure}[H]
     \centering
     \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
         \foreach \x in {0,...,9} {%
+            \ifnum\x>0 \hfill \fi 
             \begin{subfigure}{0.095\linewidth}
                 \centering
                 \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_efficientnet_s/uap\y-efficientnet_v2_s-covidx_data-n200-robustificationslevel\x.png}
             \end{subfigure}\hfill%
-        }
+        }\\
     }
-    \caption{Übrige Generierte UAPs der mit EfficientNetV2-S trainierten Covidx CXR-4 Datensätze nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom EfficientNetV2-S Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
     \label{fig-appendix:uap-efficientnetv2s-covid-rest}
 \end{figure}
 
-% EfficientNetV2-S MRI
-\subsubsection*{UAP von EfficientNetV2-S - Hirntumor}
+% EfficientNetV2-M Covid
+\subsubsection*{\acrshort{uap}s vom EfficientNetV2-M Modell auf den COVIDx CXR-4 Datensatz}
 \begin{figure}[H]
     \centering
     \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,9} {%
+            \ifnum\x>0 \hfill \fi 
+            \begin{subfigure}{0.095\linewidth}
+                \centering
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_efficientnet_m/uap\y-efficientnet_v2_m-covidx_data-n200-robustificationslevel\x.png}
+            \end{subfigure}\hfill%
+        }\\
+    }
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom EfficientNetV2-M Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-efficientnetv2m-covid-rest}
+\end{figure}
+
+% ResNet18 Covid
+\subsubsection*{\acrshort{uap}s vom ResNet18 Modell auf den COVIDx CXR-4 Datensatz} 
+\begin{figure}[H]
+    \centering
+    \foreach \y in {0,1,2,3,4} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,9} {%
+            \ifnum\x>0 \hfill \fi 
+            \begin{subfigure}{0.095\linewidth}
+                \centering
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet18/uap\y-resnet18-covidx_data-n200-robustificationslevel\x.png}
+            \end{subfigure}\hfill%
+        }\\
+    }
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom ResNet18 Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-resnet18-covid-rest}
+\end{figure}
+
+% ResNet50 Covid
+\subsection*{\acrshort{uap}s vom ResNet50 Modell auf den COVIDx CXR-4 Datensatz}
+\begin{figure}[H]
+    \centering
+    \foreach \y in {0,1,2,3,4} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,9} {%
+            \ifnum\x>0 \hfill \fi 
+            \begin{subfigure}{0.095\linewidth}
+                \centering
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet50/uap\y-resnet50-covidx_data-n200-robustificationslevel\x.png}
+            \end{subfigure}\hfill%
+        }\\
+    }
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom ResNet50 Modell auf den COVIDx CXR-4 Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-resnet50-covid-rest}
+\end{figure}
+
+% DenseNet121 MRI
+\subsubsection*{\acrshort{uap}s vom DenseNet121 Modell auf den MRI Datensatz}
+\begin{figure}[H]
+    \centering
+    \foreach \y in {0,1,2,3,4} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,3} {%
+            \ifnum\x>0 \hfill \fi 
+            \begin{subfigure}{0.095\linewidth}
+                \centering
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet121/uap\y-densenet121-mri_data-n200-robustificationslevel\x.png}
+            \end{subfigure}\hfill%
+        }\\
+    }
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom DenseNet121 Modell auf den MRI Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-densenet121-hirntumor-rest}
+\end{figure}
+
+% DenseNet169 MRI
+\subsubsection*{\acrshort{uap}s vom DenseNet169 Modell auf den MRI Datensatz}
+\begin{figure}[H]
+    \centering
+    \foreach \y in {0,1,2,3,4} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,9} {%
+            \ifnum\x>0 \hfill \fi 
+            \begin{subfigure}{0.095\linewidth}
+                \centering
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet169/uap\y-densenet169-mri_data-n200-robustificationslevel\x.png}
+            \end{subfigure}\hfill%
+        }\\
+    }
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom DenseNet169 Modell auf den MRI Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-densenet169-hirntumor-rest}
+\end{figure}
+
+% EfficientNetV2-S MRI
+\subsubsection*{\acrshort{uap}s vom EfficientNetV2-S Modell auf den MRI Datensatz}
+\begin{figure}[H]
+    \centering
+    \foreach \y in {0,1,2,3,4} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
         \foreach \x in {0,...,0} {%
             \begin{subfigure}{0.095\linewidth}
                 \centering
                 \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_efficientnet_s/uap\y-efficientnet_v2_s-mri_data-n200-robustificationslevel\x.png}
             \end{subfigure}\hfill%
-        }
+        }\\
     }
-    \caption{Übrige Generierte UAPs der mit EfficientNetV2-S trainierten Hirntumor Datensatz nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom EfficientNetV2-S Modell auf den MRI Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
     \label{fig-appendix:uap-efficientnetv2s-hirntumor-rest}
 \end{figure}
 
-% DenseNet169 Covid
-\subsubsection*{UAP von DenseNet169 - Covidx CXR-4}
+% EfficientNetV2-M MRI
+\subsubsection*{\acrshort{uap}s vom EfficientNetV2-M Modell auf den MRI Datensatz}
 \begin{figure}[H]
     \centering
     \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,2} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,4} {%
+            \ifnum\x>0 \hfill \fi 
             \begin{subfigure}{0.095\linewidth}
                 \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet169/uap\y-densenet169-covidx_data-n200-robustificationslevel\x.png}
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_efficientnet_m/uap\y-efficientnet_v2_m-mri_data-n200-robustificationslevel\x.png}
             \end{subfigure}\hfill%
-        }
+        }\\
     }
-    \caption{Übrige Generierte UAPs der mit DenseNet169 trainierten Covidx CXR-4 Datensätze nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-densenet169-covid-rest}
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom EfficientNetV2-M Modell auf den MRI Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-efficientnetv2m-hirntumor-rest}
 \end{figure}
 
-% DenseNet169 MRI
-\subsubsection*{UAP von DenseNet169 - Hirntumor}
+% ResNet18 MRI
+\subsubsection*{\acrshort{uap}s vom ResNet18 Modell auf den MRI Datensatz}
 \begin{figure}[H]
     \centering
     \foreach \y in {0,1,2,3,4} {%
-        \text{Entwicklung der UAP (Index \y) durch Adversarial Attack und Adversarial Training}\\
-        \foreach \x in {0,...,9} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,6} {%
+            \ifnum\x>0 \hfill \fi 
             \begin{subfigure}{0.095\linewidth}
                 \centering
-                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_densenet169/uap\y-densenet169-mri_data-n200-robustificationslevel\x.png}
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet18/uap\y-resnet18-mri_data-n200-robustificationslevel\x.png}
             \end{subfigure}\hfill%
-        }
+        }\\
     }
-    \caption{Übrige Generierte UAPs der mit DenseNet169 trainierten Hirntumor Datensatz nach jedem Robustifikationslevel durch Adversarial Training von links nach rechts für alle Indizes.}
-    \label{fig-appendix:uap-densenet169-hirntumor-rest}
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom ResNet18 Modell auf den MRI Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-resnet18-hirntumor-rest}
 \end{figure}
+
+% ResNet50 MRI
+\subsubsection*{\acrshort{uap}s vom ResNet50 Modell auf den MRI Datensatz}
+\begin{figure}[H]
+    \centering
+    \foreach \y in {0,1,2,3,4} {%
+        \text{Entwicklung der \acrshort{uap}s (Index \y) durch Adversarial Attack und Adversarial Training}\\
+        \foreach \x in {0,...,9} {%
+            \ifnum\x>0 \hfill \fi 
+            \begin{subfigure}{0.095\linewidth}
+                \centering
+                \includegraphics[height=1\linewidth]{01-images/05-resultate/uap_resnet50/uap\y-resnet50-mri_data-n200-robustificationslevel\x.png}
+            \end{subfigure}\hfill%
+        }\\
+    }
+    \caption{Entwicklung der UAPs bei der \Gls{robustifizierung} vom ResNet50 Modell auf den MRI Datensatz nach jedem Robustifizierungsdurchlauf von links nach rechts}
+    \label{fig-appendix:uap-resnet50-hirntumor-rest}
+\end{figure}
+
+\vfill
 
 \subsection*{Verlinkungen}
-\begin{table}[h!]
+\begin{table}[H]
     \centering
         \begin{tabular}{|l|l|}
         \hline
         \textbf{Beschreibung} & \textbf{Link} \\ \hline
         GitHub Organisation & \href{https://github.com/AdversarialAttacks}{https://github.com/AdversarialAttacks} \\ \hline
         Sitzungsprotokolle & \href{https://github.com/orgs/AdversarialAttacks/discussions/categories/protokolle}{https://github.com/orgs/AdversarialAttacks/discussions} \\ \hline
-        Weights \& Bias & \href{https://wandb.ai/24FS_I4DS27}{https://wandb.ai/24FS\_I4DS27} \\ \hline
-        UAP Algorithmus & \href{https://github.com/AdversarialAttacks/report/blob/main/01-images/05-UAP_ALG.png}{UAP Algorithmus} \\ \hline
+        Taskboard & \href{https://github.com/orgs/AdversarialAttacks/projects/1/views/6}{https://github.com/orgs/AdversarialAttacks/taskboard} \\ \hline
+        Weights \& Biases & \href{https://wandb.ai/24FS_I4DS27}{https://wandb.ai/24FS\_I4DS27} \\ \hline
         \end{tabular}
     \caption{Beschreibung der Links}
     \label{table-appendix:weitere-links}
 \end{table}
+
